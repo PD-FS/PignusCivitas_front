@@ -15,7 +15,7 @@ export class LandingPage {
 
   pushPage(page) {
 
-    this.navCtrl.push(InboxPage, {
+    this.navCtrl.setRoot(InboxPage,{
       page: page
     });
 
