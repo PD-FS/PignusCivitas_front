@@ -5,6 +5,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { LandingPage } from '../pages/landing/landing';
 import { ListPage } from '../pages/list/list';
+import { InboxPage } from '../pages/inbox/inbox';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -16,7 +17,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
   declarations: [
     MyApp,
     LandingPage,
-    ListPage
+    ListPage,
+    InboxPage
   ],
   imports: [
     BrowserModule,
@@ -28,7 +30,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
   entryComponents: [
     MyApp,
     LandingPage,
-    ListPage
+    ListPage,
+    InboxPage
   ],
   providers: [
     StatusBar,
