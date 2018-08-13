@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, Platform } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
+
 
 import { InboxPage } from '../inbox/inbox';
 
@@ -9,14 +11,19 @@ import { InboxPage } from '../inbox/inbox';
 })
 export class LandingPage {
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, private storage: Storage, public platform: Platform) {
 
   }
 
   pushPage(page) {
 
-    this.navCtrl.setRoot(InboxPage,{
-      page: page
+    this.storage.set('page', page);
+    this.platform.ready().then( (p) => {
+      this.storage.get('page').then( (val) => {
+        if(page == val){
+          this.navCtrl.setRoot(InboxPage);
+        }
+      });
     });
 
   }
