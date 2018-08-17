@@ -24,6 +24,8 @@ export class LandingPage {
       this.role.getRole().then( (val) => {
         if(actualrole == val){
           this.navCtrl.setRoot(InboxPage);
+        } else {
+          this.pushInbox(val)
         }
       });
     });
