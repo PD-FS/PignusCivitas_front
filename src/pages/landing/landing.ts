@@ -1,26 +1,28 @@
 import { Component } from '@angular/core';
 import { NavController, Platform } from 'ionic-angular';
-import { Storage } from '@ionic/storage';
+import { Role } from '../../common/models/role';
 
 
 import { InboxPage } from '../inbox/inbox';
 
 @Component({
   selector: 'page-landing',
-  templateUrl: 'landing.html'
+  templateUrl: 'landing.html',
+  providers: [Role]
 })
 export class LandingPage {
 
-  constructor(public navCtrl: NavController, private storage: Storage, public platform: Platform) {
+  constructor(public navCtrl: NavController, private role: Role, public platform: Platform) {
 
   }
 
-  pushPage(role) {
+  pushInbox(actualrole) {
 
-    this.storage.set('role', role);
+    this.role.setRole(actualrole);
+
     this.platform.ready().then( (p) => {
-      this.storage.get('role').then( (val) => {
-        if(role == val){
+      this.role.getRole().then( (val) => {
+        if(actualrole == val){
           this.navCtrl.setRoot(InboxPage);
         }
       });

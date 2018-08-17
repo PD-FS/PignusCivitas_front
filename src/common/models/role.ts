@@ -9,8 +9,8 @@ export class Role {
   constructor(private storage: Storage) {
   }
 
-  private setRole(val){
-    this.role = val;
+  public setRole(val){
+    this.storage.set('role', val);
   }
 
   public getRole() {
