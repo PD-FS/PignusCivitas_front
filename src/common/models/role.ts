@@ -4,17 +4,18 @@ import { Injectable } from '@angular/core'
 @Injectable()
 export class Role {
 
+  private role: number;
+
   constructor(private storage: Storage) {
   }
 
-  public getRole(): number {
+  private setRole(val){
+    this.role = val;
+  }
 
-    let role : number = 0;
+  public getRole() {
 
-    this.storage.get('role').then( val => {
-      role = val;
-    })
+    return this.storage.get('role')
 
-    return role;
   }
 }
