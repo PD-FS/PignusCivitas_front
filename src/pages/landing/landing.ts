@@ -15,12 +15,12 @@ export class LandingPage {
 
   }
 
-  pushPage(page) {
+  pushPage(role) {
 
-    this.storage.set('page', page);
+    this.storage.set('role', role);
     this.platform.ready().then( (p) => {
-      this.storage.get('page').then( (val) => {
-        if(page == val){
+      this.storage.get('role').then( (val) => {
+        if(role == val){
           this.navCtrl.setRoot(InboxPage);
         }
       });

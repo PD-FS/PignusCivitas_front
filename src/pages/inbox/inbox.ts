@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { LandingPage } from '../landing/landing';
-
+import { Role } from '../../common/role'
 /**
  * Generated class for the InboxPage page.
  *
@@ -14,12 +14,18 @@ import { LandingPage } from '../landing/landing';
 @Component({
   selector: 'page-inbox',
   templateUrl: 'inbox.html',
+  providers: [
+    Role
+  ]
 })
 export class InboxPage {
 
   page:number;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              private storage: Storage,
+              private role: Role) {
   }
 
   ionViewDidLoad() {
@@ -27,7 +33,7 @@ export class InboxPage {
     this.storage.get('page').then( (val) => {
       if(val != null){
         console.log("Value in Storage : ", val)
-        this.page = val;
+        this.page = this.role.getRole();
       }
       else{
         console.log("Null or Undefined value err :", val)
