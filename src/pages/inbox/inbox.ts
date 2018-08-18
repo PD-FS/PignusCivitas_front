@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LandingPage } from '../landing/landing';
-import { Role } from '../../common/models/role'
+import { RoleService } from '../../common/services/role.service'
 /**
  * Generated class for the InboxPage page.
  *
@@ -14,7 +14,7 @@ import { Role } from '../../common/models/role'
   selector: 'page-inbox',
   templateUrl: 'inbox.html',
   providers: [
-    Role
+    RoleService
   ]
 })
 export class InboxPage {
@@ -23,7 +23,7 @@ export class InboxPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              private role: Role) {
+              private role: RoleService) {
   }
 
   ionViewDidLoad() {

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, Platform } from 'ionic-angular';
-import { Role } from '../../common/models/role';
+import { RoleService } from '../../common/services/role.service';
 
 
 import { InboxPage } from '../inbox/inbox';
@@ -8,11 +8,13 @@ import { InboxPage } from '../inbox/inbox';
 @Component({
   selector: 'page-landing',
   templateUrl: 'landing.html',
-  providers: [Role]
+  providers: [RoleService]
 })
 export class LandingPage {
 
-  constructor(public navCtrl: NavController, private role: Role, public platform: Platform) {
+  constructor(public navCtrl: NavController,
+              private role: RoleService,
+              public platform: Platform) {
 
   }
 
