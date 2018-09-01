@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 /*
@@ -10,10 +9,17 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ConfigProvider {
 
-  api: string = "https://pignuscivitas.herokuapp.com/"
+  private api_prod: string = "https://pignuscivitas.herokuapp.com/"
 
-  constructor(public http: HttpClient) {
+  constructor() {
     console.log('Hello ConfigProvider Provider');
+  }
+
+  /**
+   * Funcion para obtener la url a utilizar en el ambiente
+   */
+  public getApiURL(): string {
+    return this.api_prod;
   }
 
 }
