@@ -18,6 +18,7 @@ import { ConfigProvider } from '../providers/config/config';
 import { EventsProvider } from '../providers/events/events';
 import { SecurityProvider } from '../providers/security/security';
 import { ApiProvider } from '../providers/api/api';
+import { UsersProvider } from '../providers/users/users';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { ApiProvider } from '../providers/api/api';
     ConfigProvider,
     EventsProvider,
     SecurityProvider,
-    ApiProvider
+    ApiProvider,
+    UsersProvider
   ]
 })
 export class AppModule {}
