@@ -25,5 +25,22 @@
 
 
 <ion-content padding>
-{{actualrole}}
+  <ion-item>
+    <ion-label>Eventos</ion-label>
+    <ion-select [(ngModel)]="events">
+      <ion-option>Alertas</ion-option>
+      <ion-option>Novedades</ion-option>
+      <ion-option>Notificaciones</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-list>
+    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
+      <ion-avatar item-start>
+        <img src="{{item.img}}">
+      </ion-avatar>
+      <h2>{{item.title}}</h2>
+      <p>{{item.description}}</p>
+      <ion-icon name="{{item.icon}}" color="{{item.color}}" item-end></ion-icon>
+    </button>
+  </ion-list>
 </ion-content>
