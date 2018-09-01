@@ -1,3 +1,4 @@
+import { UsersProvider } from './../providers/users/users';
 import { SecurityProvider } from './../providers/security/security';
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
@@ -22,7 +23,7 @@ export class MyApp {
   constructor(public platform: Platform,
               public statusBar: StatusBar,
               public splashScreen: SplashScreen,
-              private security: SecurityProvider) {
+              private users: UsersProvider) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -31,7 +32,7 @@ export class MyApp {
       { title: 'List', component: ListPage }
     ];
 
-    this.user = security.getUser()
+    this.user = users.getUser()
 
   }
 
