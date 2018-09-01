@@ -1,7 +1,7 @@
 import { SecurityProvider } from './../security/security';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
+import { NavController, Platform } from 'ionic-angular';
 /*
   Generated class for the UsersProvider provider.
 
@@ -11,13 +11,21 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class UsersProvider {
 
-  constructor(public http: HttpClient, private security: SecurityProvider) {
+  constructor(public http: HttpClient,
+              private security: SecurityProvider,
+              private platform: Platform) {
     console.log('Hello UsersProvider Provider');
   }
 
   getUser(): any {
-    this.security.getRole().then( (val) => {
-
+    this.platform.ready().then( (p) => {
+      this.security.getRole().then( (val) => {
+        if(actualrole == val){
+          this.navCtrl.setRoot(InboxPage);
+        } else {
+          this.pushInbox(val)
+        }
+      });
     });
   }
 

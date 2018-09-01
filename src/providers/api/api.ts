@@ -6,13 +6,13 @@ import { ConfigProvider } from '../config/config';
  * Api is a generic REST Api handler. Set your API url first.
  */
 @Injectable()
-export class Api {
+export class ApiProvider {
 
   private url: string;
 
   constructor(public http: HttpClient,
     private config: ConfigProvider) {
-      this.url = config.getApiURL();
+      this.url = this.config.getApiURL();
   }
 
   public get(endpoint: string, params?: any, reqOpts?: any) {

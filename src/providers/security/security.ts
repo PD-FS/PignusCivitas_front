@@ -20,7 +20,7 @@ export class SecurityProvider {
     this.storage.set('role', val);
   }
 
-  public getRole() {
+  public getRole():Promise<any> {
 
     return this.storage.get('role')
 
