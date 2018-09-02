@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ApiProvider } from '../api/api';
+import { Observable } from 'rxjs/Observable';
 
 /*
   Generated class for the EventsProvider provider.
@@ -10,8 +11,12 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class EventsProvider {
 
-  constructor(public http: HttpClient) {
-    console.log('Hello EventsProvider Provider');
+  constructor(public api: ApiProvider) {
+    
+  }
+
+  public eventList(): Observable<Event[]> {
+    return this.api.get('events.json', null, this.api.httpOptions);
   }
 
 }
