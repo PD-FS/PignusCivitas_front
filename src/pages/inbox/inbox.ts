@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LandingPage } from '../landing/landing';
 import { RoleService } from '../../common/services/role.service'
+import { EventsProvider } from '../../providers/events/events';
+import { EventTypeIcons, PignusIcon } from '../../providers/events/eventTypeIcons';
 /**
  * Generated class for the InboxPage page.
  *
@@ -21,42 +23,26 @@ import { RoleService } from '../../common/services/role.service'
 export class InboxPage {
 
   actualrole:number;
-  items: Array<{title: string, description: string, icon: string, color: string, img: string}>;
+  items: Array<Event>;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              private security: SecurityProvider) {
-
-    this.items = [
-      {
-        "title":"Conjunto Las Aguas",
-       "description":"Persona sospechosa",
-       "icon":"alert",
-       "color": "danger",
-       "img": "assets/imgs/pignus_icon.png"
-      },
-      {
-        "title":"Colegio San Ignacio",
-       "description":"Cambio de turno de vigilancia",
-       "icon":"warning",
-       "color": "energized",
-       "img": "assets/imgs/pignus_icon.png"
-      },
-      {
-        "title":"Conjunto Residencial Villa Paredes",
-       "description":"Persona sospechosa",
-       "icon":"alert",
-       "color": "danger",
-       "img": "assets/imgs/pignus_icon.png"
-      },
-      {
-        "title":"Empresa de Seguridad",
-       "description":"Persona sospechosa",
-       "icon":"notifications",
-       "color": "secondary",
-       "img": "assets/imgs/pignus_icon.png"
+              private security: SecurityProvider,
+              private eventsProvider: EventsProvider) {
+    this.eventsProvider.eventList().subscribe(
+      (data) => {
+        this.items = data;
       }
-    ];
+    );
+  }
+
+  public getIcon(eventType: number): PignusIcon {
+    const eventTypeIcons = new EventTypeIcons();
+    return eventTypeIcons.getIcon(eventType);
+  }
+
+  public getImage(community_id: number): string {
+    return 'assets/imgs/pignus_icon.png';
   }
 
   ionViewDidLoad() {
