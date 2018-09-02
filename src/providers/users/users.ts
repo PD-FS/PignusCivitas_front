@@ -20,10 +20,8 @@ export class UsersProvider {
   getUser(): any {
     this.platform.ready().then( (p) => {
       this.security.getRole().then( (val) => {
-        if(actualrole == val){
-          this.navCtrl.setRoot(InboxPage);
-        } else {
-          this.pushInbox(val)
+        if(val == 0){
+          return {}
         }
       });
     });
