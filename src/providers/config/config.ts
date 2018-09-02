@@ -10,7 +10,7 @@ import { Injectable } from '@angular/core';
 export class ConfigProvider {
 
   private api_prod: string = "https://pignuscivitas.herokuapp.com"
-  //private api_prod: string = "http://localhost:3000"
+  // private api_prod: string = "http://localhost:3000"
 
   constructor() {
     console.log('Hello ConfigProvider Provider');

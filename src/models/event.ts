@@ -1,5 +1,3 @@
-import { PignusIcon } from "../providers/events/eventTypeIcons";
-
 export class Event {
     public id: number;
     public title: string;
