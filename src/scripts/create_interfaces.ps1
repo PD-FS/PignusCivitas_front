@@ -6,6 +6,8 @@ $user = 'postgres'
 
 $pass = '1234'
 
+$path = "../models"
+
 # Class
 
 class Database {
@@ -14,6 +16,7 @@ class Database {
   [string]$dbname
   [string]$user
   [string]$password
+  [string]$path
 
   [string]$queryTables = "SELECT row_to_json(row(table_name))
         FROM information_schema.tables
@@ -21,11 +24,12 @@ class Database {
         AND table_type='BASE TABLE'
         AND table_name not in ('ar_internal_metadata','schema_migrations');"
 
-  Database([string]$dbname,[string]$user,[string]$pass)
+  Database([string]$dbname,[string]$user,[string]$pass,[string]$path)
   {
     $this.dbname = $dbname
     $this.user = $user
     $this.password = $pass
+    $this.path = $path
     $this.tables = $this.getTables()
   }
 
@@ -102,17 +106,17 @@ class Database {
 
     $interfaces = $this.getAttributes()
 
-    if(-Not (Test-Path "../models"))
+    if(-Not (Test-Path $this.path))
     {
-      New-Item -Path "../models" -ItemType Directory
+      New-Item -Path $this.path -ItemType Directory
     }
     else {
-      Remove-Item -Path "../models/*" -Force
+      Remove-Item -Path "$($this.path)/*" -Force
     }
 
     foreach($interface in $interfaces)
     {
-      New-Item -Path "../models/$($interface.entity).ts" -ItemType File -Force
+      New-Item -Path "$($this.path)/$($interface.entity).ts" -ItemType File -Force
 
       $attributes = @()
 
@@ -154,7 +158,7 @@ class Database {
 
 #Main
 
-$db = [Database]::new($dbname,$user,$pass)
+$db = [Database]::new($dbname,$user,$pass,$path)
 
 $db.createInterfaces()
 
