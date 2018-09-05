@@ -16,6 +16,7 @@ export class EventsProvider {
   }
 
   public eventList(): Observable<Event[]> {
+    
     return this.api.get('events.json', null, this.api.httpOptions);
   }
 

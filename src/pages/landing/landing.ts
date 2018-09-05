@@ -14,7 +14,6 @@ export class LandingPage {
   constructor(public navCtrl: NavController,
               private security: SecurityProvider,
               public platform: Platform) {
-
   }
 
   pushInbox(actualrole) {
