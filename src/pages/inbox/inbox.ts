@@ -2,7 +2,6 @@ import { SecurityProvider } from './../../providers/security/security';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LandingPage } from '../landing/landing';
-import { RoleService } from '../../common/services/role.service'
 import { EventsProvider } from '../../providers/events/events';
 import { EventTypeIcons, PignusIcon } from '../../providers/events/eventTypeIcons';
 /**
@@ -15,10 +14,7 @@ import { EventTypeIcons, PignusIcon } from '../../providers/events/eventTypeIcon
 @IonicPage()
 @Component({
   selector: 'page-inbox',
-  templateUrl: 'inbox.html',
-  providers: [
-    RoleService
-  ]
+  templateUrl: 'inbox.html'
 })
 export class InboxPage {
 
