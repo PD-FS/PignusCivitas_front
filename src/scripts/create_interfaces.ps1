@@ -6,7 +6,9 @@ $user = 'postgres'
 
 $pass = '1234'
 
-$path = "../models"
+$modelPath = "../models"
+
+$providerPath = "../providers"
 
 # Class
 
@@ -16,7 +18,8 @@ class Database {
   [string]$dbname
   [string]$user
   [string]$password
-  [string]$path
+  [string]$modelPath
+  [string]$providerPath
 
   [string]$queryTables = "SELECT row_to_json(row(table_name))
         FROM information_schema.tables
@@ -24,12 +27,17 @@ class Database {
         AND table_type='BASE TABLE'
         AND table_name not in ('ar_internal_metadata','schema_migrations');"
 
-  Database([string]$dbname,[string]$user,[string]$pass,[string]$path)
+  Database([string]$dbname,
+           [string]$user,
+           [string]$pass,
+           [string]$modelPath,
+           [string]$providerPath)
   {
     $this.dbname = $dbname
     $this.user = $user
     $this.password = $pass
-    $this.path = $path
+    $this.modelPath = $modelPath
+    $this.providerPath = $providerPath
     $this.tables = $this.getTables()
   }
 
@@ -101,27 +109,44 @@ class Database {
     return $attributes
   }
 
+  [String]toSnake($words)
+  {
+    return $($words -csplit '(?=[A-Z])' -ne '' -join '-').toLower()
+  }
+
   createInterfaces()
   {
 
     $interfaces = $this.getAttributes()
 
-    if(-Not (Test-Path $this.path))
+    if(-Not (Test-Path $this.modelPath))
     {
-      New-Item -Path $this.path -ItemType Directory
+      New-Item -Path $this.modelPath -ItemType Directory
     }
     else {
-      Remove-Item -Path "$($this.path)/*" -Force
+      Remove-Item -Path "$($this.modelPath)/*" -Force
     }
 
     foreach($interface in $interfaces)
     {
-      New-Item -Path "$($this.path)/$($interface.entity).ts" -ItemType File -Force
+
+      $entitySnake = $($this.toSnake($interface.entity))
+
+      if(-Not (Test-Path "$($this.providerPath)/$entitySnake/$entitySnake.ts"))
+      {
+        ionic g provider $interface.entity
+      }
+
+      New-Item -Path "$($this.modelPath)/$($interface.entity).ts" -ItemType File -Force
 
       $attributes = @()
 
       foreach($column in $interface.columns) {
-        if($column.f3 -eq 'YES'){
+
+        if($column.f3 -eq 'YES' -or
+           $column.f1 -In @('id', 'created_at', 'updated_at')){
+
+          Write-Host $column.f1
           $attribute = "$($column.f1)?:"
         }
         else
@@ -158,7 +183,7 @@ class Database {
 
 #Main
 
-$db = [Database]::new($dbname,$user,$pass,$path)
+$db = [Database]::new($dbname,$user,$pass,$modelPath,$providerPath)
 
 $db.createInterfaces()
 

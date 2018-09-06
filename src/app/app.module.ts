@@ -19,6 +19,55 @@ import { EventsProvider } from '../providers/events/events';
 import { SecurityProvider } from '../providers/security/security';
 import { ApiProvider } from '../providers/api/api';
 import { UsersProvider } from '../providers/users/users';
+import { AgentSchedulesProvider } from '../providers/agent-schedules/agent-schedules';
+import { AgentTypesProvider } from '../providers/agent-types/agent-types';
+import { SecurityCompaniesProvider } from '../providers/security-companies/security-companies';
+import { MemberTypesProvider } from '../providers/member-types/member-types';
+import { ItemTypesProvider } from '../providers/item-types/item-types';
+import { WeaponLocationsProvider } from '../providers/weapon-locations/weapon-locations';
+import { EventTypesProvider } from '../providers/event-types/event-types';
+import { CountriesProvider } from '../providers/countries/countries';
+import { StaffJobsProvider } from '../providers/staff-jobs/staff-jobs';
+import { SecurityAgentRolesProvider } from '../providers/security-agent-roles/security-agent-roles';
+import { AlertStatusesProvider } from '../providers/alert-statuses/alert-statuses';
+import { EndowmentStatusesProvider } from '../providers/endowment-statuses/endowment-statuses';
+import { EventStatusesProvider } from '../providers/event-statuses/event-statuses';
+import { VehicleTypesProvider } from '../providers/vehicle-types/vehicle-types';
+import { ItemStatusesProvider } from '../providers/item-statuses/item-statuses';
+import { BlackListStatusesProvider } from '../providers/black-list-statuses/black-list-statuses';
+import { AssetStatusesProvider } from '../providers/asset-statuses/asset-statuses';
+import { VehiclesProvider } from '../providers/vehicles/vehicles';
+import { DayOfWeeksProvider } from '../providers/day-of-weeks/day-of-weeks';
+import { WeaponStatusesProvider } from '../providers/weapon-statuses/weapon-statuses';
+import { WeaponTypesProvider } from '../providers/weapon-types/weapon-types';
+import { AssetsProvider } from '../providers/assets/assets';
+import { SchedulesProvider } from '../providers/schedules/schedules';
+import { WeaponsProvider } from '../providers/weapons/weapons';
+import { PeopleProvider } from '../providers/people/people';
+import { CommunityTypesProvider } from '../providers/community-types/community-types';
+import { CitiesProvider } from '../providers/cities/cities';
+import { CheckVehicleStatusesProvider } from '../providers/check-vehicle-statuses/check-vehicle-statuses';
+import { SecurityAgentsProvider } from '../providers/security-agents/security-agents';
+import { VisitorsProvider } from '../providers/visitors/visitors';
+import { AssetStockStatusesProvider } from '../providers/asset-stock-statuses/asset-stock-statuses';
+import { MembersProvider } from '../providers/members/members';
+import { CheckVehiclesProvider } from '../providers/check-vehicles/check-vehicles';
+import { AssetStocksProvider } from '../providers/asset-stocks/asset-stocks';
+import { LostObjectsProvider } from '../providers/lost-objects/lost-objects';
+import { ContractStatusesProvider } from '../providers/contract-statuses/contract-statuses';
+import { EndowmentsProvider } from '../providers/endowments/endowments';
+import { ContractsProvider } from '../providers/contracts/contracts';
+import { CheckStaffsProvider } from '../providers/check-staffs/check-staffs';
+import { BlackListsProvider } from '../providers/black-lists/black-lists';
+import { LayoutsProvider } from '../providers/layouts/layouts';
+import { StaffsProvider } from '../providers/staffs/staffs';
+import { AlertsProvider } from '../providers/alerts/alerts';
+import { ItemsProvider } from '../providers/items/items';
+import { CommunityStaffsProvider } from '../providers/community-staffs/community-staffs';
+import { MinuteBooksProvider } from '../providers/minute-books/minute-books';
+import { MemberTypeMembersProvider } from '../providers/member-type-members/member-type-members';
+import { DepartmentsProvider } from '../providers/departments/departments';
+import { AlertCommunitiesProvider } from '../providers/alert-communities/alert-communities';
 
 
 @NgModule({
@@ -52,7 +101,56 @@ import { UsersProvider } from '../providers/users/users';
     EventsProvider,
     SecurityProvider,
     ApiProvider,
-    UsersProvider
+    UsersProvider,
+    AgentSchedulesProvider,
+    AgentTypesProvider,
+    SecurityCompaniesProvider,
+    MemberTypesProvider,
+    ItemTypesProvider,
+    WeaponLocationsProvider,
+    EventTypesProvider,
+    CountriesProvider,
+    StaffJobsProvider,
+    SecurityAgentRolesProvider,
+    AlertStatusesProvider,
+    EndowmentStatusesProvider,
+    EventStatusesProvider,
+    VehicleTypesProvider,
+    ItemStatusesProvider,
+    BlackListStatusesProvider,
+    AssetStatusesProvider,
+    VehiclesProvider,
+    DayOfWeeksProvider,
+    WeaponStatusesProvider,
+    WeaponTypesProvider,
+    AssetsProvider,
+    SchedulesProvider,
+    WeaponsProvider,
+    PeopleProvider,
+    CommunityTypesProvider,
+    CitiesProvider,
+    CheckVehicleStatusesProvider,
+    SecurityAgentsProvider,
+    VisitorsProvider,
+    AssetStockStatusesProvider,
+    MembersProvider,
+    CheckVehiclesProvider,
+    AssetStocksProvider,
+    LostObjectsProvider,
+    ContractStatusesProvider,
+    EndowmentsProvider,
+    ContractsProvider,
+    CheckStaffsProvider,
+    BlackListsProvider,
+    LayoutsProvider,
+    StaffsProvider,
+    AlertsProvider,
+    ItemsProvider,
+    CommunityStaffsProvider,
+    MinuteBooksProvider,
+    MemberTypeMembersProvider,
+    DepartmentsProvider,
+    AlertCommunitiesProvider
   ]
 })
 export class AppModule {}

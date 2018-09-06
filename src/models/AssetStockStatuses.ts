@@ -1,5 +1,5 @@
 export interface AssetStockStatuses
       {
-        id: number;  name?: string;  description?: any;  created_at: string;  updated_at: string; 
+        id?: number;  name?: string;  description?: any;  created_at?: string;  updated_at?: string; 
       }
       
