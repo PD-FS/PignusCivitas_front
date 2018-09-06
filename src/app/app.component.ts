@@ -1,3 +1,4 @@
+import { UsersProvider } from './../providers/users/users';
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -16,7 +17,11 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+
+  constructor(public platform: Platform,
+              public statusBar: StatusBar,
+              public splashScreen: SplashScreen,
+              private users: UsersProvider) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -24,6 +29,7 @@ export class MyApp {
       { title: 'Landing', component: LandingPage },
       { title: 'List', component: ListPage }
     ];
+
 
   }
 

@@ -1,7 +1,9 @@
+import { SecurityProvider } from './../../providers/security/security';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LandingPage } from '../landing/landing';
-import { Role } from '../../common/models/role'
+import { EventsProvider } from '../../providers/events/events';
+import { EventTypeIcons, PignusIcon } from '../../providers/events/eventTypeIcons';
 /**
  * Generated class for the InboxPage page.
  *
@@ -12,23 +14,36 @@ import { Role } from '../../common/models/role'
 @IonicPage()
 @Component({
   selector: 'page-inbox',
-  templateUrl: 'inbox.html',
-  providers: [
-    Role
-  ]
+  templateUrl: 'inbox.html'
 })
 export class InboxPage {
 
   actualrole:number;
+  items: Array<Event>;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              private role: Role) {
+              private security: SecurityProvider,
+              private eventsProvider: EventsProvider) {
+    this.eventsProvider.eventList().subscribe(
+      (data) => {
+        this.items = data;
+      }
+    );
+  }
+
+  public getIcon(eventType: number): PignusIcon {
+    const eventTypeIcons = new EventTypeIcons();
+    return eventTypeIcons.getIcon(eventType);
+  }
+
+  public getImage(community_id: number): string {
+    return 'assets/imgs/pignus_icon.png';
   }
 
   ionViewDidLoad() {
 
-    this.role.getRole().then((val) => {
+    this.security.getRole().then((val) => {
       if(val != null){
         console.log("Value in Storage : ", val)
         this.actualrole = val;
@@ -41,5 +56,11 @@ export class InboxPage {
       })
 
   }
+
+  itemTapped(){
+
+  }
+
+
 
 }

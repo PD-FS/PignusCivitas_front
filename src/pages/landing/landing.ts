@@ -1,27 +1,27 @@
+import { SecurityProvider } from './../../providers/security/security';
 import { Component } from '@angular/core';
 import { NavController, Platform } from 'ionic-angular';
-import { Role } from '../../common/models/role';
 
 
 import { InboxPage } from '../inbox/inbox';
 
 @Component({
   selector: 'page-landing',
-  templateUrl: 'landing.html',
-  providers: [Role]
+  templateUrl: 'landing.html'
 })
 export class LandingPage {
 
-  constructor(public navCtrl: NavController, private role: Role, public platform: Platform) {
-
+  constructor(public navCtrl: NavController,
+              private security: SecurityProvider,
+              public platform: Platform) {
   }
 
   pushInbox(actualrole) {
 
-    this.role.setRole(actualrole);
+    this.security.setRole(actualrole);
 
     this.platform.ready().then( (p) => {
-      this.role.getRole().then( (val) => {
+      this.security.getRole().then( (val) => {
         if(actualrole == val){
           this.navCtrl.setRoot(InboxPage);
         } else {
