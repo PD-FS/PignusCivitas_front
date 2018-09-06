@@ -68,6 +68,17 @@ import { MinuteBooksProvider } from '../providers/minute-books/minute-books';
 import { MemberTypeMembersProvider } from '../providers/member-type-members/member-type-members';
 import { DepartmentsProvider } from '../providers/departments/departments';
 import { AlertCommunitiesProvider } from '../providers/alert-communities/alert-communities';
+import { AssetStockPage } from '../pages/asset-stock/asset-stock';
+import { SecurityAgentsPage } from '../pages/security-agents/security-agents';
+import { SecurityAgentDetailPage } from '../pages/security-agent-detail/security-agent-detail';
+import { AssetStockDetailPage } from '../pages/asset-stock-detail/asset-stock-detail';
+import { StaffPage } from '../pages/staff/staff';
+import { StaffDetailPage } from '../pages/staff-detail/staff-detail';
+import { SecurityAgentCommunitiesPage } from '../pages/security-agent-communities/security-agent-communities';
+import { VisitorHistoryDetailPage } from '../pages/visitor-history-detail/visitor-history-detail';
+import { VisitorHistoryPage } from '../pages/visitor-history/visitor-history';
+import { LostObjectDetailPage } from '../pages/lost-object-detail/lost-object-detail';
+import { AddLostObjectPage } from '../pages/add-lost-object/add-lost-object';
 
 
 @NgModule({
@@ -75,7 +86,18 @@ import { AlertCommunitiesProvider } from '../providers/alert-communities/alert-c
     MyApp,
     LandingPage,
     ListPage,
-    InboxPage
+    InboxPage,
+    AssetStockPage,
+    AssetStockDetailPage,
+    SecurityAgentsPage,
+    SecurityAgentDetailPage,
+    StaffPage,
+    StaffDetailPage,
+    SecurityAgentCommunitiesPage,
+    VisitorHistoryDetailPage,
+    VisitorHistoryPage,
+    LostObjectDetailPage,
+    AddLostObjectPage
   ],
   imports: [
     BrowserModule,
@@ -90,7 +112,18 @@ import { AlertCommunitiesProvider } from '../providers/alert-communities/alert-c
     MyApp,
     LandingPage,
     ListPage,
-    InboxPage
+    InboxPage,
+    AssetStockPage,
+    AssetStockDetailPage,
+    SecurityAgentsPage,
+    SecurityAgentDetailPage,
+    StaffPage,
+    StaffDetailPage,
+    SecurityAgentCommunitiesPage,
+    VisitorHistoryDetailPage,
+    VisitorHistoryPage,
+    LostObjectDetailPage,
+    AddLostObjectPage
   ],
   providers: [
     StatusBar,
