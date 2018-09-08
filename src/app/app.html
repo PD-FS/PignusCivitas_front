@@ -6,7 +6,6 @@
     <a (click)='logout()' item-end menuClose>
         <ion-icon name="power" color="light"></ion-icon>
     </a>
-    
     </ion-item>
     <ion-item>
       <ion-avatar class="item-avatar" item-start>
@@ -24,8 +23,8 @@
 
     <ion-content color="dark">
       <ion-list >
+        <button menuClose ion-item (click)="openPage(inboxPage)" color="primary">Bandeja de Entrada</button>
         <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)" color="dark">
-          <span *ngIf=" p.title == 'Landing'" >Cambiar Role</span>
           <span *ngIf=" p.title != 'Landing'" >{{p.title}}</span>
         </button>
       </ion-list>

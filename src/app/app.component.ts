@@ -1,3 +1,4 @@
+import { InboxPage } from './../pages/inbox/inbox';
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform, NavController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -26,6 +27,7 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
+  inboxPage: {title: string, component: any};
 
   constructor(public platform: Platform,
               public statusBar: StatusBar,
@@ -35,6 +37,8 @@ export class MyApp {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
+    this.inboxPage = { title: 'Comunidades', component: InboxPage },
+
     this.pages = [
       { title: 'Comunidades', component: CommunitiesPage },
       { title: 'Visitantes', component: VisitorsPage  },
@@ -57,7 +61,7 @@ export class MyApp {
         (data) => {
             if (this.nav) {
                 this.nav.setRoot(LandingPage);
-                
+
             }
         }
     );
