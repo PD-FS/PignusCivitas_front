@@ -37,7 +37,7 @@ export class MyApp {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
-    this.inboxPage = { title: 'Comunidades', component: InboxPage },
+    this.inboxPage = { title: 'Bandeja de Entrada', component: InboxPage },
 
     this.pages = [
       { title: 'Comunidades', component: CommunitiesPage },
