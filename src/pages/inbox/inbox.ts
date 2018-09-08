@@ -1,7 +1,6 @@
 import { SecurityProvider } from './../../providers/security/security';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { LandingPage } from '../landing/landing';
 import { EventsProvider } from '../../providers/events/events';
 import { EventTypeIcons, PignusIcon } from '../../providers/events/eventTypeIcons';
 /**
@@ -42,18 +41,7 @@ export class InboxPage {
   }
 
   ionViewDidLoad() {
-
-    this.security.getRole().then((val) => {
-      if(val != null){
-        console.log("Value in Storage : ", val)
-        this.actualrole = val;
-      }
-      else{
-        console.log("Null or Undefined value err :", val)
-        this.navCtrl.setRoot(LandingPage);
-      }}, (err) => {
-        console.log("Storage error : ", err)
-      })
+    this.actualrole = this.security.getRole();
 
   }
 

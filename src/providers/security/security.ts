@@ -1,6 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Storage } from '@ionic/storage';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 /*
   Generated class for the SecurityProvider provider.
@@ -10,20 +9,30 @@ import { Storage } from '@ionic/storage';
 */
 @Injectable()
 export class SecurityProvider {
+  private notificadorLanding = new BehaviorSubject({});
+  private role: any = null;
 
-  constructor(public http: HttpClient,
-              private storage: Storage) {
-    console.log('Hello SecurityProvider Provider');
+  constructor() {
   }
 
-  public setRole(val){
-    this.storage.set('role', val);
+  public setRole(val) {
+    this.validateSession(val);
+    this.role = val;
   }
 
-  public getRole():Promise<any> {
+  public getRole(): any {
+    this.validateSession(this.role);
+    return this.role;
+  }
 
-    return this.storage.get('role')
+  public getNotificator(): Observable<any> {
+      return this.notificadorLanding.asObservable();
+  }
 
+  private validateSession(val: any): void {
+    if (val === null || val === undefined) {
+        this.notificadorLanding.next({});
+    }
   }
 
 }

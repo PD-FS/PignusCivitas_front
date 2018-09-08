@@ -1,18 +1,17 @@
-import { UsersProvider } from './../providers/users/users';
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, NavController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { LandingPage } from '../pages/landing/landing';
 import { ListPage } from '../pages/list/list';
+import { SecurityProvider } from '../providers/security/security';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  @ViewChild(Nav) nav: Nav;
-
+  @ViewChild(Nav) nav: NavController;
   rootPage: any = LandingPage;
 
   pages: Array<{title: string, component: any}>;
@@ -21,7 +20,8 @@ export class MyApp {
   constructor(public platform: Platform,
               public statusBar: StatusBar,
               public splashScreen: SplashScreen,
-              private users: UsersProvider) {
+              private security:SecurityProvider) {
+    this.validarSesion();
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -29,8 +29,21 @@ export class MyApp {
       { title: 'Landing', component: LandingPage },
       { title: 'List', component: ListPage }
     ];
+  }
 
+  public logout() {
+    this.security.setRole(null);
+  }
 
+  private validarSesion() {
+    this.security.getNotificator().subscribe(
+        (data) => {
+            if (this.nav) {
+                this.nav.setRoot(LandingPage);
+                
+            }
+        }
+    );
   }
 
   initializeApp() {
