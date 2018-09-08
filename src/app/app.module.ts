@@ -79,6 +79,7 @@ import { VisitorHistoryDetailPage } from '../pages/visitor-history-detail/visito
 import { VisitorHistoryPage } from '../pages/visitor-history/visitor-history';
 import { LostObjectDetailPage } from '../pages/lost-object-detail/lost-object-detail';
 import { AddLostObjectPage } from '../pages/add-lost-object/add-lost-object';
+import { HeaderComponent } from '../components/header/header';
 
 
 @NgModule({
@@ -97,7 +98,8 @@ import { AddLostObjectPage } from '../pages/add-lost-object/add-lost-object';
     VisitorHistoryDetailPage,
     VisitorHistoryPage,
     LostObjectDetailPage,
-    AddLostObjectPage
+    AddLostObjectPage,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
