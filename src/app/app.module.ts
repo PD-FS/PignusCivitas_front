@@ -108,7 +108,7 @@ import { HeaderComponent } from '../components/header/header';
     VisitorHistoryPage,
     LostObjectDetailPage,
     AddLostObjectPage,
-    HeaderComponent
+    HeaderComponent,
     VehiclePage
   ],
   imports: [
