@@ -11,9 +11,9 @@
 <ion-content padding>
     <ion-item>
         <ion-select [(ngModel)]="communityId" placeholder="Comunidad"
-                (ngModelChange)="selectCommunity($event)">
+                (ngModelChange)="selectCommunity($event)"
+                disabled>
             <ion-option value="1">Parque residencial calle 100</ion-option>
-            <ion-option value="2">Conjunto las aguas</ion-option>
         </ion-select>
     </ion-item>
     <ion-list>

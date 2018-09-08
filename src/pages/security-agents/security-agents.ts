@@ -20,10 +20,16 @@ export class SecurityAgentsPage {
     public communityId: number;
 
     constructor(public navCtrl: NavController,
-        public navParams: NavParams) {}
+            public navParams: NavParams) {
+        this.communityId = this.loadCommunityId();
+        this.loadSecurityAgents()
+    }
+
+    private loadCommunityId(): number {
+        return 1;
+    }
 
     public selectCommunity(event: any) {
-        console.log(event);
         this.loadSecurityAgents();
     }
 
