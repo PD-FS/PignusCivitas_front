@@ -5,7 +5,14 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { LandingPage } from '../pages/landing/landing';
-import { ListPage } from '../pages/list/list';
+import { VehiclePage } from '../pages/vehicle/vehicle';
+import { CommunitiesPage } from '../pages/communities/communities';
+import { VisitorsPage } from '../pages/visitors/visitors';
+import { LostObjectsPage } from '../pages/lost-objects/lost-objects';
+import { AssetStockPage } from '../pages/asset-stock/asset-stock';
+import { StaffPage } from '../pages/staff/staff';
+import { SecurityAgentsPage } from '../pages/security-agents/security-agents';
+import { MinuteGeneratePage } from '../pages/minute-generate/minute-generate';
 
 @Component({
   templateUrl: 'app.html'
@@ -27,7 +34,15 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Landing', component: LandingPage },
-      { title: 'List', component: ListPage }
+      { title: 'Comunidades', component: CommunitiesPage },
+      { title: 'Visitantes', component: VisitorsPage  },
+      { title: 'Vehículos', component: VehiclePage },
+      { title: 'Objetos Perdidos', component: LostObjectsPage },
+      { title: 'Inventario', component: AssetStockPage },
+      { title: 'Trabajadores', component: StaffPage },
+      { title: 'Agentes de Seguridad', component: SecurityAgentsPage },
+      { title: 'Generar Minuta', component: MinuteGeneratePage }
+
     ];
 
 

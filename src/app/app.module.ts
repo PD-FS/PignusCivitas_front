@@ -79,6 +79,11 @@ import { VisitorHistoryDetailPage } from '../pages/visitor-history-detail/visito
 import { VisitorHistoryPage } from '../pages/visitor-history/visitor-history';
 import { LostObjectDetailPage } from '../pages/lost-object-detail/lost-object-detail';
 import { AddLostObjectPage } from '../pages/add-lost-object/add-lost-object';
+import { VehiclePage } from '../pages/vehicle/vehicle';
+import { CommunitiesPage } from '../pages/communities/communities';
+import { VisitorsPage } from '../pages/visitors/visitors';
+import { LostObjectsPage } from '../pages/lost-objects/lost-objects';
+import { MinuteGeneratePage } from '../pages/minute-generate/minute-generate';
 
 
 @NgModule({
@@ -87,17 +92,22 @@ import { AddLostObjectPage } from '../pages/add-lost-object/add-lost-object';
     LandingPage,
     ListPage,
     InboxPage,
+    CommunitiesPage,
     AssetStockPage,
     AssetStockDetailPage,
+    MinuteGeneratePage,
+    LostObjectsPage,
     SecurityAgentsPage,
     SecurityAgentDetailPage,
     StaffPage,
     StaffDetailPage,
     SecurityAgentCommunitiesPage,
+    VisitorsPage,
     VisitorHistoryDetailPage,
     VisitorHistoryPage,
     LostObjectDetailPage,
-    AddLostObjectPage
+    AddLostObjectPage,
+    VehiclePage
   ],
   imports: [
     BrowserModule,
@@ -111,19 +121,24 @@ import { AddLostObjectPage } from '../pages/add-lost-object/add-lost-object';
   entryComponents: [
     MyApp,
     LandingPage,
+    CommunitiesPage,
     ListPage,
     InboxPage,
     AssetStockPage,
     AssetStockDetailPage,
+    LostObjectsPage,
+    MinuteGeneratePage,
     SecurityAgentsPage,
     SecurityAgentDetailPage,
     StaffPage,
     StaffDetailPage,
     SecurityAgentCommunitiesPage,
+    VisitorsPage,
     VisitorHistoryDetailPage,
     VisitorHistoryPage,
     LostObjectDetailPage,
-    AddLostObjectPage
+    AddLostObjectPage,
+    VehiclePage
   ],
   providers: [
     StatusBar,
