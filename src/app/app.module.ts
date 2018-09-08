@@ -1,3 +1,4 @@
+import { ConfigPage } from './../pages/config/config';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -109,7 +110,8 @@ import { MyheaderComponent } from '../components/myheader/myheader';
     LostObjectDetailPage,
     AddLostObjectPage,
     MyheaderComponent,
-    VehiclePage
+    VehiclePage,
+    ConfigPage
   ],
   imports: [
     BrowserModule,
@@ -140,7 +142,8 @@ import { MyheaderComponent } from '../components/myheader/myheader';
     VisitorHistoryPage,
     LostObjectDetailPage,
     AddLostObjectPage,
-    VehiclePage
+    VehiclePage,
+    ConfigPage
   ],
   providers: [
     StatusBar,

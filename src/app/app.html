@@ -4,9 +4,8 @@
   <ion-content >
     <ion-item>
     <a (click)='logout()' item-end menuClose>
-        <ion-icon name="power" color="light"></ion-icon>
+        <ion-icon name="power" class="icon-logoff" color="danger"></ion-icon>
     </a>
-    
     </ion-item>
     <ion-item>
       <ion-avatar class="item-avatar" item-start>
@@ -15,7 +14,9 @@
       <h2><strong>Elvira Vigilar</strong></h2>
       <h6>CIA87612</h6>
       <br />
-      <ion-icon name="settings" color="light" item-end></ion-icon>
+      <a (click)='openPage(configPage)' item-end menuClose>
+        <ion-icon name="settings" class="icon-logoff" color="light" item-end></ion-icon>
+      </a>
     </ion-item>
     <ion-item>
         <h6>elviravigilar@tuseguridad.co</h6>
@@ -24,8 +25,8 @@
 
     <ion-content color="dark">
       <ion-list >
+        <button menuClose ion-item (click)="openPage(inboxPage)" color="primary">Bandeja de Entrada</button>
         <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)" color="dark">
-          <span *ngIf=" p.title == 'Landing'" >Cambiar Role</span>
           <span *ngIf=" p.title != 'Landing'" >{{p.title}}</span>
         </button>
       </ion-list>
