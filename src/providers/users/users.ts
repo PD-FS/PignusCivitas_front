@@ -1,7 +1,7 @@
 import { SecurityProvider } from './../security/security';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { NavController, Platform } from 'ionic-angular';
+import { Platform } from 'ionic-angular';
 /*
   Generated class for the UsersProvider provider.
 
