@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { VisitorsVehiclesPage } from '../visitors-vehicles/visitors-vehicles';
+import { OwnersVehiclesPage } from '../owners-vehicles/owners-vehicles';
 
 /**
  * Generated class for the VehiclePage page.
@@ -14,7 +16,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'vehicle.html',
 })
 export class VehiclePage {
-
+  tab1Root = VisitorsVehiclesPage
+  tab2Root = OwnersVehiclesPage
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 

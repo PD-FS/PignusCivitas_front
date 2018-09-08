@@ -86,6 +86,8 @@ import { VisitorsPage } from '../pages/visitors/visitors';
 import { LostObjectsPage } from '../pages/lost-objects/lost-objects';
 import { MinuteGeneratePage } from '../pages/minute-generate/minute-generate';
 import { MyheaderComponent } from '../components/myheader/myheader';
+import { VisitorsVehiclesPage } from '../pages/visitors-vehicles/visitors-vehicles';
+import { OwnersVehiclesPage } from '../pages/owners-vehicles/owners-vehicles';
 
 
 @NgModule({
@@ -111,6 +113,8 @@ import { MyheaderComponent } from '../components/myheader/myheader';
     AddLostObjectPage,
     MyheaderComponent,
     VehiclePage,
+    VisitorsVehiclesPage,
+    OwnersVehiclesPage,
     ConfigPage
   ],
   imports: [
@@ -143,6 +147,8 @@ import { MyheaderComponent } from '../components/myheader/myheader';
     LostObjectDetailPage,
     AddLostObjectPage,
     VehiclePage,
+    VisitorsVehiclesPage,
+    OwnersVehiclesPage,
     ConfigPage
   ],
   providers: [
