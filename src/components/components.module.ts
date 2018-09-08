@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
-import { HeaderComponent } from './header/header';
+import { MyheaderComponent } from './myheader/myheader';
 @NgModule({
-	declarations: [HeaderComponent],
+	declarations: [MyheaderComponent],
 	imports: [],
-	exports: [HeaderComponent]
+	exports: [MyheaderComponent]
 })
 export class ComponentsModule {}
