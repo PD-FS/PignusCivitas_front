@@ -8,25 +8,22 @@
     <myheader title="Vigilantes"></myheader>
 </ion-header>
 
-
 <ion-content padding>
-        <ion-item>
-          <ion-label>Eventos</ion-label>
-          <ion-select [(ngModel)]="events">
-            <ion-option>Alertas</ion-option>
-            <ion-option>Novedades</ion-option>
-            <ion-option>Notificaciones</ion-option>
-          </ion-select>
-        </ion-item>
-        <ion-list>
-          <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
+    <ion-item>
+        <ion-select [(ngModel)]="communityId" placeholder="Comunidad"
+                (ngModelChange)="selectCommunity($event)">
+            <ion-option value="1">Parque residencial calle 100</ion-option>
+            <ion-option value="2">Conjunto las aguas</ion-option>
+        </ion-select>
+    </ion-item>
+    <ion-list>
+        <button ion-item *ngFor="let agent of securityAgents" (click)="itemTapped($event, agent)">
             <ion-avatar item-start>
-              <img src="{{getImage(item.community_id)}}">
+                <img src="{{agent.photo}}">
             </ion-avatar>
-            <h2>{{item.title}}</h2>
-            <p>{{item.notes}}</p>
-            <ion-icon name="{{getIcon(item.event_type_id).icon}}" color="{{getIcon(item.event_type_id).color}}" item-end></ion-icon>
-          </button>
-        </ion-list>
-      </ion-content>
-      
+            <h2>{{agent.name}}</h2>
+            <p>{{agent.role}}</p>
+        </button>
+    </ion-list>
+
+</ion-content>
