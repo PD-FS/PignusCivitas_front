@@ -8,7 +8,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { LandingPage } from '../pages/landing/landing';
 
 import { VehiclePage } from '../pages/vehicle/vehicle';
-import { CommunitiesPage } from '../pages/communities/communities';
 import { VisitorsPage } from '../pages/visitors/visitors';
 import { LostObjectsPage } from '../pages/lost-objects/lost-objects';
 import { AssetStockPage } from '../pages/asset-stock/asset-stock';
@@ -27,11 +26,11 @@ export class MyApp {
   @ViewChild(Nav) nav: NavController;
   rootPage: any = LandingPage;
 
-  pages: Array<{title: string, component: any}> = [];
+  pages: Array<{title: string, component: any, icon: string}> = [];
 
-  inboxPage: {title: string, component: any};
+  inboxPage: {title: string, component: any, icon: string};
 
-  configPage: {title: string, component: any};
+  configPage: {title: string, component: any, icon: string};
 
   userData: {name: string, code: string, email: string, community: string, img: string};
 
@@ -43,8 +42,8 @@ export class MyApp {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
-    this.inboxPage = { title: 'Bandeja de Entrada', component: InboxPage }
-    this.configPage = { title: 'Configuración', component: ConfigPage }
+    this.inboxPage = { title: 'Bandeja de Entrada', component: InboxPage, icon: 'paper-plane'}
+    this.configPage = { title: 'Configuración', component: ConfigPage, icon: ''}
 
   }
 
@@ -63,18 +62,17 @@ export class MyApp {
 
             if (data == 0) {
               this.pages.push(
-                { title: 'Comunidades', component: CommunitiesPage },
-                { title: 'Vehículos', component: VehiclePage },
-                { title: 'Objetos Perdidos', component: LostObjectsPage },
-                { title: 'Inventario', component: AssetStockPage },
-                { title: 'Generar Minuta', component: MinuteGeneratePage }
+                { title: 'Vehículos', component: VehiclePage, icon: 'car'},
+                { title: 'Objetos Perdidos', component: LostObjectsPage, icon: 'basket'},
+                { title: 'Inventario', component: AssetStockPage, icon: 'list-box'},
+                { title: 'Generar Minuta', component: MinuteGeneratePage, icon: 'paper'}
               );
             }
 
             this.pages.push(
-              { title: 'Visitantes', component: VisitorsPage  },
-              { title: 'Trabajadores', component: StaffPage },
-              { title: 'Agentes de Seguridad', component: SecurityAgentsPage }
+              { title: 'Visitantes', component: VisitorsPage , icon: 'people'},
+              { title: 'Trabajadores', component: StaffPage, icon: 'contacts'},
+              { title: 'Agentes de Seguridad', component: SecurityAgentsPage, icon: 'eye'}
             );
 
             function compare(a, b) {

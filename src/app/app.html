@@ -23,10 +23,13 @@
         <h6><strong>{{userData.community}}</strong></h6>
     </ion-item>
 
-    <ion-content color="dark">
+    <ion-content class="pignus-menu">
       <ion-list >
-        <button menuClose ion-item (click)="openPage(inboxPage)" color="primary">Bandeja de Entrada</button>
+        <button menuClose ion-item (click)="openPage(inboxPage)" color="primary">
+            <ion-icon name="{{inboxPage.icon}}" item-start></ion-icon>
+             Bandeja de Entrada</button>
         <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)" color="dark">
+          <ion-icon name="{{p.icon}}" item-start></ion-icon>
           <span *ngIf=" p.title != 'Landing'" >{{p.title}}</span>
         </button>
       </ion-list>
