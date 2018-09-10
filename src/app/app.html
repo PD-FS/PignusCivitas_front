@@ -9,18 +9,18 @@
     </ion-item>
     <ion-item>
       <ion-avatar class="item-avatar" item-start>
-        <img src="assets/imgs/vigilante.png">
+        <img src="{{userData.img}}">
       </ion-avatar>
-      <h2><strong>Elvira Vigilar</strong></h2>
-      <h6>CIA87612</h6>
+      <h2><strong>{{userData.name}}</strong></h2>
+      <h6>{{userData.code}}</h6>
       <br />
       <a (click)='openPage(configPage)' item-end menuClose>
         <ion-icon name="settings" class="icon-logoff" color="light" item-end></ion-icon>
       </a>
     </ion-item>
     <ion-item>
-        <h6>elviravigilar@tuseguridad.co</h6>
-        <h6><strong>Conjunto Residencial El Mirador</strong></h6>
+        <h6>{{userData.email}}</h6>
+        <h6><strong>{{userData.community}}</strong></h6>
     </ion-item>
 
     <ion-content color="dark">

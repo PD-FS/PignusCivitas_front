@@ -9,19 +9,20 @@ import { BehaviorSubject, Observable } from 'rxjs';
 */
 @Injectable()
 export class SecurityProvider {
-  private notificadorLanding = new BehaviorSubject({});
+
   private role: any = null;
+  public notificadorLanding = new BehaviorSubject(this.role);
+
 
   constructor() {
   }
 
   public setRole(val) {
-    this.validateSession(val);
     this.role = val;
+    this.validateSession(val);
   }
 
   public getRole(): any {
-    this.validateSession(this.role);
     return this.role;
   }
 
@@ -30,9 +31,14 @@ export class SecurityProvider {
   }
 
   private validateSession(val: any): void {
+    this.notificadorLanding.next(this.role);
+    /*
     if (val === null || val === undefined) {
-        this.notificadorLanding.next({});
+      this.notificadorLanding.next(0);
     }
+    else{
+      this.notificadorLanding.next(this.role);
+    }*/
   }
 
 }

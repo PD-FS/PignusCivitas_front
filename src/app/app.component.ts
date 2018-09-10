@@ -19,6 +19,7 @@ import { MinuteGeneratePage } from '../pages/minute-generate/minute-generate';
 import { SecurityProvider } from '../providers/security/security';
 
 
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -26,11 +27,13 @@ export class MyApp {
   @ViewChild(Nav) nav: NavController;
   rootPage: any = LandingPage;
 
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{title: string, component: any}> = [];
 
   inboxPage: {title: string, component: any};
 
   configPage: {title: string, component: any};
+
+  userData: {name: string, code: string, email: string, community: string, img: string};
 
   constructor(public platform: Platform,
               public statusBar: StatusBar,
@@ -43,17 +46,6 @@ export class MyApp {
     this.inboxPage = { title: 'Bandeja de Entrada', component: InboxPage }
     this.configPage = { title: 'Configuración', component: ConfigPage }
 
-    this.pages = [
-      { title: 'Comunidades', component: CommunitiesPage },
-      { title: 'Visitantes', component: VisitorsPage  },
-      { title: 'Vehículos', component: VehiclePage },
-      { title: 'Objetos Perdidos', component: LostObjectsPage },
-      { title: 'Inventario', component: AssetStockPage },
-      { title: 'Trabajadores', component: StaffPage },
-      { title: 'Agentes de Seguridad', component: SecurityAgentsPage },
-      { title: 'Generar Minuta', component: MinuteGeneratePage }
-
-    ];
   }
 
   public logout() {
@@ -63,9 +55,59 @@ export class MyApp {
   private validarSesion() {
     this.security.getNotificator().subscribe(
         (data) => {
-            if (this.nav) {
-                this.nav.setRoot(LandingPage);
+            if (this.nav && data == null) {
+              this.nav.setRoot(LandingPage);
+            }
 
+            this.pages = []
+
+            if (data == 0) {
+              this.pages.push(
+                { title: 'Comunidades', component: CommunitiesPage },
+                { title: 'Vehículos', component: VehiclePage },
+                { title: 'Objetos Perdidos', component: LostObjectsPage },
+                { title: 'Inventario', component: AssetStockPage },
+                { title: 'Generar Minuta', component: MinuteGeneratePage }
+              );
+            }
+
+            this.pages.push(
+              { title: 'Visitantes', component: VisitorsPage  },
+              { title: 'Trabajadores', component: StaffPage },
+              { title: 'Agentes de Seguridad', component: SecurityAgentsPage }
+            );
+
+            function compare(a, b) {
+              // Use toUpperCase() to ignore character casing
+              const titleA = a.title.toUpperCase();
+              const titleB = b.title.toUpperCase();
+
+              let comparison = 0;
+              if (titleA > titleB) {
+                comparison = 1;
+              } else if (titleA < titleB) {
+                comparison = -1;
+              }
+              return comparison;
+            }
+
+            this.pages = this.pages.sort(compare)
+
+            if(data == 0)
+            {
+              this.userData = {name: 'Elvira Vigilar',
+                               code: 'CIA87632',
+                               email: 'elviravigilar@tusegurida.com',
+                               community: 'Conjunto Las Aguas',
+                               img: 'assets/imgs/vigilante.png'}
+            }
+            else
+            {
+              this.userData = {name: 'Enzo Corleone',
+                               code: '',
+                               email: 'enzocorleone@gmail.com',
+                               community: '',
+                               img: 'assets/imgs/ciudadano.png'}
             }
         }
     );
@@ -85,4 +127,15 @@ export class MyApp {
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
   }
+
 }
+
+
+
+
+
+
+
+
+
+
