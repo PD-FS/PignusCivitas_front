@@ -101,13 +101,19 @@ export class MyApp {
                                community: 'Conjunto Las Aguas',
                                img: 'assets/imgs/vigilante.png'}
             }
-            if(data == 1)
+            else if(data == 1)
             {
               this.userData = {name: 'Enzo Corleone',
                                code: '',
                                email: 'enzocorleone@gmail.com',
                                community: '',
                                img: 'assets/imgs/ciudadano.png'}
+            } else{
+              this.userData = {name: '',
+                               code: '',
+                               email: '',
+                               community: '',
+                               img: ''}
             }
         }
     );
