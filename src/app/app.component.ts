@@ -101,7 +101,7 @@ export class MyApp {
                                community: 'Conjunto Las Aguas',
                                img: 'assets/imgs/vigilante.png'}
             }
-            else
+            if(data == 1)
             {
               this.userData = {name: 'Enzo Corleone',
                                code: '',
