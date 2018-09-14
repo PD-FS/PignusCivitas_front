@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import Peer from 'peerjs';
+import { SecurityProvider } from '../../providers/security/security';
 
 /**
  * Generated class for the IntercomPage page.
@@ -15,7 +17,26 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class IntercomPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  peer : Peer;
+
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              private security: SecurityProvider) {
+
+    let id = ''
+    if(this.security.getRole() == 0) {
+      id = 'Vigilante'
+    }
+    else{
+      id = 'Ciudadano'
+    }
+
+    this.peer = new Peer(id)
+
+
+    this.peer.on('open', function(id) {
+      console.log('My peer ID is: ' + id);
+    });
   }
 
   ionViewDidLoad() {

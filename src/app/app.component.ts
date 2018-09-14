@@ -16,6 +16,7 @@ import { SecurityAgentsPage } from '../pages/security-agents/security-agents';
 import { MinuteGeneratePage } from '../pages/minute-generate/minute-generate';
 
 import { SecurityProvider } from '../providers/security/security';
+import { IntercomPage } from '../pages/intercom/intercom';
 
 
 
@@ -70,6 +71,7 @@ export class MyApp {
             }
 
             this.pages.push(
+              { title: 'Citófono', component: IntercomPage , icon: 'call'},
               { title: 'Visitantes', component: VisitorsPage , icon: 'people'},
               { title: 'Trabajadores', component: StaffPage, icon: 'contacts'},
               { title: 'Agentes de Seguridad', component: SecurityAgentsPage, icon: 'eye'}

@@ -88,6 +88,7 @@ import { MinuteGeneratePage } from '../pages/minute-generate/minute-generate';
 import { MyheaderComponent } from '../components/myheader/myheader';
 import { VisitorsVehiclesPage } from '../pages/visitors-vehicles/visitors-vehicles';
 import { OwnersVehiclesPage } from '../pages/owners-vehicles/owners-vehicles';
+import { IntercomPage } from '../pages/intercom/intercom';
 
 
 @NgModule({
@@ -115,7 +116,8 @@ import { OwnersVehiclesPage } from '../pages/owners-vehicles/owners-vehicles';
     VehiclePage,
     VisitorsVehiclesPage,
     OwnersVehiclesPage,
-    ConfigPage
+    ConfigPage,
+    IntercomPage
   ],
   imports: [
     BrowserModule,
@@ -149,7 +151,8 @@ import { OwnersVehiclesPage } from '../pages/owners-vehicles/owners-vehicles';
     VehiclePage,
     VisitorsVehiclesPage,
     OwnersVehiclesPage,
-    ConfigPage
+    ConfigPage,
+    IntercomPage
   ],
   providers: [
     StatusBar,
