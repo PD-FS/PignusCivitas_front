@@ -2,25 +2,34 @@
 
 
   <ion-content >
-
+    <ion-item>
+    <a (click)='logout()' item-end menuClose>
+        <ion-icon name="power" class="icon-logoff" color="danger"></ion-icon>
+    </a>
+    </ion-item>
     <ion-item>
       <ion-avatar class="item-avatar" item-start>
-        <img src="assets/imgs/vigilante.png">
+        <img src="{{userData.img}}">
       </ion-avatar>
-      <h2><strong>Elvira Vigilar</strong></h2>
-      <h6>CIA87612</h6>
+      <h2><strong>{{userData.name}}</strong></h2>
+      <h6>{{userData.code}}</h6>
       <br />
-      <ion-icon name="settings" color="light" item-end></ion-icon>
+      <a (click)='openPage(configPage)' item-end menuClose>
+        <ion-icon name="settings" class="icon-logoff" color="light" item-end></ion-icon>
+      </a>
     </ion-item>
     <ion-item>
-        <h6>elviravigilar@tuseguridad.co</h6>
-        <h6><strong>Conjunto Residencial El Mirador</strong></h6>
+        <h6>{{userData.email}}</h6>
+        <h6><strong>{{userData.community}}</strong></h6>
     </ion-item>
 
-    <ion-content color="dark">
+    <ion-content class="pignus-menu">
       <ion-list >
+        <button menuClose ion-item (click)="openPage(inboxPage)" color="primary">
+            <ion-icon name="{{inboxPage.icon}}" item-start></ion-icon>
+             Bandeja de Entrada</button>
         <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)" color="dark">
-          <span *ngIf=" p.title == 'Landing'" >Cambiar Role</span>
+          <ion-icon name="{{p.icon}}" item-start></ion-icon>
           <span *ngIf=" p.title != 'Landing'" >{{p.title}}</span>
         </button>
       </ion-list>

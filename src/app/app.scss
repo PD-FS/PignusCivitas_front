@@ -15,6 +15,11 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
+.icon-logoff {
+  font-size: 160%;
+  padding-top: 0.5rem
+}
+
 .item-avatar  img {
   width: 100% !important;
   height : 100% !important;
@@ -23,5 +28,24 @@
 }
 
 .menu-pignus {
+  background: #332F33 !important;
+}
+
+ion-select {
+    max-width: 100% !important;
+}
+
+.list-ios .item-block .item-inner {
+  border: none;
+}
+
+.list-md .item-block .item-inner {
+  border: none;
+}
+.item-md.item-block .item-inner {
+  border: none;
+}
+
+.pignus-menu {
   background: #332F33 !important;
 }

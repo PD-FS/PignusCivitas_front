@@ -19,7 +19,8 @@ export class LandingPage {
   pushInbox(actualrole) {
 
     this.security.setRole(actualrole);
-
+    this.navCtrl.setRoot(InboxPage);
+/*
     this.platform.ready().then( (p) => {
       this.security.getRole().then( (val) => {
         if(actualrole == val){
@@ -28,7 +29,7 @@ export class LandingPage {
           this.pushInbox(val)
         }
       });
-    });
+    });*/
 
   }
 
