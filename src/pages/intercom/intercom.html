@@ -4,22 +4,23 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
+
+
 <ion-header>
-
-  <ion-header>
-    <myheader title="Citófono"></myheader>
-</ion-header>
-
+   <myheader title="Citófono"></myheader>
 </ion-header>
 
 
 <ion-content padding>
-  <ion-list>
+  <ion-list *ngIf = "role == 1">
 
       <ion-item>
-        <ion-input type="text" placeholder="mensaje"></ion-input>
+        <ion-input type="text" placeholder="mensaje" [(ngModel)]="message"></ion-input>
       </ion-item>
+      <button ion-item (click)="sendMessage()" block color="primary">Enviar</button>
 
     </ion-list>
+
+    <div #mensaje></div>
 
 </ion-content>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import Peer from 'peerjs';
 import { SecurityProvider } from '../../providers/security/security';
@@ -15,32 +15,69 @@ import { SecurityProvider } from '../../providers/security/security';
   selector: 'page-intercom',
   templateUrl: 'intercom.html',
 })
-export class IntercomPage {
+export class IntercomPage implements OnInit{
 
-  peer : Peer;
+  @ViewChild('mensaje') mensaje : ElementRef;
+
+  private peer : Peer;
+  private role : number;
+  private connid : string;
+  private id: string;
+  public message: string;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private security: SecurityProvider) {
 
-    let id = ''
-    if(this.security.getRole() == 0) {
-      id = 'Vigilante'
+    this.role = this.security.getRole()
+
+    if(this.role == 0) {
+      this.id = 'Vigilante'
     }
     else{
-      id = 'Ciudadano'
+      this.id = 'Ciudadano'
+      this.connid = 'Vigilante'
     }
 
-    this.peer = new Peer(id)
 
-
-    this.peer.on('open', function(id) {
-      console.log('My peer ID is: ' + id);
-    });
   }
 
+  ngOnInit(): void {
+
+    this.peer = new Peer(this.id)
+
+    let m = this.mensaje.nativeElement
+
+    this.peer.on('connection', function(conn) {
+      conn.on('data', data => {
+        if(data){
+          m.innerHTML = data
+        }
+      });
+    });
+
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad IntercomPage');
   }
 
+  private sendMessage()
+  {
+    var conn = this.peer.connect(this.connid);
+
+    var hack = this.message
+    conn.on('open', function(){
+      conn.send(hack);
+    });
+
+
+  }
+
+  updateMessage(data) {
+    this.mensaje = data
+  }
+
+  receiveData() {
+
+  }
 }
