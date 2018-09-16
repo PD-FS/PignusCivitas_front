@@ -16,6 +16,7 @@ import { SecurityAgentsPage } from '../pages/security-agents/security-agents';
 import { MinuteGeneratePage } from '../pages/minute-generate/minute-generate';
 
 import { SecurityProvider } from '../providers/security/security';
+import { SecurityAgentCommunitiesPage } from '../pages/security-agent-communities/security-agent-communities';
 
 
 
@@ -72,7 +73,8 @@ export class MyApp {
             this.pages.push(
               { title: 'Visitantes', component: VisitorsPage , icon: 'people'},
               { title: 'Trabajadores', component: StaffPage, icon: 'contacts'},
-              { title: 'Agentes de Seguridad', component: SecurityAgentsPage, icon: 'eye'}
+              { title: 'Agentes de Seguridad', component: SecurityAgentsPage, icon: 'eye'},
+              { title: 'Mis comunidades', component: SecurityAgentCommunitiesPage, icon: 'home'}
             );
 
             function compare(a, b) {

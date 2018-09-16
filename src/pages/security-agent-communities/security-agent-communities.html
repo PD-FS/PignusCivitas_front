@@ -5,14 +5,18 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>SecurityAgentCommunities</ion-title>
-  </ion-navbar>
-
+    <myheader title="Comunidades"></myheader>
 </ion-header>
 
-
 <ion-content padding>
+    <ion-list>
+        <button ion-item *ngFor="let community of cummunities" (click)="itemTapped($event, community)">
+            <ion-avatar item-start>
+                <img src="{{community.photo}}">
+            </ion-avatar>
+            <h2>{{community.name}}</h2>
+            <p>Miemro desde: {{ community.created_at | date : 'd MMM y'}}</p>
+        </button>
+    </ion-list>
 
 </ion-content>
