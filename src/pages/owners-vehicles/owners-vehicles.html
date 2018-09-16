@@ -6,5 +6,21 @@
 -->
 
 <ion-content padding>
+  <ion-item>
+      <ion-select [(ngModel)]="communityId" placeholder="Comunidad"
+              (ngModelChange)="selectCommunity($event)"
+              disabled>
+          <ion-option value="1">Parque residencial calle 100</ion-option>
+      </ion-select>
+  </ion-item>
+  <ion-list>
+      <button ion-item *ngFor="let vehicle of visitorsVehicules" (click)="itemTapped($event, vehicle)">
+          <ion-avatar item-start>
+              <img src="{{vehicle.photo}}">
+          </ion-avatar>
+          <h2>{{vehicle.brand + ' ' +vehicle.model}}</h2>
+          <p>{{vehicle.entrydate}}</p>
+      </button>
+  </ion-list>
 
 </ion-content>
