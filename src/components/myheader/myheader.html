@@ -1,7 +1,10 @@
 <ion-navbar item-start>
-    <button ion-button menuToggle>
+    <button ion-button icon-only menuToggle>
         <ion-icon name="menu"></ion-icon>
     </button>
+    
     <ion-title>{{title}}</ion-title>
-    <ng-content></ng-content>
+    <ion-buttons end>
+        <ng-content></ng-content>
+    </ion-buttons>
 </ion-navbar>

@@ -6,11 +6,9 @@
 -->
 <ion-header>
     <myheader [title]="title">
-        <ion-buttons end>
-            <button ion-button (click)="enableEdition()">
-                <ion-icon name="create"></ion-icon>
-            </button>
-        </ion-buttons>
+        <button ion-button icon-only clear (click)="enableEdition()">
+            <ion-icon name="create" style="color:white"></ion-icon>
+        </button>
     </myheader>
 </ion-header>
 
@@ -30,6 +28,7 @@
 </ion-content>
 <ion-footer text-center>
     <ion-toolbar position="bottom">
-        <button ion-button full>Registrar entrega</button>
+        <button ion-button full *ngIf="readOnly" (click)="deliver()">Registrar entrega</button>
+        <button ion-button full *ngIf="!readOnly" (click)="saveObject()">Guardar</button>
     </ion-toolbar>
 </ion-footer>
