@@ -1,5 +1,7 @@
+import { AddLostObjectPage } from './../add-lost-object/add-lost-object';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { LostObjectDetailPage } from '../lost-object-detail/lost-object-detail';
 
 /**
  * Generated class for the LostObjectsPage page.
@@ -20,7 +22,7 @@ export class LostObjectsPage {
     public communityId: number;
 
     constructor(public navCtrl: NavController,
-            public navParams: NavParams) {
+        public navParams: NavParams) {
         this.communityId = this.loadCommunityId();
         this.loadLostObjects();
     }
@@ -64,9 +66,20 @@ export class LostObjectsPage {
         console.log('ionViewDidLoad LostObjectsPage');
     }
 
-    public itemTapped(event:any, object: any): void {
+    public itemTapped(event: any, object: any): void {
         console.log('event: ' + event);
         console.log('object: ' + object);
+        this.navCtrl.push(LostObjectDetailPage, {
+            objectId: object.id
+        });
+    }
+
+    public search() {
+
+    }
+
+    public add() {
+        this.navCtrl.push(AddLostObjectPage);
     }
 
 }

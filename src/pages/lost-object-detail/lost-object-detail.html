@@ -5,14 +5,30 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>LostObjectDetail</ion-title>
-  </ion-navbar>
-
+    <myheader [title]="title">
+        <button ion-button icon-only clear (click)="enableEdition()">
+            <ion-icon name="create" style="color:white"></ion-icon>
+        </button>
+    </myheader>
 </ion-header>
 
-
 <ion-content padding>
+    <ion-item>
+        <ion-input type="text" placeholder="Nombre" [(ngModel)]="object.name" [disabled]="readOnly">
+        </ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-input type="text" placeholder="Descripción" [(ngModel)]="object.notes" [disabled]="readOnly">
+        </ion-input>
+    </ion-item>
+    <ion-content text-center>
+        <ion-img width="300px" height="200px" [src]="object.photo"></ion-img>
+    </ion-content>
 
 </ion-content>
+<ion-footer text-center>
+    <ion-toolbar position="bottom">
+        <button ion-button full *ngIf="readOnly" (click)="deliver()">Registrar entrega</button>
+        <button ion-button full *ngIf="!readOnly" (click)="saveObject()">Guardar</button>
+    </ion-toolbar>
+</ion-footer>
