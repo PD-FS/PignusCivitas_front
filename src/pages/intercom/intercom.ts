@@ -1,7 +1,6 @@
 import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import Peer from 'peerjs';
-import { SecurityProvider } from '../../providers/security/security';
 
 /**
  * Generated class for the IntercomPage page.
@@ -18,66 +17,95 @@ import { SecurityProvider } from '../../providers/security/security';
 export class IntercomPage implements OnInit{
 
   @ViewChild('mensaje') mensaje : ElementRef;
+  @ViewChild('video') video : ElementRef;
 
   private peer : Peer;
-  private role : number;
-  private connid : string;
-  private id: string;
-  public message: string;
+  private peerToConnect: string;
+  private callOpen: boolean = true;
 
   constructor(public navCtrl: NavController,
-              public navParams: NavParams,
-              private security: SecurityProvider) {
+              public navParams: NavParams) {
 
-    this.role = this.security.getRole()
 
-    if(this.role == 0) {
-      this.id = 'Vigilante'
-    }
-    else{
-      this.id = 'Ciudadano'
-      this.connid = 'Vigilante'
-    }
 
+    this.peer = new Peer({key: 'pignuscivitasapp'})
 
   }
 
   ngOnInit(): void {
 
-    this.peer = new Peer(this.id)
-
     let m = this.mensaje.nativeElement
 
-    this.peer.on('connection', function(conn) {
-      conn.on('data', data => {
-        if(data){
-          m.innerHTML = data
+    this.peer.on('open', function () {
+        m.innerHTML = "Esperando conexión ...";
+
+    });
+
+    let v = this.video.nativeElement
+
+    var n = <any>navigator
+    n.getUserMedia = n.getUserMedia || n.webkitGetUserMedia || n.mozGetUserMedia;
+    let callStatus = this.callOpen
+    this.peer.on('call', function(call) {
+
+      n.getUserMedia({video: true, audio: true}, function(stream) {
+        if(callStatus){
+          call.answer(stream); // Answer the call with an A/V stream.
+        } else {
+          call.close()
         }
+        call.on('stream', function(remoteStream) {
+          m.innerHTML = "Conectado"
+          v.src = URL.createObjectURL(remoteStream)
+          v.play()
+        });
+
+        call.on('close', function(){
+          m.innerHTML = "Finalizado"
+          v.pause()
+        });
+
+      }, function(err) {
+        console.log('Failed to get local stream' ,err);
       });
     });
 
   }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad IntercomPage');
   }
 
-  private sendMessage()
+
+  disconnectCall()
   {
-    var conn = this.peer.connect(this.connid);
+    this.callOpen = false
+    let m = this.mensaje.nativeElement;
+    this.peer.on('call', function(call) {
+      call.close()
+      console.log('entre en disconect')
+      m.innerHTML = "Llamada finalizada"
+    })
+  }
 
-    var hack = this.message
-    conn.on('open', function(){
-      conn.send(hack);
+  makeCall() {
+
+    let v = this.video.nativeElement
+    let peer = this.peer
+    let connid = this.peerToConnect
+    let m = this.mensaje.nativeElement
+
+    var n = <any>navigator
+    n.getUserMedia = n.getUserMedia || n.webkitGetUserMedia || n.mozGetUserMedia;
+    n.getUserMedia({video: false, audio: true}, function(stream) {
+      var call = peer.call(connid, stream);
+      call.on('stream', function(remoteStream) {
+        m.innerHTML = "Conectado"
+        v.src = URL.createObjectURL(remoteStream)
+        v.play()
+      });
+    }, function(err) {
+      console.log('Failed to get local stream' ,err);
     });
-
-
-  }
-
-  updateMessage(data) {
-    this.mensaje = data
-  }
-
-  receiveData() {
-
   }
 }
