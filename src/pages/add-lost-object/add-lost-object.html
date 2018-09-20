@@ -5,14 +5,56 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>AddLostObject</ion-title>
-  </ion-navbar>
-
+    <myheader title="Agregar objeto perdido">
+        <button ion-button icon-only clear (click)="attachImage()">
+            <ion-icon name="attach" style="color:white"></ion-icon>
+        </button>
+    </myheader>
 </ion-header>
 
-
 <ion-content padding>
-
+    <form [formGroup]="formulario">
+        <ion-item>
+            <ion-input type="text"
+                placeholder="Nombre"
+                [(ngModel)]="object.name"
+                name="inputName"
+                formControlName="name"
+                 >
+            </ion-input>
+        </ion-item>
+        <div class="validation-errors">
+            <ng-container>
+                <div style="color:red"
+                    *ngIf="formulario.get('name').hasError('required') && saved">
+                    Requerido
+                </div>
+            </ng-container>
+        </div>
+        <ion-item>
+            <ion-input
+                type="text"
+                placeholder="Descripción"
+                [(ngModel)]="object.notes"
+                name="inputNotes"
+                formControlName="notes">
+            </ion-input>
+        </ion-item>
+        <div class="validation-errors">
+            <ng-container>
+                <div style="color:red"
+                    *ngIf="formulario.get('notes').hasError('required') && saved">
+                    Requerido
+                </div>
+            </ng-container>
+        </div>
+    </form>
+    <ion-content text-center>
+        <ion-img width="300px" height="200px" [src]="object.photo"></ion-img>
+    </ion-content>
 </ion-content>
+<ion-footer text-center>
+    <ion-toolbar position="bottom">
+        <button ion-button full (click)="save()">Guardar</button>
+    </ion-toolbar>
+</ion-footer>

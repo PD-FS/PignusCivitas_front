@@ -1,3 +1,4 @@
+import { AddLostObjectPage } from './../add-lost-object/add-lost-object';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LostObjectDetailPage } from '../lost-object-detail/lost-object-detail';
@@ -71,6 +72,14 @@ export class LostObjectsPage {
         this.navCtrl.push(LostObjectDetailPage, {
             objectId: object.id
         });
+    }
+
+    public search() {
+
+    }
+
+    public add() {
+        this.navCtrl.push(AddLostObjectPage);
     }
 
 }

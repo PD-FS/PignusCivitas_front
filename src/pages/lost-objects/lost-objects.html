@@ -5,7 +5,11 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-    <myheader title="Objetos perdidos"></myheader>
+    <myheader title="Objetos perdidos">
+        <button ion-button icon-only clear (click)="search()">
+            <ion-icon name="search" style="color:white"></ion-icon>
+        </button>
+    </myheader>
 </ion-header>
 
 <ion-content padding>
@@ -26,5 +30,10 @@
             <p>{{object.notes}}</p>
         </button>
     </ion-list>
+    <ion-fab bottom right>
+        <button ion-fab mini (click)="add()">
+            <ion-icon name="add"></ion-icon>
+        </button>
+    </ion-fab>
 
 </ion-content>
