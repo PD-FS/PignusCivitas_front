@@ -12,13 +12,13 @@ import { Component, Input } from '@angular/core';
 })
 export class ValidationMessagesComponent {
 
-    @Input()
+    @Input('form')
     form: any;
 
-    @Input()
+    @Input('field')
     field: string;
 
-    @Input()
+    @Input('saved')
     saved: boolean;
 
     constructor() {

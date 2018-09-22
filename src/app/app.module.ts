@@ -1,3 +1,5 @@
+import { SearchBarImplementComponent } from './../components/search-bar-implement/search-bar-implement';
+import { SearchBarComponent } from './../components/search-bar/search-bar';
 import { ValidationMessagesComponent } from './../components/validation-messages/validation-messages';
 import { ConfigPage } from './../pages/config/config';
 import { BrowserModule } from '@angular/platform-browser';
@@ -15,6 +17,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatDialogModule } from '@angular/material/dialog';
 import { CommunitiesProvider } from '../providers/communities/communities';
 import { ConfigProvider } from '../providers/config/config';
 import { EventsProvider } from '../providers/events/events';
@@ -117,7 +120,9 @@ import { OwnersVehiclesPage } from '../pages/owners-vehicles/owners-vehicles';
     VisitorsVehiclesPage,
     OwnersVehiclesPage,
     ConfigPage,
-    ValidationMessagesComponent
+    ValidationMessagesComponent,
+    SearchBarComponent,
+    SearchBarImplementComponent
   ],
   imports: [
     BrowserModule,
@@ -125,6 +130,7 @@ import { OwnersVehiclesPage } from '../pages/owners-vehicles/owners-vehicles';
     IonicModule.forRoot(MyApp),
     BrowserAnimationsModule,
     MatToolbarModule,
+    MatDialogModule,
     IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
@@ -151,7 +157,8 @@ import { OwnersVehiclesPage } from '../pages/owners-vehicles/owners-vehicles';
     VehiclePage,
     VisitorsVehiclesPage,
     OwnersVehiclesPage,
-    ConfigPage
+    ConfigPage,
+    SearchBarImplementComponent
   ],
   providers: [
     StatusBar,

@@ -16,12 +16,12 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class AddLostObjectPage {
 
-    private formulario: FormGroup = this.formBuilder.group({
+    public formulario: FormGroup = this.formBuilder.group({
                                         name: ['', Validators.required],
                                         notes: ['', Validators.required]
                                     });
 
-    private saved: boolean = false;
+    public saved: boolean = false;
 
     public object: any = {
         name: '',
