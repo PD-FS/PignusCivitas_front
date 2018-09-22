@@ -7,15 +7,43 @@
 
 <ion-content padding>
     <ion-item>
+        <ion-label>Marca:</ion-label> 
+        <ion-input type="text" placeholder="Marca" [(ngModel)]="vehicle.brand" [disabled]="readOnly">
+        </ion-input>
+    </ion-item>
+    <ion-item>
+            <ion-label>Modelo:</ion-label> 
+            <ion-input type="text" placeholder="Modelo" [(ngModel)]="vehicle.model" [disabled]="readOnly">
+            </ion-input>
+        </ion-item>
+    <ion-item>
+        <ion-label>Placa:</ion-label> 
         <ion-input type="text" placeholder="Placa" [(ngModel)]="vehicle.plate" [disabled]="readOnly">
         </ion-input>
     </ion-item>
     <ion-item>
+        <ion-label>Tipo de Vehículo:</ion-label> 
         <ion-input type="text" placeholder="Descripción" [(ngModel)]="vehicle.vehicletype" [disabled]="readOnly">
         </ion-input>
     </ion-item>
     <ion-item>
-            <ion-input type="text" placeholder="Estado" [(ngModel)]="vehicle.status" [disabled]="readOnly">
+            <ion-label>Color:</ion-label>  
+            <ion-input type="text" placeholder="Color" [(ngModel)]="vehicle.color" [disabled]="readOnly">
+                </ion-input>
+        </ion-item>
+    <ion-item>
+        <ion-label>Estado:</ion-label>  
+        <ion-input type="text" placeholder="Estado" [(ngModel)]="vehicle.status" [disabled]="readOnly">
+            </ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label>Entrada:</ion-label>        
+        <ion-input type="text" placeholder="Entrada" [(ngModel)]="vehicle.checkindate" [disabled]="readOnly">
+        </ion-input>
+    </ion-item>
+    <ion-item>
+            <ion-label>Salida</ion-label>        
+            <ion-input type="text" placeholder="Salida" [(ngModel)]="vehicle.checkoutdate" [disabled]="readOnly">
             </ion-input>
         </ion-item>
     <ion-content text-center>
