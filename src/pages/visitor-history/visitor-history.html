@@ -4,15 +4,22 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>VisitorHistory</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
-
 <ion-content padding>
+  <ion-item>
+      <ion-select [(ngModel)]="communityId" placeholder="Comunidad"
+              (ngModelChange)="selectCommunity($event)"
+              disabled>
+          <ion-option value="1">Parque residencial calle 100</ion-option>
+      </ion-select>
+  </ion-item>
+  <ion-list>
+      <button ion-item *ngFor="let visitor of visitorHistory" (click)="itemTapped($event, visitor)">
+          <ion-avatar item-start>
+              <img src="{{visitor.photo}}">
+          </ion-avatar>
+          <h2>{{visitor.firstname+ ' ' +visitor.lastname}}</h2>
+          <p>{{visitor.checkoutdate}}</p>
+      </button>
+  </ion-list>
 
 </ion-content>
