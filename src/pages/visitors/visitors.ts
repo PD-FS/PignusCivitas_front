@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { VisitorHistoryPage } from '../visitor-history/visitor-history';
+import { VisitorListPage } from '../visitors-list/visitors-list';
+
 
 /**
  * Generated class for the VisitorsPage page.
@@ -14,7 +17,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'visitors.html',
 })
 export class VisitorsPage {
-
+  tab1Root = VisitorListPage
+  tab2Root = VisitorHistoryPage
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
