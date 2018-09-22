@@ -1,0 +1,10 @@
+<ion-searchbar [(ngModel)]="searchInput" [showCancelButton]="false" (ionInput)="search($event)" (ionCancel)="cancelSearch($event)"
+    animated="true">
+</ion-searchbar>
+
+<ion-footer>
+    <ion-toolbar>
+        <button ion-button full (click)="search()"
+            [mat-dialog-close]="data.searchInput">Buscar</button>
+    </ion-toolbar>
+</ion-footer>

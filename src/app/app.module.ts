@@ -1,3 +1,6 @@
+import { SearchBarImplementComponent } from './../components/search-bar-implement/search-bar-implement';
+import { SearchBarComponent } from './../components/search-bar/search-bar';
+import { ValidationMessagesComponent } from './../components/validation-messages/validation-messages';
 import { ConfigPage } from './../pages/config/config';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
@@ -14,6 +17,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatDialogModule } from '@angular/material/dialog';
 import { CommunitiesProvider } from '../providers/communities/communities';
 import { ConfigProvider } from '../providers/config/config';
 import { EventsProvider } from '../providers/events/events';
@@ -89,6 +93,7 @@ import { MyheaderComponent } from '../components/myheader/myheader';
 import { VisitorsVehiclesPage } from '../pages/visitors-vehicles/visitors-vehicles';
 import { OwnersVehiclesPage } from '../pages/owners-vehicles/owners-vehicles';
 import { VisitorListPage } from '../pages/visitors-list/visitors-list';
+import { VehicleDetailPage } from '../pages/vehicle-detail/vehicle-detail';
 
 
 @NgModule({
@@ -117,7 +122,11 @@ import { VisitorListPage } from '../pages/visitors-list/visitors-list';
     VisitorsVehiclesPage,
     OwnersVehiclesPage,
     ConfigPage,
-    VisitorListPage
+    ValidationMessagesComponent,
+    SearchBarComponent,
+    SearchBarImplementComponent,
+    VisitorListPage,
+    VehicleDetailPage
   ],
   imports: [
     BrowserModule,
@@ -125,6 +134,7 @@ import { VisitorListPage } from '../pages/visitors-list/visitors-list';
     IonicModule.forRoot(MyApp),
     BrowserAnimationsModule,
     MatToolbarModule,
+    MatDialogModule,
     IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
@@ -152,7 +162,9 @@ import { VisitorListPage } from '../pages/visitors-list/visitors-list';
     VisitorsVehiclesPage,
     OwnersVehiclesPage,
     ConfigPage,
-    VisitorListPage
+    SearchBarImplementComponent,
+    VisitorListPage,
+    VehicleDetailPage
   ],
   providers: [
     StatusBar,

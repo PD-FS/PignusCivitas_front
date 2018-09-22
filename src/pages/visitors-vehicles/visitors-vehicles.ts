@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { VehicleDetailPage } from '../vehicle-detail/vehicle-detail';
 
 /**
  * Generated class for the VisitorsVehiclesPage page.
@@ -69,6 +70,9 @@ export class VisitorsVehiclesPage {
   public itemTapped(event: any, vehicle: any): void {
     console.log('event: ' + event);
     console.log('agent: ' + vehicle);
-  }
+    this.navCtrl.push(VehicleDetailPage, {
+      vehicleId: vehicle.id
+  });
 
+};
 }

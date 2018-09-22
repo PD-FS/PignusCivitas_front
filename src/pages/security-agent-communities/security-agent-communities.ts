@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { SearchBarComponent } from '../../components/search-bar/search-bar';
 
 /**
  * Generated class for the SecurityAgentCommunitiesPage page.
@@ -17,12 +18,24 @@ export class SecurityAgentCommunitiesPage {
 
     public cummunities: {}[];
 
+    public showSearchBar: boolean = false;
+
     public securityAgentId: number;
+
+    @ViewChild('searchBar')
+    public searchBar: SearchBarComponent;
 
     constructor(public navCtrl: NavController,
         public navParams: NavParams) {
         this.securityAgentId = this.loadSecurityAgentId();
         this.loadCommunities()
+    }
+
+    public cancelSearch(event: any) {
+        this.showSearchBar = false;
+    }
+
+    public search(event: any) {
     }
 
     private loadSecurityAgentId(): number {
@@ -64,7 +77,20 @@ export class SecurityAgentCommunitiesPage {
 
     public itemTapped(event:any, community: any): void {
         console.log('event: ' + event);
-        console.log('community: ' + community);
+    }
+
+    public showSearch() {
+        this.showSearchBar = true;
+        this.searchBar.openDialog();
+        this.searchBar.onSearch().subscribe(
+            data => {
+                this.searchCommunities(data);
+            }
+        );
+    }
+
+    public searchCommunities(filter: string) {
+        console.log("buscando comunidades: " + filter);
     }
 
 }
