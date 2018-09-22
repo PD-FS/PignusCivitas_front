@@ -1,3 +1,4 @@
+import { ValidationMessagesComponent } from './../components/validation-messages/validation-messages';
 import { ConfigPage } from './../pages/config/config';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
@@ -115,7 +116,8 @@ import { OwnersVehiclesPage } from '../pages/owners-vehicles/owners-vehicles';
     VehiclePage,
     VisitorsVehiclesPage,
     OwnersVehiclesPage,
-    ConfigPage
+    ConfigPage,
+    ValidationMessagesComponent
   ],
   imports: [
     BrowserModule,

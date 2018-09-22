@@ -19,18 +19,14 @@
                 placeholder="Nombre"
                 [(ngModel)]="object.name"
                 name="inputName"
-                formControlName="name"
-                 >
+                formControlName="name">
             </ion-input>
         </ion-item>
-        <div class="validation-errors">
-            <ng-container>
-                <div style="color:red"
-                    *ngIf="formulario.get('name').hasError('required') && saved">
-                    Requerido
-                </div>
-            </ng-container>
-        </div>
+        <validation-messages
+            [form]="formulario"
+            field="name"
+            [saved]="saved">
+        </validation-messages>
         <ion-item>
             <ion-input
                 type="text"
@@ -40,14 +36,11 @@
                 formControlName="notes">
             </ion-input>
         </ion-item>
-        <div class="validation-errors">
-            <ng-container>
-                <div style="color:red"
-                    *ngIf="formulario.get('notes').hasError('required') && saved">
-                    Requerido
-                </div>
-            </ng-container>
-        </div>
+        <validation-messages
+            [form]="formulario"
+            field="notes"
+            [saved]="saved">
+        </validation-messages>
     </form>
     <ion-content text-center>
         <ion-img width="300px" height="200px" [src]="object.photo"></ion-img>
