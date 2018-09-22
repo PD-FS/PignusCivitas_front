@@ -93,6 +93,7 @@ import { MyheaderComponent } from '../components/myheader/myheader';
 import { VisitorsVehiclesPage } from '../pages/visitors-vehicles/visitors-vehicles';
 import { OwnersVehiclesPage } from '../pages/owners-vehicles/owners-vehicles';
 import { VisitorListPage } from '../pages/visitors-list/visitors-list';
+import { VehicleDetailPage } from '../pages/vehicle-detail/vehicle-detail';
 
 
 @NgModule({
@@ -124,7 +125,8 @@ import { VisitorListPage } from '../pages/visitors-list/visitors-list';
     ValidationMessagesComponent,
     SearchBarComponent,
     SearchBarImplementComponent,
-    VisitorListPage
+    VisitorListPage,
+    VehicleDetailPage
   ],
   imports: [
     BrowserModule,
@@ -161,7 +163,8 @@ import { VisitorListPage } from '../pages/visitors-list/visitors-list';
     OwnersVehiclesPage,
     ConfigPage,
     SearchBarImplementComponent,
-    VisitorListPage
+    VisitorListPage,
+    VehicleDetailPage
   ],
   providers: [
     StatusBar,
