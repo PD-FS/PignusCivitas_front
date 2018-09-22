@@ -85,6 +85,14 @@
     <plugin name="cordova-android-support-gradle-release" spec="^1.4.4">
         <variable name="ANDROID_SUPPORT_VERSION" value="27.+" />
     </plugin>
+    <plugin name="cordova-plugin-console" spec="^1.1.0" />
+    <plugin name="cordova-custom-config" spec="^5.0.2" />
+    <plugin name="cordova-plugin-iosrtc" spec="^4.0.2" />
+    <plugin name="cordova-plugin-media" spec="^5.0.2" />
+    <plugin name="android-camera-permission" spec="^1.0.0" />
+    <plugin name="cordova-plugin-android-permissions" spec="^1.0.0" />
+    <plugin name="cordova-plugin-audiotoggle" spec="^1.0.3" />
+    <plugin name="cordova-plugin-audioinput" spec="^1.0.1" />
     <plugin name="cordova-plugin-crosswalk-webview" spec="^2.4.0">
         <variable name="XWALK_VERSION" value="23+" />
         <variable name="XWALK_LITEVERSION" value="xwalk_core_library_canary:17+" />
