@@ -18,8 +18,6 @@ export class SecurityAgentCommunitiesPage {
 
     public cummunities: {}[];
 
-    public searchInput: string;
-
     public showSearchBar: boolean = false;
 
     public securityAgentId: number;
@@ -38,8 +36,6 @@ export class SecurityAgentCommunitiesPage {
     }
 
     public search(event: any) {
-        console.log(this.searchBar);
-        console.log(event);
     }
 
     private loadSecurityAgentId(): number {
@@ -81,12 +77,20 @@ export class SecurityAgentCommunitiesPage {
 
     public itemTapped(event:any, community: any): void {
         console.log('event: ' + event);
-        console.log('community: ' + community);
     }
 
     public showSearch() {
         this.showSearchBar = true;
         this.searchBar.openDialog();
+        this.searchBar.onSearch().subscribe(
+            data => {
+                this.searchCommunities(data);
+            }
+        );
+    }
+
+    public searchCommunities(filter: string) {
+        console.log("buscando comunidades: " + filter);
     }
 
 }
