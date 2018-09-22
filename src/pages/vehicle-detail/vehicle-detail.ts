@@ -26,11 +26,15 @@ export class VehicleDetailPage {
         const objectId = this.navParams.get('vehicleId');
         console.log(objectId);
         this.vehicle = {
+            brand: 'Ford',
+            model: 'Fiesta',
             plate: 'DZZ581',
             vehicletype: 'Automóvil',
             photo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzMfU4Bk929Tsg1pa9k0hRoS3s-V-J6wBOz1IVr-RvVjsgr6BgQg',
             color: 'Rojo',
-            status: 'Se encuentra con la luces prendidas'
+            status: 'Se encuentra con la luces prendidas',
+            checkindate: '22/09/2018 8:00 am',
+            checkoutdate: '22/09/2018 8:00 am'
         }
         this.title = this.vehicle.name;
     }
