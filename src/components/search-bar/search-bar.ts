@@ -1,6 +1,8 @@
+import { Observable } from 'rxjs/Observable';
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { SearchBarImplementComponent } from '../search-bar-implement/search-bar-implement';
+import { Subject } from 'rxjs';
 
 /**
  * Generated class for the SearchBarComponent component.
@@ -9,35 +11,36 @@ import { SearchBarImplementComponent } from '../search-bar-implement/search-bar-
  * Components.
  */
 @Component({
-  selector: 'search-bar',
-  templateUrl: 'search-bar.html'
+    selector: 'search-bar',
+    templateUrl: 'search-bar.html'
 })
 export class SearchBarComponent {
 
-  public searchInput: string;
+    public searchInput: string;
 
-  public showSearchBar: boolean = false;
+    public showSearchBar: boolean = false;
 
-  constructor(public dialog: MatDialog) {
-  }
+    private onSearchObservable$: Subject<string> = new Subject<string>();
 
-  public search(event: any) {
+    constructor(public dialog: MatDialog) {
+    }
 
-  }
+    public openDialog(): void {
+        const dialogRef = this.dialog.open(SearchBarImplementComponent, {
+            maxWidth: '100%',
+            width: '100%',
+            position: { top: '0%', left: '0%' },
+            data: {searchInput: this.searchInput}
+        });
+        this.showSearchBar = true;
+        dialogRef.afterClosed().subscribe(result => {
+            const filter = result ? result : '';
+            this.onSearchObservable$.next(filter);
+        });
+    }
 
-  public openDialog(): void {
-    const dialogRef = this.dialog.open(SearchBarImplementComponent, {
-      width: '100%',
-      data: {}
-    });
-    this.showSearchBar = true;
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
-  }
-
-  public cancelSearch(event: any) {
-
-  }
+    public onSearch(): Observable<string> {
+        return this.onSearchObservable$.asObservable();
+    }
 
 }

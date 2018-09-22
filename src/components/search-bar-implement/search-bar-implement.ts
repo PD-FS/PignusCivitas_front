@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 /**
  * Generated class for the SearchBarImplementComponent component.
@@ -7,16 +8,25 @@ import { Component } from '@angular/core';
  * Components.
  */
 @Component({
-  selector: 'search-bar-implement',
-  templateUrl: 'search-bar-implement.html'
+    selector: 'search-bar-implement',
+    templateUrl: 'search-bar-implement.html'
 })
 export class SearchBarImplementComponent {
 
-  text: string;
+    public searchInput: string;
 
-  constructor() {
-    console.log('Hello SearchBarImplementComponent Component');
-    this.text = 'Hello World';
-  }
+    @Output() valueChange = new EventEmitter();
+
+    constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
+    }
+
+    public search(event): void {
+        this.valueChange.emit(this.searchInput);
+        this.data.searchInput = this.searchInput;
+    }
+
+    public cancelSearch(event): void {
+        
+    }
 
 }
