@@ -22,6 +22,7 @@
     "@angular/material": "^5.2.5",
     "@angular/platform-browser": "5.2.11",
     "@angular/platform-browser-dynamic": "5.2.11",
+    "@ionic-native/android-permissions": "^4.15.0",
     "@ionic-native/core": "~4.11.0",
     "@ionic-native/splash-screen": "~4.11.0",
     "@ionic-native/status-bar": "~4.11.0",
@@ -31,6 +32,7 @@
     "cordova-android-support-gradle-release": "^1.4.4",
     "cordova-custom-config": "^5.0.2",
     "cordova-ios": "4.5.5",
+    "cordova-opentok-android-permissions": "^1.0.1",
     "cordova-plugin-android-permissions": "^1.0.0",
     "cordova-plugin-audioinput": "^1.0.1",
     "cordova-plugin-audiotoggle": "^1.0.3",
@@ -43,13 +45,15 @@
     "cordova-plugin-ionic-webview": "^2.1.3",
     "cordova-plugin-iosrtc": "^4.0.2",
     "cordova-plugin-media": "^5.0.2",
+    "cordova-plugin-nativeaudio": "^3.0.9",
     "cordova-plugin-splashscreen": "^5.0.2",
     "cordova-plugin-whitelist": "^1.3.3",
     "cordova-sqlite-storage": "^2.4.0",
     "ionic-angular": "3.9.2",
     "ionicons": "3.0.0",
     "peerjs": "^0.3.16",
-    "rxjs": "5.5.11",
+    "rxjs": "^6.3.3",
+    "rxjs-compat": "^6.3.3",
     "sw-toolbox": "3.6.0",
     "zone.js": "0.8.26"
   },
@@ -86,7 +90,9 @@
       "android-camera-permission": {},
       "cordova-plugin-android-permissions": {},
       "cordova-plugin-audiotoggle": {},
-      "cordova-plugin-audioinput": {}
+      "cordova-plugin-audioinput": {},
+      "cordova-plugin-nativeaudio": {},
+      "cordova-opentok-android-permissions": {}
     },
     "platforms": [
       "android",

@@ -12,17 +12,15 @@
 
 
 <ion-content padding>
-  <ion-item>Mi Peer ID: {{peer.id}}</ion-item>
-  <ion-list>
-    <ion-item>
-      <ion-input type="text" placeholder="Peer ID con el que quiero conectar" [(ngModel)]="peerToConnect"></ion-input>
-    </ion-item>
 
-  </ion-list>
-  <button ion-item (click)="makeCall()" block color="primary">Llamar</button>
-  <button ion-item (click)="disconnectCall()" block color="primary">Colgar</button>
-
-  <ion-item><div #mensaje></div></ion-item>
-  <video #video></video>
+  <div class="container">
+      Mensaje: <p>{{mymsg}}</p>
+      <h1> My Id is - {{mypeerid}} </h1>
+      <input class="input" type="text" [(ngModel)] = "anotherid" />
+      <button class="btn btn-primary" (click) = "makeCall()">Call</button>
+      <button class="btn btn-success" #myanswerButton>Answer</button>
+      <button class="btn btn-danger" #myhangup>Hangup</button>
+      <video #myvideo ></video>
+  </div>
 
 </ion-content>
