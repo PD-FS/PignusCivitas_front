@@ -14,7 +14,7 @@
       </ion-select>
   </ion-item>
   <ion-list>
-      <button ion-item *ngFor="let vehicle of visitorsVehicules" (click)="itemTapped($event, vehicle)">
+      <button ion-item *ngFor="let vehicle of ownersVehicules" (click)="itemTapped($event, vehicle)">
           <ion-avatar item-start>
               <img src="{{vehicle.photo}}">
           </ion-avatar>
