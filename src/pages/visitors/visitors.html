@@ -10,9 +10,13 @@
 
 <ion-content padding>
   <h1 ion-item > Conjunto las aguas</h1>
-  
   <ion-tabs>
-      <ion-tab tabIcon="people" tabTitle="Visitantes" [root]="tab1Root"></ion-tab>  
+      <ion-tab tabIcon="people" tabTitle="Visitantes" [root]="tab1Root"></ion-tab>
       <ion-tab tabIcon="people" tabTitle="Historial" [root]="tab2Root"></ion-tab>
-  </ion-tabs>`
+  </ion-tabs>
+  <ion-fab bottom right>
+        <button ion-fab mini (click)="add()">
+            <ion-icon name="add"></ion-icon>
+        </button>
+    </ion-fab>
 </ion-content>

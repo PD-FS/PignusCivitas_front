@@ -7,6 +7,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { IonicStorageModule } from '@ionic/storage';
 import { HttpClientModule } from '@angular/common/http'
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
 import { MyApp } from './app.component';
 import { LandingPage } from '../pages/landing/landing';
@@ -94,6 +95,7 @@ import { VisitorsVehiclesPage } from '../pages/visitors-vehicles/visitors-vehicl
 import { OwnersVehiclesPage } from '../pages/owners-vehicles/owners-vehicles';
 import { VisitorListPage } from '../pages/visitors-list/visitors-list';
 import { VehicleDetailPage } from '../pages/vehicle-detail/vehicle-detail';
+import { AddVisitorPage } from '../pages/add-visitor/add-visitor';
 
 
 @NgModule({
@@ -126,7 +128,8 @@ import { VehicleDetailPage } from '../pages/vehicle-detail/vehicle-detail';
     SearchBarComponent,
     SearchBarImplementComponent,
     VisitorListPage,
-    VehicleDetailPage
+    VehicleDetailPage,
+    AddVisitorPage
   ],
   imports: [
     BrowserModule,
@@ -164,7 +167,8 @@ import { VehicleDetailPage } from '../pages/vehicle-detail/vehicle-detail';
     ConfigPage,
     SearchBarImplementComponent,
     VisitorListPage,
-    VehicleDetailPage
+    VehicleDetailPage,
+    AddVisitorPage
   ],
   providers: [
     StatusBar,
@@ -224,7 +228,8 @@ import { VehicleDetailPage } from '../pages/vehicle-detail/vehicle-detail';
     MinuteBooksProvider,
     MemberTypeMembersProvider,
     DepartmentsProvider,
-    AlertCommunitiesProvider
+    AlertCommunitiesProvider,
+    BarcodeScanner
   ]
 })
 export class AppModule {}

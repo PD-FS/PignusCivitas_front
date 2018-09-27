@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
 /**
  * Generated class for the AddVisitorPage page.
@@ -15,7 +16,15 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class AddVisitorPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private barcodeScanner: BarcodeScanner) {
+  }
+
+  scan() {
+    this.barcodeScanner.scan({formats: 'PDF_417'}).then(barcodeData => {
+      console.log('Barcode data', barcodeData);
+     }).catch(err => {
+         console.log('Error', err);
+     });
   }
 
   ionViewDidLoad() {
