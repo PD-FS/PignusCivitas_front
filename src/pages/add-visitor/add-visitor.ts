@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage} from 'ionic-angular';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
 /**
@@ -16,12 +16,18 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 })
 export class AddVisitorPage {
 
+  data: any;
   constructor(private barcodeScanner: BarcodeScanner) {
+    async () => {
+      this.data = await this.scan();
+    }
   }
 
   scan() {
+
     this.barcodeScanner.scan({formats: 'PDF_417'}).then(barcodeData => {
       console.log('Barcode data', barcodeData);
+      return barcodeData;
      }).catch(err => {
          console.log('Error', err);
      });

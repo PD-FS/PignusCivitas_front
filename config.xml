@@ -85,7 +85,6 @@
     <plugin name="phonegap-plugin-barcodescanner" spec="^8.0.0">
         <variable name="ANDROID_SUPPORT_V4_VERSION" value="27.+" />
     </plugin>
-    <engine name="android" spec="^7.1.1" />
     <engine name="ios" spec="4.5.5" />
-    <plugin name="com.microblink.BlinkIDScanner" spec="~4.2.1" />
+    <engine name="android" spec="7.0.0" />
 </widget>
