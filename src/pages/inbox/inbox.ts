@@ -36,7 +36,10 @@ export class InboxPage {
     return eventTypeIcons.getIcon(eventType);
   }
 
-  public getImage(community_id: number): string {
+  public getImage(item: Event): string {
+    if (item.image) {
+        return item.image;
+    }
     return 'assets/imgs/pignus_icon.png';
   }
 

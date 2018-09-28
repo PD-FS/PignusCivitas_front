@@ -94,6 +94,8 @@ import { VisitorsVehiclesPage } from '../pages/visitors-vehicles/visitors-vehicl
 import { OwnersVehiclesPage } from '../pages/owners-vehicles/owners-vehicles';
 import { VisitorListPage } from '../pages/visitors-list/visitors-list';
 import { VehicleDetailPage } from '../pages/vehicle-detail/vehicle-detail';
+import { IntercomPage } from '../pages/intercom/intercom';
+
 
 
 @NgModule({
@@ -126,7 +128,8 @@ import { VehicleDetailPage } from '../pages/vehicle-detail/vehicle-detail';
     SearchBarComponent,
     SearchBarImplementComponent,
     VisitorListPage,
-    VehicleDetailPage
+    VehicleDetailPage,
+    IntercomPage
   ],
   imports: [
     BrowserModule,
@@ -164,7 +167,8 @@ import { VehicleDetailPage } from '../pages/vehicle-detail/vehicle-detail';
     ConfigPage,
     SearchBarImplementComponent,
     VisitorListPage,
-    VehicleDetailPage
+    VehicleDetailPage,
+    IntercomPage
   ],
   providers: [
     StatusBar,
