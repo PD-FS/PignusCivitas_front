@@ -30,4 +30,5 @@ export class VehiclePage {
   public add() {
     this.navCtrl.push(AddVehiclePage);
 }
+
 }
