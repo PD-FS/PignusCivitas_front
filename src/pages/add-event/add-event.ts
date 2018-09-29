@@ -82,8 +82,10 @@ export class AddEventPage {
 
     public attachImage(): void {
         const options = {
-            quality: 80,
-            maximumImagesCount: 1
+            maximumImagesCount: 1,
+            width: 800,
+            height: 800,
+            quality: 80
         };
         this.imagePicker.getPictures(options).then((results) => {
             for (var i = 0; i < results.length; i++) {
