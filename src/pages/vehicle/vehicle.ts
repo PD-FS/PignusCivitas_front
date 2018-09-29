@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { VisitorsVehiclesPage } from '../visitors-vehicles/visitors-vehicles';
 import { OwnersVehiclesPage } from '../owners-vehicles/owners-vehicles';
+import { AddLostObjectPage } from '../add-lost-object/add-lost-object';
+import { AddVehiclePage } from '../add-vehicle/add-vehicle';
 
 /**
  * Generated class for the VehiclePage page.
@@ -25,4 +27,7 @@ export class VehiclePage {
     console.log('ionViewDidLoad VehiclePage');
   }
 
+  public add() {
+    this.navCtrl.push(AddVehiclePage);
+}
 }
