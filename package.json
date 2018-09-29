@@ -24,6 +24,7 @@
     "@angular/platform-browser-dynamic": "5.2.11",
     "@ionic-native/android-permissions": "^4.15.0",
     "@ionic-native/core": "~4.11.0",
+    "@ionic-native/image-picker": "^4.15.0",
     "@ionic-native/splash-screen": "~4.11.0",
     "@ionic-native/status-bar": "~4.11.0",
     "@ionic/storage": "^2.1.3",

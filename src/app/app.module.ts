@@ -99,7 +99,7 @@ import { AddVehiclePage } from '../pages/add-vehicle/add-vehicle';
 import { AddVisitorPage } from '../pages/add-visitor/add-visitor';
 import { AddEventPage } from '../pages/add-event/add-event';
 import { DatePipe } from '@angular/common';
-
+import { ImagePicker } from '@ionic-native/image-picker';
 
 
 @NgModule({
@@ -239,7 +239,8 @@ import { DatePipe } from '@angular/common';
     MemberTypeMembersProvider,
     DepartmentsProvider,
     AlertCommunitiesProvider,
-    DatePipe
+    DatePipe,
+    ImagePicker,
   ]
 })
 export class AppModule {}

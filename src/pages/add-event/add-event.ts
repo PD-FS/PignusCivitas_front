@@ -3,7 +3,7 @@ import { EventTypesProvider } from './../../providers/event-types/event-types';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { DatePipe } from '@angular/common';
+import { ImagePicker } from '@ionic-native/image-picker';
 
 /**
  * Generated class for the AddEventPage page.
@@ -58,7 +58,7 @@ export class AddEventPage {
         private eventTypesProvider: EventTypesProvider,
         private formBuilder: FormBuilder,
         private eventStatusesProvider: EventStatusesProvider,
-        private datePipe: DatePipe) {
+        private imagePicker: ImagePicker) {
         this.eventTypesProvider.eventTypesList().subscribe(
             (data) => {
                 this.eventTypes = data;
@@ -81,7 +81,15 @@ export class AddEventPage {
     }
 
     public attachImage(): void {
-
+        const options = {
+            quality: 80,
+            maximumImagesCount: 1
+        };
+        this.imagePicker.getPictures(options).then((results) => {
+            for (var i = 0; i < results.length; i++) {
+                console.log('Image URI: ' + results[i]);
+            }
+        }, (err) => { });
     }
 
     public save(): void {
