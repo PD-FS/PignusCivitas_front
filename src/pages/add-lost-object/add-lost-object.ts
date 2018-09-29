@@ -26,7 +26,7 @@ export class AddLostObjectPage {
     public object: any = {
         name: '',
         notes: '',
-        photo: 'https://i.pinimg.com/originals/a8/a5/d2/a8a5d2cacda2c9bfa7a961e756a1cbc4.png'
+        photo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEm0yZS9VwA7f8Zjp7kQI_WPdFns0CMxKEpoJIDwN0suLWW02U'
     }
 
     constructor(public navCtrl: NavController,

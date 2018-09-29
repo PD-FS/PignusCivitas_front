@@ -1,0 +1,81 @@
+<!--
+  Generated template for the AddVehiclePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <myheader title="Agregar Vehículo">
+      <button ion-button icon-only clear (click)="attachImage()">
+          <ion-icon name="attach" style="color:white"></ion-icon>
+      </button>
+  </myheader>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="formulario">
+      <ion-item>
+          <ion-input type="text"
+              placeholder="Modelo"
+              [(ngModel)]="object.model"
+              name="inputModel"
+              formControlName="model">
+          </ion-input>
+      </ion-item>
+      <validation-messages
+          [form]="formulario"
+          field="model"
+          [saved]="saved">
+      </validation-messages>
+      <ion-item>
+          <ion-input
+              type="text"
+              placeholder="Marca"
+              [(ngModel)]="object.brand"
+              name="inputBrand"
+              formControlName="brand">
+          </ion-input>
+      </ion-item>
+      <validation-messages
+          [form]="formulario"
+          field="brand"
+          [saved]="saved">
+      </validation-messages>
+      <ion-item>
+        <ion-input
+            type="text"
+            placeholder="Placa"
+            [(ngModel)]="object.plate"
+            name="inputPlate"
+            formControlName="plate">
+        </ion-input>
+    </ion-item>
+    <validation-messages
+        [form]="formulario"
+        field="plate"
+        [saved]="saved">
+    </validation-messages>
+    <ion-item>
+      <ion-input
+          type="text"
+          placeholder="Autorizado por"
+          [(ngModel)]="object.autorizedBy"
+          name="inputAutorizedBy"
+          formControlName="autorizedBy">
+      </ion-input>
+  </ion-item>
+  <validation-messages
+      [form]="formulario"
+      field="autorizedBy"
+      [saved]="saved">
+  </validation-messages>
+  </form>
+<ion-content text-center>
+    <ion-img [src]="object.photo"></ion-img>
+</ion-content>
+</ion-content>
+<ion-footer text-center>
+  <ion-toolbar position="bottom">
+      <button ion-button full (click)="save()">Guardar</button>
+  </ion-toolbar>
+</ion-footer>
