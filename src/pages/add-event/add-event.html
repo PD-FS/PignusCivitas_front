@@ -59,6 +59,21 @@
         <ion-item>
             <ion-label>Fecha fin</ion-label>
             <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="event.end_date" formControlName="endDate"></ion-datetime>
+            <validation-messages [form]="formulario" field="endDate" [saved]="saved"></validation-messages>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>Contacto</ion-label>
+            <ion-input type="text" [(ngModel)]="event.contact_name" name="inputContactName" formControlName="contactName">
+            </ion-input>
+            <validation-messages [form]="formulario" field="contactName" [saved]="saved"></validation-messages>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>Teléfono</ion-label>
+            <ion-input type="text" [(ngModel)]="event.contact_phone" name="inputContactPhone" formControlName="contactPhone">
+            </ion-input>
+            <validation-messages [form]="formulario" field="contactPhone" [saved]="saved"></validation-messages>
         </ion-item>
 
     </form>

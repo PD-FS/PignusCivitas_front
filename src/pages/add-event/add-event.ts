@@ -21,8 +21,6 @@ export class AddEventPage {
 
     public formatDate = 'YYYY-MM-DDTHH:mm:ssTZD';
 
-    
-
     public event = {
         id: null,
         event_type_id: 1,
@@ -31,7 +29,10 @@ export class AddEventPage {
         site: null,
         event_status_id: 1,
         end_date: new Date().toISOString(),
-
+        contact_name: null,
+        contact_phone: null,
+        community_id: 1,
+        security_agent_id: 1
     };
 
     public saved: boolean = false;
@@ -47,7 +48,8 @@ export class AddEventPage {
         site: [''],
         eventStatus: [''],
         endDate: [''],
-
+        contactName: [''],
+        contactPhone: [''],
 
     });
 
