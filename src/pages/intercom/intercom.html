@@ -12,15 +12,18 @@
 
 
 <ion-content padding>
+  <div class="alert alert-info">{{mymsg}}</div>
+  <h1 class="h2"> My Id is - {{mypeerid}} </h1>
 
-  <div class="container">
-      Mensaje: <p>{{mymsg}}</p>
-      <h1> My Id is - {{mypeerid}} </h1>
-      <input class="input" type="text" [(ngModel)] = "anotherid" />
-      <button class="btn btn-primary" (click) = "makeCall()">Call</button>
-      <button class="btn btn-success" #myanswerButton>Answer</button>
-      <button class="btn btn-danger" #myhangup>Hangup</button>
-      <video #myvideo ></video>
-  </div>
+  <ion-list>
+    <ion-item>
+      <ion-label floating>Introduce el Peer Id</ion-label>
+      <ion-input type="text" [(ngModel)] = "anotherid"></ion-input>
+    </ion-item>
+  </ion-list>
+  <button class="disable-hover button button-ios button-default button-default-ios button-block button-block-ios" #mycallButton (click) = "makeCall()" color="primary">Call</button>
+    <button class="disable-hover button button-ios button-default button-default-ios button-full button-full-ios button-ios-secondary" #myanswerButton  >Answer</button>
+    <button class="disable-hover button button-ios button-default button-default-ios button-full button-full-ios button-ios-danger" #myhangupButton  >Hangup</button>
 
+  <video width="100%" #myvideo ></video>
 </ion-content>
