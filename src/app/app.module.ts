@@ -97,6 +97,7 @@ import { VehicleDetailPage } from '../pages/vehicle-detail/vehicle-detail';
 import { IntercomPage } from '../pages/intercom/intercom';
 import { AddVehiclePage } from '../pages/add-vehicle/add-vehicle';
 import { AddVisitorPage } from '../pages/add-visitor/add-visitor';
+import { AddEventPage } from '../pages/add-event/add-event';
 
 
 
@@ -121,6 +122,7 @@ import { AddVisitorPage } from '../pages/add-visitor/add-visitor';
     VisitorHistoryPage,
     LostObjectDetailPage,
     AddLostObjectPage,
+    AddEventPage,
     MyheaderComponent,
     VehiclePage,
     VisitorsVehiclesPage,
@@ -165,6 +167,7 @@ import { AddVisitorPage } from '../pages/add-visitor/add-visitor';
     VisitorHistoryPage,
     LostObjectDetailPage,
     AddLostObjectPage,
+    AddEventPage,
     VehiclePage,
     VisitorsVehiclesPage,
     OwnersVehiclesPage,

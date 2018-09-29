@@ -1,3 +1,4 @@
+import { AddEventPage } from './../add-event/add-event';
 import { EventTypesProvider } from './../../providers/event-types/event-types';
 import { SecurityProvider } from './../../providers/security/security';
 import { Component } from '@angular/core';
@@ -83,5 +84,9 @@ export class InboxPage {
                 }
             }
         );
+    }
+
+    public addEvent() {
+        this.navCtrl.push(AddEventPage);
     }
 }

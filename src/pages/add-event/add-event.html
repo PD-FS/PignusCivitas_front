@@ -1,0 +1,29 @@
+<!--
+  Generated template for the AddEventPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <myheader title="Nuevo evento">
+        <button ion-button icon-only clear (click)="attachImage()">
+            <ion-icon name="attach" style="color:white"></ion-icon>
+        </button>
+    </myheader>
+</ion-header>
+
+
+<ion-content padding>
+    <form [formGroup]="formulario">
+        <ion-item>
+            <ion-label>Tipo de evento</ion-label>
+            <ion-select [(ngModel)]="event.event_type_id"
+                (ionChange)="eventTypeSelected($event)"
+                formControlName="eventType">
+                <ion-option *ngFor="let eventType of eventTypes" [value]="eventType.id">
+                    {{eventType.name}}
+                </ion-option>
+            </ion-select>
+        </ion-item>
+    </form>
+</ion-content>

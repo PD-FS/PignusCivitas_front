@@ -10,14 +10,11 @@
 
 <ion-content padding>
     <ion-item>
-        <ion-label>Eventos</ion-label>
+        
         <ion-select [(ngModel)]="selectedEventType" (ionChange)="eventTypeSelected($event)">
-
             <ion-option *ngFor="let eventType of eventTypes" [value]="eventType.id">
-                <ion-icon name="{{getIcon(eventType.id).icon}}" color="{{getIcon(eventType.id).color}}"></ion-icon>
                 {{eventType.name}}
             </ion-option>
-
         </ion-select>
     </ion-item>
     <ion-list>
@@ -31,4 +28,9 @@
                 item-end></ion-icon>
         </button>
     </ion-list>
+    <ion-fab bottom right>
+        <button ion-fab mini (click)="addEvent()">
+            <ion-icon name="add"></ion-icon>
+        </button>
+    </ion-fab>
 </ion-content>
