@@ -17,13 +17,54 @@
     <form [formGroup]="formulario">
         <ion-item>
             <ion-label>Tipo de evento</ion-label>
-            <ion-select [(ngModel)]="event.event_type_id"
-                (ionChange)="eventTypeSelected($event)"
-                formControlName="eventType">
+            <ion-select [(ngModel)]="event.event_type_id" (ionChange)="eventTypeSelected($event)" formControlName="eventType">
                 <ion-option *ngFor="let eventType of eventTypes" [value]="eventType.id">
                     {{eventType.name}}
                 </ion-option>
             </ion-select>
+            <validation-messages [form]="formulario" field="eventType" [saved]="saved"></validation-messages>
         </ion-item>
+
+        <ion-item>
+            <ion-label>Título</ion-label>
+            <ion-input type="text" [(ngModel)]="event.title" name="inputTitle" formControlName="title">
+            </ion-input>
+            <validation-messages [form]="formulario" field="title" [saved]="saved"></validation-messages>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>Descripción</ion-label>
+            <ion-textarea type="text" [(ngModel)]="event.notes" name="inputNotes" formControlName="notes">
+            </ion-textarea>
+            <validation-messages [form]="formulario" field="notes" [saved]="saved"></validation-messages>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>Lugar</ion-label>
+            <ion-input type="text" [(ngModel)]="event.site" name="inputSite" formControlName="site">
+            </ion-input>
+            <validation-messages [form]="formulario" field="site" [saved]="saved"></validation-messages>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>Visibilidad</ion-label>
+            <ion-select [(ngModel)]="event.event_status_id" formControlName="eventStatus">
+                <ion-option *ngFor="let status of eventStatuses" [value]="status.id">
+                    {{status.name}}
+                </ion-option>
+            </ion-select>
+            <validation-messages [form]="formulario" field="eventStatus" [saved]="saved"></validation-messages>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>Fecha fin</ion-label>
+            <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="event.end_date" formControlName="endDate"></ion-datetime>
+        </ion-item>
+
     </form>
 </ion-content>
+<ion-footer text-center>
+    <ion-toolbar position="bottom">
+        <button ion-button full (click)="save()">Guardar</button>
+    </ion-toolbar>
+</ion-footer>

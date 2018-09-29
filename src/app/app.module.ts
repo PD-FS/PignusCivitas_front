@@ -98,6 +98,7 @@ import { IntercomPage } from '../pages/intercom/intercom';
 import { AddVehiclePage } from '../pages/add-vehicle/add-vehicle';
 import { AddVisitorPage } from '../pages/add-visitor/add-visitor';
 import { AddEventPage } from '../pages/add-event/add-event';
+import { DatePipe } from '@angular/common';
 
 
 
@@ -237,7 +238,8 @@ import { AddEventPage } from '../pages/add-event/add-event';
     MinuteBooksProvider,
     MemberTypeMembersProvider,
     DepartmentsProvider,
-    AlertCommunitiesProvider
+    AlertCommunitiesProvider,
+    DatePipe
   ]
 })
 export class AppModule {}

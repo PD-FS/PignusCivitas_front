@@ -1,8 +1,9 @@
+import { EventStatusesProvider } from './../../providers/event-statuses/event-statuses';
 import { EventTypesProvider } from './../../providers/event-types/event-types';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { EventsProvider } from './../../providers/events/events';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { DatePipe } from '@angular/common';
 
 /**
  * Generated class for the AddEventPage page.
@@ -18,26 +19,53 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class AddEventPage {
 
+    public formatDate = 'YYYY-MM-DDTHH:mm:ssTZD';
+
+    
+
     public event = {
         id: null,
-        event_type_id: null
+        event_type_id: 1,
+        title: null,
+        notes: null,
+        site: null,
+        event_status_id: 1,
+        end_date: new Date().toISOString(),
+
     };
+
+    public saved: boolean = false;
 
     public eventTypes: Array<any>;
 
+    public eventStatuses: Array<any>;
+
     public formulario: FormGroup = this.formBuilder.group({
-        eventType: ['', Validators.required]
+        eventType: ['', Validators.required],
+        title: ['', Validators.required],
+        notes: [''],
+        site: [''],
+        eventStatus: [''],
+        endDate: [''],
+
+
     });
 
     constructor(public navCtrl: NavController,
         public navParams: NavParams,
-        private eventsProvider: EventsProvider,
         private eventTypesProvider: EventTypesProvider,
-        private formBuilder: FormBuilder) {
+        private formBuilder: FormBuilder,
+        private eventStatusesProvider: EventStatusesProvider,
+        private datePipe: DatePipe) {
         this.eventTypesProvider.eventTypesList().subscribe(
             (data) => {
                 this.eventTypes = data;
-                console.log(data);
+            }
+        );
+
+        this.eventStatusesProvider.eventStatusesList().subscribe(
+            (data) => {
+                this.eventStatuses = data;
             }
         );
     }
@@ -47,11 +75,16 @@ export class AddEventPage {
     }
 
     ionViewDidLoad() {
-        console.log('ionViewDidLoad AddEventPage');
+
     }
 
-    public attachImage() {
+    public attachImage(): void {
 
+    }
+
+    public save(): void {
+        this.saved = true;
+        console.log(this.event);
     }
 
 }
