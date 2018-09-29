@@ -95,6 +95,7 @@ import { OwnersVehiclesPage } from '../pages/owners-vehicles/owners-vehicles';
 import { VisitorListPage } from '../pages/visitors-list/visitors-list';
 import { VehicleDetailPage } from '../pages/vehicle-detail/vehicle-detail';
 import { IntercomPage } from '../pages/intercom/intercom';
+import { AddVehiclePage } from '../pages/add-vehicle/add-vehicle';
 
 
 
@@ -129,7 +130,8 @@ import { IntercomPage } from '../pages/intercom/intercom';
     SearchBarImplementComponent,
     VisitorListPage,
     VehicleDetailPage,
-    IntercomPage
+    IntercomPage,
+    AddVehiclePage
   ],
   imports: [
     BrowserModule,
@@ -168,7 +170,8 @@ import { IntercomPage } from '../pages/intercom/intercom';
     SearchBarImplementComponent,
     VisitorListPage,
     VehicleDetailPage,
-    IntercomPage
+    IntercomPage,
+    AddVehiclePage
   ],
   providers: [
     StatusBar,

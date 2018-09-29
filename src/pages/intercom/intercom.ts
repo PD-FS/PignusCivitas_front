@@ -20,7 +20,8 @@ export class IntercomPage implements AfterViewInit {
 
   @ViewChild('myvideo') myvideo: ElementRef;
   @ViewChild('myanswerButton') myanswerButton: ElementRef;
-  @ViewChild('myhangup') myhangup: ElementRef;
+  @ViewChild('myhangupButton') myhangupButton: ElementRef;
+  @ViewChild('mycallButton') mycallButton: ElementRef;
 
 
   peer;
@@ -49,15 +50,19 @@ export class IntercomPage implements AfterViewInit {
     // Get Assigned Peer id
     this.peer.on('open', id => {
       this.mypeerid = id;
+      console.log('id',id);
     });
 
     // Variables and constants
     const n = <any>navigator;
     const video = this.myvideo.nativeElement;
     const answerButton = this.myanswerButton.nativeElement;
-    const hangupButton = this.myhangup.nativeElement;
+    const hangupButton = this.myhangupButton.nativeElement;
+    const callButton = this.mycallButton.nativeElement;
+
     hangupButton.style = 'display: none';
     answerButton.style = 'display: none';
+    video.style = 'display: none';
 
     this.mymsg = 'Awaiting...';
 
@@ -72,15 +77,16 @@ export class IntercomPage implements AfterViewInit {
         n.getUserMedia({video: true, audio: true}, stream => {
           answerButton.style = 'display: inline';
           this.mymsg = 'Incoming Call...';
-
+          callButton.style = 'display: none';
           // Answer click event handler
           answerOnClick.subscribe(x => {
             call.answer(stream);
             call.on('stream', remotestream => {
+              video.style = 'display: block';
               video.src = URL.createObjectURL(remotestream);
               video.play();
               answerButton.style = 'display: none';
-              hangupButton.style = 'display: inline';
+              hangupButton.style = 'display: block';
               this.mymsg = 'Connected';
             });
           }, err => {
@@ -99,8 +105,10 @@ export class IntercomPage implements AfterViewInit {
           });
 
           call.on('close', () => {
+            video.style = 'display: none';
             video.src = '';
             hangupButton.style = 'display: none';
+            callButton.style = 'display: block';
             this.mymsg = 'Awaiting...';
             stream.getAudioTracks()[0].stop();
             stream.getVideoTracks()[0].stop();
@@ -121,9 +129,7 @@ export class IntercomPage implements AfterViewInit {
 
     // On disconnected handler
     this.peer.on('disconnected', () => {
-      console.log('Reconecting');
       this.peer.reconnect();
-      console.log();
     });
 
   }
@@ -138,28 +144,34 @@ export class IntercomPage implements AfterViewInit {
     // Variables and constants
     const n = <any>navigator;
     const video = this.myvideo.nativeElement;
-    const hangupButton = this.myhangup.nativeElement;
+    const hangupButton = this.myhangupButton.nativeElement;
+    const callButton = this.mycallButton.nativeElement;
     this.mymsg = 'Calling...';
     n.getUserMedia = n.getUserMedia || n.webkitGetUserMedia || n.mozGetUserMedia;
 
     const hangupOnClick = fromEvent(hangupButton, 'click');
+
+    callButton.style = 'display: none';
 
     // Making the Call
     n.getUserMedia({video: true, audio: true}, (stream) => {
       const call = this.peer.call(this.anotherid, stream);
 
       call.on('close', () => {
+        video.style = 'display: none';
         video.src = '';
         hangupButton.style = 'display: none';
+        callButton.style = 'display: block';
         this.mymsg = 'Awaiting...';
         stream.getAudioTracks()[0].stop();
         stream.getVideoTracks()[0].stop();
       });
 
       call.on('stream', remotestream => {
+        video.style = 'display: block';
         video.src = URL.createObjectURL(remotestream);
         video.play();
-        hangupButton.style = 'display:inline';
+        hangupButton.style = 'display: block';
         this.mymsg = 'Connected';
 
         // Hangup click event handler

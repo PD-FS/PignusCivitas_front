@@ -18,7 +18,7 @@ import { EventTypeIcons, PignusIcon } from '../../providers/events/eventTypeIcon
 export class InboxPage {
 
   actualrole:number;
-  items: Array<Event>;
+  items: Array<any>;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -36,7 +36,7 @@ export class InboxPage {
     return eventTypeIcons.getIcon(eventType);
   }
 
-  public getImage(item: Event): string {
+  public getImage(item: any): string {
     if (item.image) {
         return item.image;
     }
