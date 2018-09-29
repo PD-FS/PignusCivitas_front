@@ -37,9 +37,11 @@ export class InboxPage {
   }
 
   public getImage(item: Event): string {
+    /*
     if (item.image) {
         return item.image;
     }
+    */
     return 'assets/imgs/pignus_icon.png';
   }
 
