@@ -63,8 +63,11 @@ export class InboxPage {
 
     }
 
-    itemTapped() {
-
+    itemTapped($event: any, item: any) {
+        this.navCtrl.push(AddEventPage, {
+            eventId: item.id,
+            readOnlyMode: true
+        });
     }
 
     public compareEventFn(event1: any, event2: any) {

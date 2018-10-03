@@ -1,8 +1,9 @@
+import { EventsProvider } from './../../providers/events/events';
 import { EventStatusesProvider } from './../../providers/event-statuses/event-statuses';
 import { EventTypesProvider } from './../../providers/event-types/event-types';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { ImagePicker } from '@ionic-native/image-picker';
 
 /**
@@ -19,7 +20,11 @@ import { ImagePicker } from '@ionic-native/image-picker';
 })
 export class AddEventPage {
 
+    public title = "Nuevo evento";
     public formatDate = 'YYYY-MM-DDTHH:mm:ssTZD';
+
+    // Indica si se esta consultando un evento
+    public readonlyEvent: boolean = false;
 
     public event = {
         id: null,
@@ -32,7 +37,8 @@ export class AddEventPage {
         contact_name: null,
         contact_phone: null,
         community_id: 1,
-        security_agent_id: 1
+        security_agent_id: 1,
+        image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJO9-8R3siQFFW9CuQPcfmcSw-cUfxXlKzlWcOwRmLowp4aupWiQ"
     };
 
     public saved: boolean = false;
@@ -56,9 +62,29 @@ export class AddEventPage {
     constructor(public navCtrl: NavController,
         public navParams: NavParams,
         private eventTypesProvider: EventTypesProvider,
+        private eventsProvider: EventsProvider,
+        private toastCtrl: ToastController,
         private formBuilder: FormBuilder,
         private eventStatusesProvider: EventStatusesProvider,
         private imagePicker: ImagePicker) {
+
+        this.readonlyEvent = false;
+        const eventId = this.navParams.get('eventId');
+        const readOnlyMode = this.navParams.get('readOnlyMode');
+        if (readOnlyMode === true) {
+            this.readonlyEvent = true;
+            this.formulario.disable();
+        }
+        if (eventId) {
+            this.eventsProvider.getEvent(eventId).subscribe(
+                (data) => {
+                    this.event = data;
+                    this.title = data.title;
+                }
+            );
+        }
+
+
         this.eventTypesProvider.eventTypesList().subscribe(
             (data) => {
                 this.eventTypes = data;
@@ -96,7 +122,27 @@ export class AddEventPage {
 
     public save(): void {
         this.saved = true;
-        console.log(this.event);
+        if (!this.formulario.valid) {
+            console.log(this.formulario);
+            return;
+        }
+        this.eventsProvider.saveEvent(this.event).subscribe(
+            (data) => {
+                const toast = this.toastCtrl.create({
+                    message: 'Evento guardado!',
+                    duration: 3000,
+                    position: 'top',
+                    showCloseButton: true,
+                    closeButtonText: 'x'
+                });
+                toast.present();
+                this.navCtrl.pop();
+            }
+        );
+    }
+
+    public back() {
+        this.navCtrl.pop();
     }
 
 }

@@ -67,8 +67,6 @@ export class LostObjectsPage {
     }
 
     public itemTapped(event: any, object: any): void {
-        console.log('event: ' + event);
-        console.log('object: ' + object);
         this.navCtrl.push(LostObjectDetailPage, {
             objectId: object.id
         });

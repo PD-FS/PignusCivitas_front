@@ -12,7 +12,6 @@ import { Injectable } from '@angular/core';
 export class EventTypesProvider {
 
   constructor(public api: ApiProvider) {
-    console.log('Hello EventTypesProvider Provider');
   }
 
   public eventTypesList(): Observable<any[]> {

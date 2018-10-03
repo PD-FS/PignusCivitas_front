@@ -12,7 +12,7 @@ import { Injectable } from '@angular/core';
 export class EventStatusesProvider {
 
   constructor(public api: ApiProvider) {
-    console.log('Hello EventStatusesProvider Provider');
+    
   }
 
   public eventStatusesList(): Observable<any[]> {
