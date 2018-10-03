@@ -26,20 +26,7 @@ export class AddEventPage {
     // Indica si se esta consultando un evento
     public readonlyEvent: boolean = false;
 
-    public event = {
-        id: null,
-        event_type_id: 1,
-        title: null,
-        notes: null,
-        site: null,
-        event_status_id: 1,
-        end_date: new Date().toISOString(),
-        contact_name: null,
-        contact_phone: null,
-        community_id: 1,
-        security_agent_id: 1,
-        image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJO9-8R3siQFFW9CuQPcfmcSw-cUfxXlKzlWcOwRmLowp4aupWiQ"
-    };
+    public event: any;
 
     public saved: boolean = false;
 
@@ -67,7 +54,8 @@ export class AddEventPage {
         private formBuilder: FormBuilder,
         private eventStatusesProvider: EventStatusesProvider,
         private imagePicker: ImagePicker) {
-
+            
+        this.initEvent();
         this.readonlyEvent = false;
         const eventId = this.navParams.get('eventId');
         const readOnlyMode = this.navParams.get('readOnlyMode');
@@ -80,6 +68,7 @@ export class AddEventPage {
                 (data) => {
                     this.event = data;
                     this.title = data.title;
+                    console.log(data.image);
                 }
             );
         }
@@ -97,6 +86,24 @@ export class AddEventPage {
             }
         );
     }
+    
+    private initEvent() {
+        this.event = {
+            id: null,
+            event_type_id: 1,
+            title: null,
+            notes: null,
+            site: null,
+            event_status_id: 1,
+            end_date: new Date().toISOString(),
+            contact_name: null,
+            contact_phone: null,
+            community_id: 1,
+            security_agent_id: 1,
+            image: null
+        };
+    }
+
 
     public eventTypeSelected($event): void {
 
@@ -123,9 +130,9 @@ export class AddEventPage {
     public save(): void {
         this.saved = true;
         if (!this.formulario.valid) {
-            console.log(this.formulario);
             return;
         }
+        console.log(this.event);
         this.eventsProvider.saveEvent(this.event).subscribe(
             (data) => {
                 const toast = this.toastCtrl.create({

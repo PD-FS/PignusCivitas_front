@@ -5,13 +5,17 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-    <myheader title="Bandeja de entrada"></myheader>
+    <myheader title="Bandeja de entrada">
+        <button ion-button icon-only clear (click)="refresh()">
+            <ion-icon name="refresh" style="color:white"></ion-icon>
+        </button>
+    </myheader>
 </ion-header>
 
 <ion-content padding>
     <ion-item>
         
-        <ion-select [(ngModel)]="selectedEventType" (ionChange)="eventTypeSelected($event)">
+        <ion-select [(ngModel)]="selectedEventType" (ionChange)="eventTypeSelected()">
             <ion-option *ngFor="let eventType of eventTypes" [value]="eventType.id">
                 {{eventType.name}}
             </ion-option>

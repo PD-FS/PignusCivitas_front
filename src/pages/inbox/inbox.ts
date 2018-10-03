@@ -30,18 +30,24 @@ export class InboxPage {
         private security: SecurityProvider,
         private eventsProvider: EventsProvider,
         private eventTypesProvider: EventTypesProvider) {
-        this.eventsProvider.eventList().subscribe(
-            (data) => {
-                this.items = data;
-                this.eventList = data;
-            }
-        );
+        
+        this.getEventList();
 
         this.eventTypesProvider.eventTypesList().subscribe(
             (data) => {
                 this.eventTypes = data;
                 this.eventTypes.unshift({ id: 0, name: "Todos los eventos" });
                 this.selectedEventType = 0;
+            }
+        );
+    }
+
+    private getEventList(): void {
+        this.eventsProvider.eventList().subscribe(
+            (data) => {
+                this.items = data;
+                this.eventList = data;
+                this.eventTypeSelected();
             }
         );
     }
@@ -74,7 +80,7 @@ export class InboxPage {
         return event1 && event2 ? event1.id === event2.id : event1 === event2;
     }
 
-    public eventTypeSelected($event: any) {
+    public eventTypeSelected() {
         if (this.selectedEventType === 0) {
             this.items = this.eventList;
             return;
@@ -91,5 +97,9 @@ export class InboxPage {
 
     public addEvent() {
         this.navCtrl.push(AddEventPage);
+    }
+
+    public refresh() {
+        this.getEventList();
     }
 }
