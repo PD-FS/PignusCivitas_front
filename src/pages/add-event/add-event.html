@@ -45,7 +45,7 @@
         <validation-messages [form]="formulario" field="notes" [saved]="saved"></validation-messages>
 
         <ion-item *ngIf="event.image">
-            <ion-img width="300px" height="200px" [src]="event.image"></ion-img>
+            <img [src]="event.image" width="300px" height="200px" style="object-fit: contain;">
         </ion-item>
 
         <ion-item>
