@@ -3,6 +3,9 @@ export class EventTypeIcons {
     public notification = new PignusIcon('secondary', 'notifications');
     public warning = new PignusIcon('energized', 'warning');
     public alert = new PignusIcon('danger', 'alert');
+    public information = new PignusIcon('information', 'information-circle');
+    public catastrophe = new PignusIcon('catastrophe', 'nuclear');
+    public accident = new PignusIcon('accident', 'flash');
 
     public getIcon(eventType: number): PignusIcon {
         switch(eventType) {
@@ -14,6 +17,15 @@ export class EventTypeIcons {
             }
             case 3: {
                 return this.alert;
+            }
+            case 4: {
+                return this.information;
+            }
+            case 5: {
+                return this.catastrophe;
+            }
+            case 6: {
+                return this.accident;
             }
             default: {
                 return this.notification;

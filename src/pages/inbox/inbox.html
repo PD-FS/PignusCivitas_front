@@ -5,26 +5,36 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-    <myheader title="Bandeja de entrada"></myheader>
+    <myheader title="Bandeja de entrada">
+        <button ion-button icon-only clear (click)="refresh()">
+            <ion-icon name="refresh" style="color:white"></ion-icon>
+        </button>
+    </myheader>
 </ion-header>
 
 <ion-content padding>
-  <ion-item>
-    <ion-label>Eventos</ion-label>
-    <ion-select [(ngModel)]="events">
-      <ion-option>Alertas</ion-option>
-      <ion-option>Novedades</ion-option>
-      <ion-option>Notificaciones</ion-option>
-    </ion-select>
-  </ion-item>
-  <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-      <ion-avatar item-start>
-        <img src="{{getImage(item)}}">
-      </ion-avatar>
-      <h2>{{item.title}}</h2>
-      <p>{{item.notes}}</p>
-      <ion-icon name="{{getIcon(item.event_type_id).icon}}" color="{{getIcon(item.event_type_id).color}}" item-end></ion-icon>
-    </button>
-  </ion-list>
+    <ion-item>
+        
+        <ion-select [(ngModel)]="selectedEventType" (ionChange)="eventTypeSelected()">
+            <ion-option *ngFor="let eventType of eventTypes" [value]="eventType.id">
+                {{eventType.name}}
+            </ion-option>
+        </ion-select>
+    </ion-item>
+    <ion-list>
+        <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
+            <ion-avatar item-start>
+                <img src="{{getImage(item)}}">
+            </ion-avatar>
+            <h2>{{item.title}}</h2>
+            <p>{{item.notes}}</p>
+            <ion-icon name="{{getIcon(item.event_type_id).icon}}" color="{{getIcon(item.event_type_id).color}}"
+                item-end></ion-icon>
+        </button>
+    </ion-list>
+    <ion-fab bottom right>
+        <button ion-fab mini (click)="addEvent()">
+            <ion-icon name="add"></ion-icon>
+        </button>
+    </ion-fab>
 </ion-content>

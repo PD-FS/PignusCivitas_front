@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { VisitorHistoryPage } from '../visitor-history/visitor-history';
 import { VisitorListPage } from '../visitors-list/visitors-list';
+import { AddVisitorPage } from '../add-visitor/add-visitor';
 
 
 /**
@@ -23,7 +24,11 @@ export class VisitorsPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad VisitorsPage');
+    console.log('ionViewDidLoad VisitorPage');
   }
+
+  public add() {
+    this.navCtrl.push(AddVisitorPage);
+}
 
 }

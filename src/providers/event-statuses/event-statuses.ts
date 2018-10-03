@@ -1,4 +1,5 @@
-import { HttpClient } from '@angular/common/http';
+import { ApiProvider } from './../api/api';
+import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 
 /*
@@ -10,8 +11,12 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class EventStatusesProvider {
 
-  constructor(public http: HttpClient) {
-    console.log('Hello EventStatusesProvider Provider');
+  constructor(public api: ApiProvider) {
+    
+  }
+
+  public eventStatusesList(): Observable<any[]> {
+    return this.api.get('event_statuses.json', null, this.api.httpOptions);
   }
 
 }

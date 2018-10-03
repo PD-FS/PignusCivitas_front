@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavParams } from 'ionic-angular';
 
 /**
  * Generated class for the VehicleDetailPage page.
@@ -21,8 +21,7 @@ export class VehicleDetailPage {
 
     public vehicle: any = null;
 
-    constructor(private navCtrl: NavController,
-        private navParams: NavParams) {
+    constructor(private navParams: NavParams) {
         const objectId = this.navParams.get('vehicleId');
         console.log(objectId);
         this.vehicle = {

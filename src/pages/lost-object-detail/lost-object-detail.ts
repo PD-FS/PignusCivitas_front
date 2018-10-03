@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavParams } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
 
 /**
@@ -22,8 +22,7 @@ export class LostObjectDetailPage {
 
     public object: any = null;
 
-    constructor(private navCtrl: NavController,
-        private navParams: NavParams,
+    constructor(private navParams: NavParams,
         private toastCtrl: ToastController) {
         const objectId = this.navParams.get('objectId');
         console.log(objectId);

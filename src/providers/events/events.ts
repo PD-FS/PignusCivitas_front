@@ -15,9 +15,16 @@ export class EventsProvider {
 
   }
 
-  public eventList(): Observable<Event[]> {
-
+  public eventList(): Observable<any[]> {
     return this.api.get('events.json', null, this.api.httpOptions);
+  }
+
+  public saveEvent(event: any): Observable<any> {
+    return this.api.post('events.json', event, this.api.httpOptions);
+  }
+
+  public getEvent(eventId: number): Observable<any> {
+    return this.api.get('events/' + eventId + '.json', null, this.api.httpOptions);
   }
 
 }

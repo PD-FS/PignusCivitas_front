@@ -1,0 +1,100 @@
+<!--
+  Generated template for the AddEventPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <myheader [title]="title">
+        <div *ngIf="!readonlyEvent">
+            <button ion-button icon-only clear (click)="attachImage()">
+                <ion-icon name="attach" style="color:white"></ion-icon>
+            </button>
+        </div>
+    </myheader>
+</ion-header>
+
+
+<ion-content padding>
+    <form [formGroup]="formulario">
+        <ion-item>
+            <ion-label>Tipo de evento</ion-label>
+            <ion-select [(ngModel)]="event.event_type_id"
+                    (ionChange)="eventTypeSelected($event)"
+                    formControlName="eventType">
+                <ion-option *ngFor="let eventType of eventTypes" [value]="eventType.id">
+                    {{eventType.name}}
+                </ion-option>
+            </ion-select>
+        </ion-item>
+        <validation-messages
+            [form]="formulario" field="eventType" [saved]="saved"></validation-messages>
+
+        <ion-item>
+            <ion-input type="text" [(ngModel)]="event.title" name="inputTitle" formControlName="title"
+                placeholder="Título" style="font-weight:bold">
+            </ion-input>
+        </ion-item>
+        <validation-messages [form]="formulario" field="title" [saved]="saved"></validation-messages>
+
+        <ion-item>
+            <ion-textarea type="text" [(ngModel)]="event.notes" name="inputNotes" formControlName="notes"
+                rows="4" maxlength="200" placeholder="Descripción">
+            </ion-textarea>
+        </ion-item>
+        <validation-messages [form]="formulario" field="notes" [saved]="saved"></validation-messages>
+
+        <ion-item *ngIf="event.image">
+            <img [src]="event.image" width="300px" height="200px" style="object-fit: contain;">
+        </ion-item>
+
+        <ion-item>
+            <ion-label>Lugar</ion-label>
+            <ion-input type="text" [(ngModel)]="event.site" name="inputSite" formControlName="site">
+            </ion-input>
+        </ion-item>
+        <validation-messages [form]="formulario" field="site" [saved]="saved"></validation-messages>
+
+        <ion-item>
+            <ion-label>Visibilidad</ion-label>
+            <ion-select [(ngModel)]="event.event_status_id" formControlName="eventStatus">
+                <ion-option *ngFor="let status of eventStatuses" [value]="status.id">
+                    {{status.name}}
+                </ion-option>
+            </ion-select>
+        </ion-item>
+        <validation-messages [form]="formulario" field="eventStatus" [saved]="saved"></validation-messages>
+
+        <ion-item>
+            <ion-label>Fecha fin</ion-label>
+            <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="event.end_date" formControlName="endDate">
+            </ion-datetime>
+        </ion-item>
+        <validation-messages [form]="formulario" field="endDate" [saved]="saved"></validation-messages>
+
+        <ion-item>
+            <ion-label>Contacto</ion-label>
+            <ion-input type="text" [(ngModel)]="event.contact_name" name="inputContactName" formControlName="contactName">
+            </ion-input>
+        </ion-item>
+        <validation-messages [form]="formulario" field="contactName" [saved]="saved"></validation-messages>
+
+        <ion-item>
+            <ion-label>Teléfono</ion-label>
+            <ion-input type="text" [(ngModel)]="event.contact_phone" name="inputContactPhone" formControlName="contactPhone">
+            </ion-input>
+        </ion-item>
+        <validation-messages [form]="formulario" field="contactPhone" [saved]="saved"></validation-messages>
+
+    </form>
+</ion-content>
+<ion-footer text-center *ngIf="!readonlyEvent">
+    <ion-toolbar position="bottom">
+        <button ion-button full (click)="save()">Guardar</button>
+    </ion-toolbar>
+</ion-footer>
+<ion-footer text-center *ngIf="readonlyEvent">
+    <ion-toolbar position="bottom">
+        <button ion-button full (click)="back()">Volver</button>
+    </ion-toolbar>
+</ion-footer>
