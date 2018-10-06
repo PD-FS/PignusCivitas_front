@@ -19,35 +19,32 @@
     <form [formGroup]="formulario">
         <ion-item>
             <ion-label>Tipo de evento</ion-label>
-            <ion-select [(ngModel)]="event.event_type_id"
-                    (ionChange)="eventTypeSelected()"
-                    formControlName="eventType"
-                    (ionChange)="eventTypeSelected()">
+            <ion-select [(ngModel)]="event.event_type_id" (ionChange)="eventTypeSelected()" formControlName="eventType"
+                (ionChange)="eventTypeSelected()">
                 <ion-option *ngFor="let eventType of eventTypes" [value]="eventType.id">
                     {{eventType.name}}
                 </ion-option>
             </ion-select>
         </ion-item>
-        <validation-messages
-            [form]="formulario" field="eventType" [saved]="saved"></validation-messages>
+        <validation-messages [form]="formulario" field="eventType" [saved]="saved"></validation-messages>
 
         <ion-item>
-            <ion-input type="text" [(ngModel)]="event.title" name="inputTitle" formControlName="title"
-                placeholder="Título" style="font-weight:bold">
+            <ion-input type="text" [(ngModel)]="event.title" name="inputTitle" formControlName="title" placeholder="Título"
+                style="font-weight:bold">
             </ion-input>
         </ion-item>
         <validation-messages [form]="formulario" field="title" [saved]="saved"></validation-messages>
 
         <ion-item *ngIf="getVisible('notes')">
-            <ion-textarea type="text" [(ngModel)]="event.notes" name="inputNotes" formControlName="notes"
-                rows="4" maxlength="200" placeholder="Descripción">
+            <ion-textarea type="text" [(ngModel)]="event.notes" name="inputNotes" formControlName="notes" rows="4"
+                maxlength="200" placeholder="Descripción">
             </ion-textarea>
         </ion-item>
         <validation-messages [form]="formulario" field="notes" [saved]="saved"></validation-messages>
 
         <ion-item *ngIf="getVisible('facts')">
-            <ion-textarea type="text" [(ngModel)]="event.facts" name="inputFacts" formControlName="facts"
-                rows="4" maxlength="200" placeholder="Hechos">
+            <ion-textarea type="text" [(ngModel)]="event.facts" name="inputFacts" formControlName="facts" rows="4"
+                maxlength="200" placeholder="Hechos">
             </ion-textarea>
         </ion-item>
         <validation-messages [form]="formulario" field="facts" [saved]="saved"></validation-messages>
@@ -63,14 +60,6 @@
         </ion-item>
         <validation-messages [form]="formulario" field="site" [saved]="saved"></validation-messages>
 
-        <ion-item *ngIf="getVisible('eventStatus')">
-            <ion-label>Visibilidad</ion-label>
-            <ion-select [(ngModel)]="event.event_status_id" formControlName="eventStatus">
-                <ion-option *ngFor="let status of eventStatuses" [value]="status.id">
-                    {{status.name}}
-                </ion-option>
-            </ion-select>
-        </ion-item>
         <validation-messages [form]="formulario" field="eventStatus" [saved]="saved"></validation-messages>
 
         <ion-item *ngIf="getVisible('endDate')">
@@ -98,6 +87,15 @@
             <ion-label>Reportado por</ion-label>
             <ion-input type="text" [(ngModel)]="event.reported_by" name="reportedBy" formControlName="reportedBy">
             </ion-input>
+        </ion-item>
+
+        <ion-item *ngIf="getVisible('eventStatus')">
+            <ion-label>Visibilidad</ion-label>
+            <ion-select [(ngModel)]="event.event_status_id" formControlName="eventStatus">
+                <ion-option *ngFor="let status of eventStatuses" [value]="status.id">
+                    {{status.name}}
+                </ion-option>
+            </ion-select>
         </ion-item>
 
     </form>
