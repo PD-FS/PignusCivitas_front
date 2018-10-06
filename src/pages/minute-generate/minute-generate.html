@@ -5,9 +5,23 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-    <myheader title="Generar Minuta"></myheader>
+    <myheader title="Generar Minuta">
+        <button ion-button icon-only clear (click)="showSearch()">
+            <ion-icon name="search" style="color:white"></ion-icon>
+        </button>
+    </myheader>
 </ion-header>
 
 <ion-content padding>
-
+    <search-bar #searchBar></search-bar>
+    <ion-list>
+        <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
+            <ion-avatar item-start>
+                <ion-icon name="book" color="information" item-end></ion-icon>
+            </ion-avatar>
+            <h2>Libro {{item.date}}</h2>
+            <p>Por: {{item.generated_by}}</p>
+            <ion-icon name="download" color="pdf" item-end (click)="downloadTapped($event, item)"></ion-icon>
+        </button>
+    </ion-list>
 </ion-content>
