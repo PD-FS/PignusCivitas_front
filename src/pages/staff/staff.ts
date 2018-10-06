@@ -91,7 +91,7 @@ export class StaffPage {
         );
     }
         public searchStaff(filter: string) {
-            console.log("buscando objetos: " + filter);
+            console.log("buscando personas: " + filter);
         }
 
 }
