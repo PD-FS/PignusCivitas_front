@@ -42,21 +42,21 @@ export class VisitorHistoryPage {
         id: 0,
         firstname: 'Pedro',
         lastname: 'Martínez',
-        checkoutdate: 'Entrada hace 30 minutos',
+        checkoutdate: 'Salida hace 30 minutos',
         photo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCswdKgLPnt79SzkGydguvOxuZkLlzJ4PQSup38ozfWuNy0-ZSkg'
       },
       {
         id: 1,
         firstname: 'Lorena',
         lastname: 'Palomasalva',
-        checkoutdate: 'Entrada hace 60 minutos',
+        checkoutdate: 'Salida hace 60 minutos',
         photo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnhxktMLHCrs3kp5McPdQo9_c9RdTpmwpjjPEAHtAi-mlpxsQ0'
       },
       {
         id: 2,
         firstname: 'Santiago',
         lastname: 'Guipuizcua',
-        checkoutdate: 'Entrada hace 90 minutos',
+        checkoutdate: 'Salida hace 90 minutos',
         photo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJb3OmkOlhn0NsHa2_gZHdTsUph7TmOilnOFQSRZM4K2YjPt7foQ'
       }
     ];
