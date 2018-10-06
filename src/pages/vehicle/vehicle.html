@@ -5,10 +5,16 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-    <myheader title="Vehículos"></myheader>
+    <myheader title="Vehículos">
+            <button ion-button icon-only clear (click)="showSearch()">
+                    <ion-icon name="search" style="color:white"></ion-icon>
+            </button>
+    </myheader>
 </ion-header>
 
 <ion-content padding>
+        <search-bar #searchBar></search-bar>
+
   <h1 ion-item > Conjunto las aguas</h1>
   
   <ion-tabs>

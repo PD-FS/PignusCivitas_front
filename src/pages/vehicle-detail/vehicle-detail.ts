@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavParams } from 'ionic-angular';
+import { IonicPage, NavParams, NavController } from 'ionic-angular';
 
 /**
  * Generated class for the VehicleDetailPage page.
@@ -21,7 +21,7 @@ export class VehicleDetailPage {
 
     public vehicle: any = null;
 
-    constructor(private navParams: NavParams) {
+    constructor(public navCtrl: NavController, private navParams: NavParams) {
         const objectId = this.navParams.get('vehicleId');
         console.log(objectId);
         this.vehicle = {
@@ -50,6 +50,9 @@ export class VehicleDetailPage {
         this.readOnly = true;
     }
 
+    public back() {
+        this.navCtrl.pop();
+    }
 
 
 }
