@@ -86,6 +86,12 @@
         </ion-item>
         <validation-messages [form]="formulario" field="contactPhone" [saved]="saved"></validation-messages>
 
+        <ion-item>
+            <ion-label>Reportado por</ion-label>
+            <ion-input type="text" [(ngModel)]="securityAgentName" name="reportedBy" formControlName="reportedBy">
+            </ion-input>
+        </ion-item>
+
     </form>
 </ion-content>
 <ion-footer text-center *ngIf="!readonlyEvent">

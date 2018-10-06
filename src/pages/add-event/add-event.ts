@@ -1,10 +1,12 @@
+import { SecurityAgentsProvider } from './../../providers/security-agents/security-agents';
 import { EventsProvider } from './../../providers/events/events';
 import { EventStatusesProvider } from './../../providers/event-statuses/event-statuses';
 import { EventTypesProvider } from './../../providers/event-types/event-types';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
-import { ImagePicker } from '@ionic-native/image-picker';
+import { ImagePicker, OutputType } from '@ionic-native/image-picker';
+import { PeopleProvider } from '../../providers/people/people';
 
 /**
  * Generated class for the AddEventPage page.
@@ -34,6 +36,8 @@ export class AddEventPage {
 
     public eventStatuses: Array<any>;
 
+    public securityAgentName: string;
+
     public formulario: FormGroup = this.formBuilder.group({
         eventType: ['', Validators.required],
         title: ['', Validators.required],
@@ -43,6 +47,7 @@ export class AddEventPage {
         endDate: [''],
         contactName: [''],
         contactPhone: [''],
+        reportedBy: [{value:'', disabled: true}]
 
     });
 
@@ -53,9 +58,12 @@ export class AddEventPage {
         private toastCtrl: ToastController,
         private formBuilder: FormBuilder,
         private eventStatusesProvider: EventStatusesProvider,
-        private imagePicker: ImagePicker) {
+        private imagePicker: ImagePicker,
+        private securityAgentProvider: SecurityAgentsProvider,
+        private peopleProvider: PeopleProvider) {
             
         this.initEvent();
+        this.getSecurityAgentName(this.event.security_agent_id);
         this.readonlyEvent = false;
         const eventId = this.navParams.get('eventId');
         const readOnlyMode = this.navParams.get('readOnlyMode');
@@ -118,11 +126,15 @@ export class AddEventPage {
             maximumImagesCount: 1,
             width: 800,
             height: 800,
-            quality: 80
+            quality: 80,
+            outputType: OutputType.DATA_URL
         };
         this.imagePicker.getPictures(options).then((results) => {
+            this.event.image = null;
             for (var i = 0; i < results.length; i++) {
                 console.log('Image URI: ' + results[i]);
+                this.event.image = results[i];
+                break;
             }
         }, (err) => { });
     }
@@ -150,6 +162,22 @@ export class AddEventPage {
 
     public back() {
         this.navCtrl.pop();
+    }
+
+    private getSecurityAgentName(securityAgentId: number): void {
+        this.securityAgentProvider.getSecurityAgent(securityAgentId).subscribe(
+            (data) => {
+                this.getPersonName(data.person_id);
+            }
+        );
+    }
+
+    private getPersonName(personId: number): void {
+        this.peopleProvider.getPerson(personId).subscribe(
+            (data) => {
+                this.securityAgentName = data.first_name + ' ' + data.last_name;
+            }
+        );
     }
 
 }
