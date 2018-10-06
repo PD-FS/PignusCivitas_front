@@ -5,7 +5,11 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-    <myheader title="Configuración"></myheader>
+    <myheader title="Configuración">
+        <button ion-button icon-only clear (click)="enableEdition()">
+            <ion-icon *ngIf="showEditButton" name="create" style="color:white"></ion-icon>
+        </button>
+    </myheader>
 </ion-header>
 
 
@@ -14,12 +18,32 @@
       <ion-list-header>
         Mis Datos
       </ion-list-header>
-      <ion-item>{{userData.name}}</ion-item>
-      <ion-item>{{userData.email}}</ion-item>
-      <ion-item>{{userData.code}}</ion-item>
+      <ion-item>
+          <ion-input type="text" placeholder="Nombre" [(ngModel)]="userData.name" [disabled]="readOnly">
+          </ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-input type="text" placeholder="Nombre" [(ngModel)]="userData.email" [disabled]="readOnly">
+          </ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-input type="text" placeholder="Nombre" [(ngModel)]="userData.code" [disabled]="readOnly">
+          </ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-list>
       <ion-list-header>
         Dirección
       </ion-list-header>
-      <ion-item>Calle 145 #19-45</ion-item>
+      <ion-item>
+          <ion-input type="text" placeholder="Nombre" [(ngModel)]="userData.address" [disabled]="readOnly">
+          </ion-input>
+      </ion-item>
     </ion-list>
 </ion-content>
+
+<ion-footer text-center *ngIf="showButton">
+    <ion-toolbar position="bottom">
+        <button ion-button full (click)="saveObject()">Guardar</button>
+    </ion-toolbar>
+</ion-footer>
