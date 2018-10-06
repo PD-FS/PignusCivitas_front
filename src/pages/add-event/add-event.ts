@@ -36,8 +36,6 @@ export class AddEventPage {
 
     public eventStatuses: Array<any>;
 
-    public securityAgentName: string;
-
     public formulario: FormGroup = this.formBuilder.group({
         eventType: ['', Validators.required],
         title: ['', Validators.required],
@@ -47,7 +45,7 @@ export class AddEventPage {
         endDate: [''],
         contactName: [''],
         contactPhone: [''],
-        reportedBy: [{value:'', disabled: true}]
+        reportedBy: [{value:''}]
 
     });
 
@@ -108,6 +106,7 @@ export class AddEventPage {
             contact_phone: null,
             community_id: 1,
             security_agent_id: 1,
+            reported_by: null,
             image: null
         };
     }
@@ -175,7 +174,7 @@ export class AddEventPage {
     private getPersonName(personId: number): void {
         this.peopleProvider.getPerson(personId).subscribe(
             (data) => {
-                this.securityAgentName = data.first_name + ' ' + data.last_name;
+                this.event.reported_by = data.first_name + ' ' + data.last_name;
             }
         );
     }
