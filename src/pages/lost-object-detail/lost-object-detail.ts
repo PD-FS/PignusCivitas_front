@@ -28,7 +28,7 @@ export class LostObjectDetailPage {
         console.log(objectId);
         this.object = {
             name: 'Sombrilla',
-            notes: 'Sombrilla marilla de éxito',
+            notes: 'Sombrilla amarilla de éxito',
             photo: 'https://i.pinimg.com/originals/a8/a5/d2/a8a5d2cacda2c9bfa7a961e756a1cbc4.png',
             status: ''
         }

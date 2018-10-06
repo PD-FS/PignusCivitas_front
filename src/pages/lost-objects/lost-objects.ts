@@ -1,7 +1,8 @@
 import { AddLostObjectPage } from './../add-lost-object/add-lost-object';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LostObjectDetailPage } from '../lost-object-detail/lost-object-detail';
+import { SearchBarComponent } from '../../components/search-bar/search-bar';
 
 /**
  * Generated class for the LostObjectsPage page.
@@ -20,6 +21,11 @@ export class LostObjectsPage {
     public lostObjects: {}[];
 
     public communityId: number;
+
+    public showSearchBar: boolean = false;
+
+    @ViewChild('searchBar')
+    public searchBar: SearchBarComponent;
 
     constructor(public navCtrl: NavController,
         public navParams: NavParams) {
@@ -72,12 +78,28 @@ export class LostObjectsPage {
         });
     }
 
-    public search() {
-
-    }
-
     public add() {
         this.navCtrl.push(AddLostObjectPage);
     }
 
+    public cancelSearch(event: any) {
+        this.showSearchBar = false;
+    }
+
+    public search(event: any) {
+    }
+
+    public showSearch() {
+        this.showSearchBar = true;
+        this.searchBar.openDialog();
+        this.searchBar.onSearch().subscribe(
+            data => {
+                this.searchObjects(data);
+            }
+        );
+    }
+
+    public searchObjects(filter: string) {
+        console.log("buscando objetos: " + filter);
+    }
 }
