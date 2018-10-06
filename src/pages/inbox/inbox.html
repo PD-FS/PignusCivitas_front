@@ -27,7 +27,7 @@
                 <img src="{{getImage(item)}}">
             </ion-avatar>
             <h2>{{item.title}}</h2>
-            <p>{{item.notes}}</p>
+            <p>{{item.notes ? item.notes : item.facts}}</p>
             <ion-icon name="{{getIcon(item.event_type_id).icon}}" color="{{getIcon(item.event_type_id).color}}"
                 item-end></ion-icon>
         </button>

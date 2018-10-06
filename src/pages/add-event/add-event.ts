@@ -40,14 +40,27 @@ export class AddEventPage {
         eventType: ['', Validators.required],
         title: ['', Validators.required],
         notes: [''],
+        facts: [''],
         site: [''],
         eventStatus: [''],
         endDate: [''],
         contactName: [''],
         contactPhone: [''],
-        reportedBy: [{value:''}]
-
+        reportedBy: [{ value: '' }]
     });
+
+    private visibleFields = {
+        eventType: true,
+        title: true,
+        notes: true,
+        facts: true,
+        site: true,
+        eventStatus: true,
+        endDate: true,
+        contactName: true,
+        contactPhone: true,
+        reportedBy: true
+    };
 
     constructor(public navCtrl: NavController,
         public navParams: NavParams,
@@ -59,9 +72,10 @@ export class AddEventPage {
         private imagePicker: ImagePicker,
         private securityAgentProvider: SecurityAgentsProvider,
         private peopleProvider: PeopleProvider) {
-            
+
         this.initEvent();
         this.getSecurityAgentName(this.event.security_agent_id);
+        this.eventTypeSelected();
         this.readonlyEvent = false;
         const eventId = this.navParams.get('eventId');
         const readOnlyMode = this.navParams.get('readOnlyMode');
@@ -74,7 +88,7 @@ export class AddEventPage {
                 (data) => {
                     this.event = data;
                     this.title = data.title;
-                    console.log(data.image);
+                    this.eventTypeSelected();
                 }
             );
         }
@@ -92,7 +106,7 @@ export class AddEventPage {
             }
         );
     }
-    
+
     private initEvent() {
         this.event = {
             id: null,
@@ -112,8 +126,92 @@ export class AddEventPage {
     }
 
 
-    public eventTypeSelected($event): void {
-
+    public eventTypeSelected(): void {
+        if (this.event.event_type_id === 1) {
+            // NOTIFICACION
+            this.visibleFields = {
+                eventType: true,
+                title: true,
+                notes: true,
+                facts: false,
+                site: true,
+                eventStatus: true,
+                endDate: false,
+                contactName: false,
+                contactPhone: false,
+                reportedBy: true
+            };
+        } else if (this.event.event_type_id === 2) {
+            // INCIDENTE
+            this.visibleFields = {
+                eventType: true,
+                title: true,
+                notes: false,
+                facts: true,
+                site: true,
+                eventStatus: true,
+                endDate: false,
+                contactName: false,
+                contactPhone: false,
+                reportedBy: true
+            };
+        } else if (this.event.event_type_id === 3) {
+            // ALERTA
+            this.visibleFields = {
+                eventType: true,
+                title: true,
+                notes: true,
+                facts: false,
+                site: false,
+                eventStatus: true,
+                endDate: false,
+                contactName: false,
+                contactPhone: false,
+                reportedBy: true
+            };
+        } else if (this.event.event_type_id === 4) {
+            // NOVEDAD
+            this.visibleFields = {
+                eventType: true,
+                title: true,
+                notes: true,
+                facts: false,
+                site: true,
+                eventStatus: false,
+                endDate: true,
+                contactName: true,
+                contactPhone: true,
+                reportedBy: true
+            };
+        } else if (this.event.event_type_id === 5) {
+            // CATASTROFE
+            this.visibleFields = {
+                eventType: true,
+                title: true,
+                notes: false,
+                facts: true,
+                site: true,
+                eventStatus: true,
+                endDate: false,
+                contactName: false,
+                contactPhone: false,
+                reportedBy: true
+            };
+        } else if (this.event.event_type_id === 6) {
+            // ACCIDENTE
+            this.visibleFields = {
+                eventType: true,
+                title: true,
+                notes: false,
+                facts: true,
+                site: true,
+                eventStatus: true,
+                endDate: false,
+                contactName: false,
+                contactPhone: false,
+                reportedBy: true
+            };
+        }
     }
 
     ionViewDidLoad() {
@@ -177,6 +275,10 @@ export class AddEventPage {
                 this.event.reported_by = data.first_name + ' ' + data.last_name;
             }
         );
+    }
+
+    public getVisible(fieldName: string) {
+        return this.visibleFields[fieldName];
     }
 
 }
