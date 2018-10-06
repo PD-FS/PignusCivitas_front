@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { EventsProvider } from '../../providers/events/events';
 import { EventTypeIcons, PignusIcon } from '../../providers/events/eventTypeIcons';
+import { LoadingController } from 'ionic-angular';
 /**
  * Generated class for the InboxPage page.
  *
@@ -24,14 +25,16 @@ export class InboxPage {
     public eventList: Array<any>;
     public eventTypes: Array<any>;
     public selectedEventType: number;
+    private loader;
 
     constructor(public navCtrl: NavController,
         public navParams: NavParams,
         private security: SecurityProvider,
         private eventsProvider: EventsProvider,
+        public loadingCtrl: LoadingController,
         private eventTypesProvider: EventTypesProvider) {
-        
         this.getEventList();
+
 
         this.eventTypesProvider.eventTypesList().subscribe(
             (data) => {
@@ -43,11 +46,13 @@ export class InboxPage {
     }
 
     private getEventList(): void {
+        this.presentLoading();
         this.eventsProvider.eventList().subscribe(
             (data) => {
                 this.items = data;
                 this.eventList = data;
                 this.eventTypeSelected();
+                this.loader.dismiss();
             }
         );
     }
@@ -102,4 +107,11 @@ export class InboxPage {
     public refresh() {
         this.getEventList();
     }
+
+    presentLoading() {
+        this.loader = this.loadingCtrl.create({
+            duration: 30000
+        });
+        this.loader.present();
+      }
 }
