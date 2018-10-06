@@ -41,19 +41,19 @@ export class SecurityAgentsPage {
             {
                 id: 0,
                 name: 'Elvira Vigilar',
-                role: 'Vigilante',
+                role: 'Agente de Seguridad',
                 photo: 'https://lh3.googleusercontent.com/J7Mqr3sfCxZu51OfXLRXld7UWh4e75AwELsC5xJY3Ckcm9jwdItlwms5doNZfrSAkQ=s180-rw'
             },
             {
                 id: 1,
                 name: 'Carlos Omar Sacabandido',
-                role: 'Vigilante',
+                role: 'Agente de Seguridad',
                 photo: 'https://lh3.googleusercontent.com/J7Mqr3sfCxZu51OfXLRXld7UWh4e75AwELsC5xJY3Ckcm9jwdItlwms5doNZfrSAkQ=s180-rw'
             },
             {
                 id: 2,
                 name: 'Enzo Villamizar',
-                role: 'Vigilante',
+                role: 'Agente de Seguridad',
                 photo: 'https://lh3.googleusercontent.com/J7Mqr3sfCxZu51OfXLRXld7UWh4e75AwELsC5xJY3Ckcm9jwdItlwms5doNZfrSAkQ=s180-rw'
             }
         ];
