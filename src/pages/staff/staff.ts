@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { SearchBarComponent } from '../../components/search-bar/search-bar';
 
 /**
  * Generated class for the StaffPage page.
@@ -18,6 +19,11 @@ export class StaffPage {
     public staffs: {}[];
 
     public communityId: number;
+
+    public showSearchBar: boolean = false;
+
+    @ViewChild('searchBar')
+    public searchBar: SearchBarComponent;
 
     constructor(public navCtrl: NavController,
             public navParams: NavParams) {
@@ -42,19 +48,19 @@ export class StaffPage {
                 id: 0,
                 name: 'Carlos Agüero',
                 role: 'Jardinero',
-                photo: 'https://lh3.googleusercontent.com/J7Mqr3sfCxZu51OfXLRXld7UWh4e75AwELsC5xJY3Ckcm9jwdItlwms5doNZfrSAkQ=s180-rw'
+                photo: 'https://thumb7.shutterstock.com/thumb_large/999518/460050457/stock-photo-portrait-of-handsome-man-in-black-suit-460050457.jpg'
             },
             {
                 id: 1,
                 name: 'Maria Ursal',
                 role: 'Servicios generales',
-                photo: 'https://lh3.googleusercontent.com/J7Mqr3sfCxZu51OfXLRXld7UWh4e75AwELsC5xJY3Ckcm9jwdItlwms5doNZfrSAkQ=s180-rw'
+                photo: 'https://thumb7.shutterstock.com/thumb_large/1106129/145382977/stock-photo-portrait-of-the-beautiful-girl-close-up-the-wind-fluttering-hair-145382977.jpg'
             },
             {
                 id: 2,
                 name: 'Ana Sandra Sopal',
                 role: 'Administración',
-                photo: 'https://lh3.googleusercontent.com/J7Mqr3sfCxZu51OfXLRXld7UWh4e75AwELsC5xJY3Ckcm9jwdItlwms5doNZfrSAkQ=s180-rw'
+                photo: 'https://cdn.pixabay.com/photo/2016/04/10/21/34/woman-1320810__340.jpg'
             }
         ];
     }
@@ -67,5 +73,25 @@ export class StaffPage {
         console.log('event: ' + event);
         console.log('worker: ' + worker);
     }
+
+    public cancelSearch(event: any) {
+        this.showSearchBar = false;
+    }
+
+    public search(event: any) {
+    }
+
+    public showSearch() {
+        this.showSearchBar = true;
+        this.searchBar.openDialog();
+        this.searchBar.onSearch().subscribe(
+            data => {
+                this.searchStaff(data);
+            }
+        );
+    }
+        public searchStaff(filter: string) {
+            console.log("buscando objetos: " + filter);
+        }
 
 }
