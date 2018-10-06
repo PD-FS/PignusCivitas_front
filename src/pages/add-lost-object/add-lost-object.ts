@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ImagePicker } from '@ionic-native/image-picker';
 
 /**
  * Generated class for the AddLostObjectPage page.
@@ -31,6 +32,7 @@ export class AddLostObjectPage {
 
     constructor(public navCtrl: NavController,
         public navParams: NavParams,
+        private imagePicker: ImagePicker,
         private formBuilder: FormBuilder) {
         
     }
@@ -39,9 +41,6 @@ export class AddLostObjectPage {
         console.log('ionViewDidLoad AddLostObjectPage');
     }
 
-    public attachImage() {
-
-    }
 
     public save() {
         this.saved = true;
@@ -49,6 +48,20 @@ export class AddLostObjectPage {
         if (this.formulario.valid) {
             this.navCtrl.pop();
         }
+    }
+
+    public attachImage(): void {
+        const options = {
+            maximumImagesCount: 1,
+            width: 800,
+            height: 800,
+            quality: 80
+        };
+        this.imagePicker.getPictures(options).then((results) => {
+            for (var i = 0; i < results.length; i++) {
+                console.log('Image URI: ' + results[i]);
+            }
+        }, (err) => { });
     }
 
 }
