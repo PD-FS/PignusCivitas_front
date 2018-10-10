@@ -5,10 +5,16 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-        <myheader title="Trabajadores"></myheader>
+        <myheader title="Trabajadores">
+                <button ion-button icon-only clear (click)="showSearch()">
+                        <ion-icon name="search" style="color:white"></ion-icon>
+                </button>
+        </myheader>
+
     </ion-header>
     
     <ion-content padding>
+            <search-bar #searchBar></search-bar>
         <ion-item>
             <ion-select [(ngModel)]="communityId"
                     placeholder="Comunidad"
@@ -26,6 +32,7 @@
                 <p>{{worker.role}}</p>
             </button>
         </ion-list>
+        
     
     </ion-content>
     

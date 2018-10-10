@@ -18,6 +18,8 @@ import { MinuteGeneratePage } from '../pages/minute-generate/minute-generate';
 import { SecurityProvider } from '../providers/security/security';
 import { SecurityAgentCommunitiesPage } from '../pages/security-agent-communities/security-agent-communities';
 import { IntercomPage } from '../pages/intercom/intercom';
+import { LoginPage } from '../pages/login/login';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 
 
@@ -26,7 +28,7 @@ import { IntercomPage } from '../pages/intercom/intercom';
 })
 export class MyApp {
   @ViewChild(Nav) nav: NavController;
-  rootPage: any = LandingPage;
+  rootPage: any = LoginPage;
 
   pages: Array<{title: string, component: any, icon: string}> = [];
 
@@ -39,7 +41,8 @@ export class MyApp {
   constructor(public platform: Platform,
               public statusBar: StatusBar,
               public splashScreen: SplashScreen,
-              private security:SecurityProvider) {
+              private security:SecurityProvider,
+              private auth: AngularFireAuth) {
     this.validarSesion();
     this.initializeApp();
 
@@ -50,7 +53,7 @@ export class MyApp {
   }
 
   public logout() {
-    this.security.setRole(null);
+    this.auth.auth.signOut();
   }
 
   private validarSesion() {

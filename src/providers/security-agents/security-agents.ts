@@ -1,4 +1,5 @@
-import { HttpClient } from '@angular/common/http';
+import { ApiProvider } from './../api/api';
+import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 
 /*
@@ -10,8 +11,10 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class SecurityAgentsProvider {
 
-  constructor(public http: HttpClient) {
-    console.log('Hello SecurityAgentsProvider Provider');
+  constructor(public api: ApiProvider) { }
+
+  public getSecurityAgent(securityAgentId: number): Observable<any> {
+    return this.api.get('security_agents/' + securityAgentId + '.json', null, this.api.httpOptions);
   }
 
 }

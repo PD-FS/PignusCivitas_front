@@ -5,6 +5,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { EventsProvider } from '../../providers/events/events';
 import { EventTypeIcons, PignusIcon } from '../../providers/events/eventTypeIcons';
+import { LoadingController } from 'ionic-angular';
+import { AngularFireAuth } from 'angularfire2/auth';
 /**
  * Generated class for the InboxPage page.
  *
@@ -24,14 +26,23 @@ export class InboxPage {
     public eventList: Array<any>;
     public eventTypes: Array<any>;
     public selectedEventType: number;
+    private loader;
 
     constructor(public navCtrl: NavController,
         public navParams: NavParams,
         private security: SecurityProvider,
         private eventsProvider: EventsProvider,
-        private eventTypesProvider: EventTypesProvider) {
-        
+        public loadingCtrl: LoadingController,
+        private eventTypesProvider: EventTypesProvider,
+        private auth: AngularFireAuth) {
         this.getEventList();
+
+        this.eventsProvider.eventList().subscribe(
+            (data) => {
+                this.items = data;
+                this.eventList = data;
+            }
+        );
 
         this.eventTypesProvider.eventTypesList().subscribe(
             (data) => {
@@ -43,11 +54,13 @@ export class InboxPage {
     }
 
     private getEventList(): void {
+        this.presentLoading();
         this.eventsProvider.eventList().subscribe(
             (data) => {
                 this.items = data;
                 this.eventList = data;
                 this.eventTypeSelected();
+                this.loader.dismiss();
             }
         );
     }
@@ -62,6 +75,14 @@ export class InboxPage {
             return item.image;
         }
         return 'assets/imgs/pignus_icon.png';
+    }
+
+    ionViewWillLoad() {
+      this.auth.authState.subscribe(data => {
+        if(!data) {
+          this.navCtrl.setRoot('LoginPage');
+        }
+      })
     }
 
     ionViewDidLoad() {
@@ -102,4 +123,11 @@ export class InboxPage {
     public refresh() {
         this.getEventList();
     }
+
+    presentLoading() {
+        this.loader = this.loadingCtrl.create({
+            duration: 30000
+        });
+        this.loader.present();
+      }
 }

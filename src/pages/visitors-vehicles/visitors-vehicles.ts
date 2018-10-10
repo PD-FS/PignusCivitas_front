@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
 import { VehicleDetailPage } from '../vehicle-detail/vehicle-detail';
+import { VehiclePage } from '../vehicle/vehicle';
 
 /**
  * Generated class for the VisitorsVehiclesPage page.
@@ -21,7 +22,8 @@ export class VisitorsVehiclesPage {
   public communityId: number;
 
   constructor(public navCtrl: NavController,
-    public navParams: NavParams) {
+    public navParams: NavParams,
+    public app: App) {
     this.communityId = this.loadCommunityId();
     this.loadVisitorsVehicules()
   }
@@ -70,9 +72,13 @@ export class VisitorsVehiclesPage {
   public itemTapped(event: any, vehicle: any): void {
     console.log('event: ' + event);
     console.log('agent: ' + vehicle);
-    this.navCtrl.push(VehicleDetailPage, {
-      vehicleId: vehicle.id
+    console.log(this.navCtrl.parent);
+    //this.navCtrl..push(VehicleDetailPage, {
+      //vehicleId: vehicle.id
+  //});
+  this.app.getRootNav().push(VehicleDetailPage, {
+    vehicleId: vehicle.id
   });
 
-};
+  };
 }

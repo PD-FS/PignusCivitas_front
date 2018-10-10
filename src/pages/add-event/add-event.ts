@@ -1,10 +1,12 @@
+import { SecurityAgentsProvider } from './../../providers/security-agents/security-agents';
 import { EventsProvider } from './../../providers/events/events';
 import { EventStatusesProvider } from './../../providers/event-statuses/event-statuses';
 import { EventTypesProvider } from './../../providers/event-types/event-types';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
-import { ImagePicker } from '@ionic-native/image-picker';
+import { ImagePicker, OutputType } from '@ionic-native/image-picker';
+import { PeopleProvider } from '../../providers/people/people';
 
 /**
  * Generated class for the AddEventPage page.
@@ -38,13 +40,27 @@ export class AddEventPage {
         eventType: ['', Validators.required],
         title: ['', Validators.required],
         notes: [''],
+        facts: [''],
         site: [''],
         eventStatus: [''],
         endDate: [''],
         contactName: [''],
         contactPhone: [''],
-
+        reportedBy: [{ value: '' }]
     });
+
+    private visibleFields = {
+        eventType: true,
+        title: true,
+        notes: true,
+        facts: true,
+        site: true,
+        eventStatus: true,
+        endDate: true,
+        contactName: true,
+        contactPhone: true,
+        reportedBy: true
+    };
 
     constructor(public navCtrl: NavController,
         public navParams: NavParams,
@@ -53,9 +69,13 @@ export class AddEventPage {
         private toastCtrl: ToastController,
         private formBuilder: FormBuilder,
         private eventStatusesProvider: EventStatusesProvider,
-        private imagePicker: ImagePicker) {
-            
+        private imagePicker: ImagePicker,
+        private securityAgentProvider: SecurityAgentsProvider,
+        private peopleProvider: PeopleProvider) {
+
         this.initEvent();
+        this.getSecurityAgentName(this.event.security_agent_id);
+        this.eventTypeSelected();
         this.readonlyEvent = false;
         const eventId = this.navParams.get('eventId');
         const readOnlyMode = this.navParams.get('readOnlyMode');
@@ -68,7 +88,7 @@ export class AddEventPage {
                 (data) => {
                     this.event = data;
                     this.title = data.title;
-                    console.log(data.image);
+                    this.eventTypeSelected();
                 }
             );
         }
@@ -86,7 +106,7 @@ export class AddEventPage {
             }
         );
     }
-    
+
     private initEvent() {
         this.event = {
             id: null,
@@ -100,13 +120,98 @@ export class AddEventPage {
             contact_phone: null,
             community_id: 1,
             security_agent_id: 1,
+            reported_by: null,
             image: null
         };
     }
 
 
-    public eventTypeSelected($event): void {
-
+    public eventTypeSelected(): void {
+        if (this.event.event_type_id === 1) {
+            // NOTIFICACION
+            this.visibleFields = {
+                eventType: true,
+                title: true,
+                notes: true,
+                facts: false,
+                site: true,
+                eventStatus: true,
+                endDate: false,
+                contactName: false,
+                contactPhone: false,
+                reportedBy: true
+            };
+        } else if (this.event.event_type_id === 2) {
+            // INCIDENTE
+            this.visibleFields = {
+                eventType: true,
+                title: true,
+                notes: false,
+                facts: true,
+                site: true,
+                eventStatus: true,
+                endDate: false,
+                contactName: false,
+                contactPhone: false,
+                reportedBy: true
+            };
+        } else if (this.event.event_type_id === 3) {
+            // ALERTA
+            this.visibleFields = {
+                eventType: true,
+                title: true,
+                notes: true,
+                facts: false,
+                site: false,
+                eventStatus: true,
+                endDate: false,
+                contactName: false,
+                contactPhone: false,
+                reportedBy: true
+            };
+        } else if (this.event.event_type_id === 4) {
+            // NOVEDAD
+            this.visibleFields = {
+                eventType: true,
+                title: true,
+                notes: true,
+                facts: false,
+                site: true,
+                eventStatus: false,
+                endDate: true,
+                contactName: true,
+                contactPhone: true,
+                reportedBy: true
+            };
+        } else if (this.event.event_type_id === 5) {
+            // CATASTROFE
+            this.visibleFields = {
+                eventType: true,
+                title: true,
+                notes: false,
+                facts: true,
+                site: true,
+                eventStatus: true,
+                endDate: false,
+                contactName: false,
+                contactPhone: false,
+                reportedBy: true
+            };
+        } else if (this.event.event_type_id === 6) {
+            // ACCIDENTE
+            this.visibleFields = {
+                eventType: true,
+                title: true,
+                notes: false,
+                facts: true,
+                site: true,
+                eventStatus: true,
+                endDate: false,
+                contactName: false,
+                contactPhone: false,
+                reportedBy: true
+            };
+        }
     }
 
     ionViewDidLoad() {
@@ -118,11 +223,15 @@ export class AddEventPage {
             maximumImagesCount: 1,
             width: 800,
             height: 800,
-            quality: 80
+            quality: 80,
+            outputType: OutputType.DATA_URL
         };
         this.imagePicker.getPictures(options).then((results) => {
+            this.event.image = null;
             for (var i = 0; i < results.length; i++) {
                 console.log('Image URI: ' + results[i]);
+                this.event.image = results[i];
+                break;
             }
         }, (err) => { });
     }
@@ -150,6 +259,26 @@ export class AddEventPage {
 
     public back() {
         this.navCtrl.pop();
+    }
+
+    private getSecurityAgentName(securityAgentId: number): void {
+        this.securityAgentProvider.getSecurityAgent(securityAgentId).subscribe(
+            (data) => {
+                this.getPersonName(data.person_id);
+            }
+        );
+    }
+
+    private getPersonName(personId: number): void {
+        this.peopleProvider.getPerson(personId).subscribe(
+            (data) => {
+                this.event.reported_by = data.first_name + ' ' + data.last_name;
+            }
+        );
+    }
+
+    public getVisible(fieldName: string) {
+        return this.visibleFields[fieldName];
     }
 
 }
