@@ -10,7 +10,6 @@
 
 <ion-content padding>
     <ion-item>
-        
         <ion-select [(ngModel)]="selectedEventType" (ionChange)="eventTypeSelected($event)">
             <ion-option *ngFor="let eventType of eventTypes" [value]="eventType.id">
                 {{eventType.name}}
