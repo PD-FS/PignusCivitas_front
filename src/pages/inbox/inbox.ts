@@ -6,6 +6,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { EventsProvider } from '../../providers/events/events';
 import { EventTypeIcons, PignusIcon } from '../../providers/events/eventTypeIcons';
 import { LoadingController } from 'ionic-angular';
+import { AngularFireAuth } from 'angularfire2/auth';
 /**
  * Generated class for the InboxPage page.
  *
@@ -32,9 +33,17 @@ export class InboxPage {
         private security: SecurityProvider,
         private eventsProvider: EventsProvider,
         public loadingCtrl: LoadingController,
-        private eventTypesProvider: EventTypesProvider) {
+        private eventTypesProvider: EventTypesProvider,
+        private auth: AngularFireAuth) {
         this.getEventList();
 
+         {
+        this.eventsProvider.eventList().subscribe(
+            (data) => {
+                this.items = data;
+                this.eventList = data;
+            }
+        );
 
         this.eventTypesProvider.eventTypesList().subscribe(
             (data) => {
@@ -67,6 +76,14 @@ export class InboxPage {
             return item.image;
         }
         return 'assets/imgs/pignus_icon.png';
+    }
+
+    ionViewWillLoad() {
+      this.auth.authState.subscribe(data => {
+        if(!data) {
+          this.navCtrl.setRoot('LoginPage');
+        }
+      })
     }
 
     ionViewDidLoad() {

@@ -1,23 +1,13 @@
-import { SearchBarImplementComponent } from './../components/search-bar-implement/search-bar-implement';
-import { SearchBarComponent } from './../components/search-bar/search-bar';
 import { ValidationMessagesComponent } from './../components/validation-messages/validation-messages';
 import { ConfigPage } from './../pages/config/config';
-import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-import { IonicStorageModule } from '@ionic/storage';
-import { HttpClientModule } from '@angular/common/http'
 
 import { MyApp } from './app.component';
 import { LandingPage } from '../pages/landing/landing';
 import { ListPage } from '../pages/list/list';
-import { InboxPage } from '../pages/inbox/inbox';
-
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatDialogModule } from '@angular/material/dialog';
 import { CommunitiesProvider } from '../providers/communities/communities';
 import { ConfigProvider } from '../providers/config/config';
 import { EventsProvider } from '../providers/events/events';
@@ -89,7 +79,6 @@ import { CommunitiesPage } from '../pages/communities/communities';
 import { VisitorsPage } from '../pages/visitors/visitors';
 import { LostObjectsPage } from '../pages/lost-objects/lost-objects';
 import { MinuteGeneratePage } from '../pages/minute-generate/minute-generate';
-import { MyheaderComponent } from '../components/myheader/myheader';
 import { VisitorsVehiclesPage } from '../pages/visitors-vehicles/visitors-vehicles';
 import { OwnersVehiclesPage } from '../pages/owners-vehicles/owners-vehicles';
 import { VisitorListPage } from '../pages/visitors-list/visitors-list';
@@ -100,14 +89,18 @@ import { AddVisitorPage } from '../pages/add-visitor/add-visitor';
 import { AddEventPage } from '../pages/add-event/add-event';
 import { DatePipe } from '@angular/common';
 import { ImagePicker } from '@ionic-native/image-picker';
-
+import { RegisterPage } from '../pages/register/register';
+import { RegisterPageModule } from '../pages/register/register.module';
+import { InboxPageModule } from '../pages/inbox/inbox.module';
+import { SharedModule } from '../shared/shared.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginPageModule } from '../pages/login/login.module';
 
 @NgModule({
   declarations: [
     MyApp,
     LandingPage,
     ListPage,
-    InboxPage,
     CommunitiesPage,
     AssetStockPage,
     AssetStockDetailPage,
@@ -124,14 +117,11 @@ import { ImagePicker } from '@ionic-native/image-picker';
     LostObjectDetailPage,
     AddLostObjectPage,
     AddEventPage,
-    MyheaderComponent,
     VehiclePage,
     VisitorsVehiclesPage,
     OwnersVehiclesPage,
     ConfigPage,
     ValidationMessagesComponent,
-    SearchBarComponent,
-    SearchBarImplementComponent,
     VisitorListPage,
     VehicleDetailPage,
     IntercomPage,
@@ -139,13 +129,12 @@ import { ImagePicker } from '@ionic-native/image-picker';
     AddVisitorPage
   ],
   imports: [
-    BrowserModule,
-    HttpClientModule,
-    IonicModule.forRoot(MyApp),
     BrowserAnimationsModule,
-    MatToolbarModule,
-    MatDialogModule,
-    IonicStorageModule.forRoot()
+    SharedModule,
+    IonicModule.forRoot(MyApp),
+    RegisterPageModule,
+    InboxPageModule,
+    LoginPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -153,7 +142,6 @@ import { ImagePicker } from '@ionic-native/image-picker';
     LandingPage,
     CommunitiesPage,
     ListPage,
-    InboxPage,
     AssetStockPage,
     AssetStockDetailPage,
     LostObjectsPage,
@@ -173,12 +161,12 @@ import { ImagePicker } from '@ionic-native/image-picker';
     VisitorsVehiclesPage,
     OwnersVehiclesPage,
     ConfigPage,
-    SearchBarImplementComponent,
     VisitorListPage,
     VehicleDetailPage,
     IntercomPage,
     AddVehiclePage,
-    AddVisitorPage
+    AddVisitorPage,
+    RegisterPage
   ],
   providers: [
     StatusBar,

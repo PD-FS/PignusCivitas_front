@@ -1,0 +1,15 @@
+
+<ion-content padding class="bg-style" text-center>
+  <ion-img height='150' width='300' src="assets/imgs/PignusLogo.png" class="bg-style"></ion-img>
+  <p>- Ingresa con Email -</p>
+  <ion-item class="bg-style">
+    <ion-label floating>Email</ion-label>
+    <ion-input type="text" [(ngModel)]="user.email" ></ion-input>
+  </ion-item>
+  <ion-item class="bg-style">
+    <ion-label floating>Password</ion-label>
+    <ion-input type="password" [(ngModel)]="user.password"></ion-input>
+  </ion-item><br /><br />
+  <button ion-button (click)="login(user)">Login</button><br /><br />
+  <a (click)="register()" color="light">Crear Cuenta</a>
+</ion-content>
