@@ -6,13 +6,14 @@
 -->
 <ion-header>
     <myheader title="Objetos perdidos">
-        <button ion-button icon-only clear (click)="search()">
+        <button ion-button icon-only clear (click)="showSearch()">
             <ion-icon name="search" style="color:white"></ion-icon>
         </button>
     </myheader>
 </ion-header>
 
 <ion-content padding>
+        <search-bar #searchBar></search-bar>
     <ion-item>
         <ion-select [(ngModel)]="communityId"
                 placeholder="Comunidad"

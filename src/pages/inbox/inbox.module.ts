@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { InboxPage } from './inbox';
+import { SharedModule } from '../../shared/shared.module';
+import { MyheaderComponent } from '../../components/myheader/myheader';
 
 @NgModule({
   declarations: [
@@ -8,6 +10,10 @@ import { InboxPage } from './inbox';
   ],
   imports: [
     IonicPageModule.forChild(InboxPage),
+    SharedModule
   ],
+  entryComponents: [
+    MyheaderComponent
+  ]
 })
 export class InboxPageModule {}
