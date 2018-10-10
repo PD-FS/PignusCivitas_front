@@ -37,7 +37,6 @@ export class InboxPage {
         private auth: AngularFireAuth) {
         this.getEventList();
 
-         {
         this.eventsProvider.eventList().subscribe(
             (data) => {
                 this.items = data;
