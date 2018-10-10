@@ -90,7 +90,6 @@ import { AddEventPage } from '../pages/add-event/add-event';
 import { DatePipe } from '@angular/common';
 import { ImagePicker } from '@ionic-native/image-picker';
 import { RegisterPage } from '../pages/register/register';
-import { LoginPage } from '../pages/login/login';
 import { RegisterPageModule } from '../pages/register/register.module';
 import { InboxPageModule } from '../pages/inbox/inbox.module';
 import { SharedModule } from '../shared/shared.module';

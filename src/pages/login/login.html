@@ -1,28 +1,15 @@
-<!--
-  Generated template for the LoginPage page.
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>Login</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
-
-<ion-content padding>
-
-  <ion-item>
-    <ion-label floating>Email:</ion-label>
-    <ion-input type="text" [(ngModel)]="user.email"></ion-input>
+<ion-content padding class="bg-style" text-center>
+  <ion-img height='150' width='300' src="assets/imgs/PignusLogo.png" class="bg-style"></ion-img>
+  <p>- Ingresa con Email -</p>
+  <ion-item class="bg-style">
+    <ion-label floating>Email</ion-label>
+    <ion-input type="text" [(ngModel)]="user.email" ></ion-input>
   </ion-item>
-  <ion-item>
-    <ion-label floating>Password:</ion-label>
+  <ion-item class="bg-style">
+    <ion-label floating>Password</ion-label>
     <ion-input type="password" [(ngModel)]="user.password"></ion-input>
-  </ion-item>
-  <button ion-button (click)="login(user)">Login</button>
-  <button ion-button (click)="register()" color="light">Register</button>
+  </ion-item><br /><br />
+  <button ion-button (click)="login(user)">Login</button><br /><br />
+  <a (click)="register()" color="light">Crear Cuenta</a>
 </ion-content>
