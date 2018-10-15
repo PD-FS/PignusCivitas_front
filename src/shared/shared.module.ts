@@ -11,6 +11,7 @@ import { IonicModule } from 'ionic-angular';
 import { SearchBarComponent } from '../components/search-bar/search-bar';
 import { SearchBarImplementComponent } from '../components/search-bar-implement/search-bar-implement';
 import { CommonModule } from '@angular/common';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { CommonModule } from '@angular/common';
     IonicStorageModule.forRoot(),
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
     AngularFireAuthModule,
+    AngularFirestoreModule,
     IonicModule
 
   ],

@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { User } from '../../models/user';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { SecurityProvider } from '../../providers/security/security';
+import { AngularFirestore } from 'angularfire2/firestore';
+import 'rxjs/add/operator/toPromise';
 
 /**
  * Generated class for the LoginPage page.
@@ -22,7 +25,9 @@ export class LoginPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              private auth: AngularFireAuth) {
+              private security: SecurityProvider,
+              private auth: AngularFireAuth,
+              private db: AngularFirestore) {
   }
 
   async login(user: User) {
@@ -31,6 +36,23 @@ export class LoginPage {
                                   .auth
                                   .signInWithEmailAndPassword(user.email, user.password);
       if(result) {
+        let db = this.db
+        let security = this.security
+        this.auth.auth.onAuthStateChanged(function(user) {
+          if (user) {
+            db.collection("userProfile", ref => ref.where('email', '==', user.email)).get().toPromise().then(function(querySnapshot) {
+
+                querySnapshot.forEach(function(doc) {
+                    security.setRole(doc.data().role)
+                });
+            });
+
+          } else {
+            console.log('No hay usuario')
+            security.setRole(1)
+          }
+        });
+
         this.navCtrl.setRoot('InboxPage');
       }
     }
@@ -54,5 +76,6 @@ export class LoginPage {
   register() {
     this.navCtrl.push('RegisterPage')
   }
+
 
 }

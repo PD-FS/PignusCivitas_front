@@ -23,7 +23,7 @@ export class SecurityProvider {
   }
 
   public getRole(): any {
-    return this.role;
+    return this.role
   }
 
   public getNotificator(): Observable<any> {
@@ -32,13 +32,6 @@ export class SecurityProvider {
 
   private validateSession(val: any): void {
     this.notificadorLanding.next(this.role);
-    /*
-    if (val === null || val === undefined) {
-      this.notificadorLanding.next(0);
-    }
-    else{
-      this.notificadorLanding.next(this.role);
-    }*/
   }
 
 }
