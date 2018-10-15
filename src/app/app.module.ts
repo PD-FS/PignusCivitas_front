@@ -95,7 +95,7 @@ import { InboxPageModule } from '../pages/inbox/inbox.module';
 import { SharedModule } from '../shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginPageModule } from '../pages/login/login.module';
-
+import { GooglePlus } from '@ionic-native/google-plus';
 @NgModule({
   declarations: [
     MyApp,

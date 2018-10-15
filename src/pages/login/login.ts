@@ -18,6 +18,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 export class LoginPage {
 
   user = {} as User;
+  message: string;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -26,13 +27,27 @@ export class LoginPage {
 
   async login(user: User) {
     try {
-      const result = await this.auth.auth.signInWithEmailAndPassword(user.email, user.password);
+      const result = await this.auth
+                                  .auth
+                                  .signInWithEmailAndPassword(user.email, user.password);
       if(result) {
         this.navCtrl.setRoot('InboxPage');
       }
     }
-    catch(e) {
-      console.error(e);
+    catch(error) {
+      console.error(error);
+      if(error.code == 'auth/invalid-email'){
+        this.message = 'Email no válido'
+        console.log('Entre')
+      } else if (error.code == 'auth/invalid-email') {
+        this.message = 'Usuario no encontrado'
+      } else if (error.code == 'auth/argument-error') {
+        this.message = 'Ingrese un usuario y contraseña válido'
+      } else if (error.code == 'auth/wrong-password') {
+        this.message = 'Contraseña inválida'
+      } else {
+        this.message = 'No se pudo procesar su autenticación'
+      }
     }
   }
 

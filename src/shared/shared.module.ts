@@ -12,6 +12,7 @@ import { SearchBarComponent } from '../components/search-bar/search-bar';
 import { SearchBarImplementComponent } from '../components/search-bar-implement/search-bar-implement';
 import { CommonModule } from '@angular/common';
 
+
 @NgModule({
   declarations: [
     MyheaderComponent,

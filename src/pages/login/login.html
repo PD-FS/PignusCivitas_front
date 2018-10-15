@@ -1,6 +1,7 @@
 
 <ion-content padding class="bg-style" text-center>
   <ion-img height='150' width='300' src="assets/imgs/PignusLogo.png" class="bg-style"></ion-img>
+  <div ion-item color="danger" *ngIf="message">{{message}}</div>
   <p>- Ingresa con Email -</p>
   <ion-item class="bg-style">
     <ion-label floating>Email</ion-label>
