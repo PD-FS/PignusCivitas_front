@@ -25,7 +25,7 @@ export class RegisterPage {
               public navParams: NavParams,
               private auth: AngularFireAuth,
               private toastCtrl: ToastController,
-              private fireStore: AngularFirestore) {
+              private db: AngularFirestore) {
   }
 
   ionViewDidLoad() {
@@ -33,14 +33,22 @@ export class RegisterPage {
   }
 
   async register(user: User) {
+    let db = this.db;
     try{
       const result = await this.auth.auth.createUserWithEmailAndPassword(user.email, user.password);
-      this.userProfileCollection = this.fireStore.collection<any>('userProfile');
-
-      this.userProfileCollection.add({
+      db.collection("userProfile").doc(user.email).set({
         name: '',
-        email: user.email,
+        code: '',
+        community: '',
+        img: '',
+        address: '',
         role: 1
+      })
+      .then(function() {
+          console.log("Document successfully written!");
+      })
+      .catch(function(error) {
+          console.error("Error writing document: ", error);
       });
 
       let toast = this.toastCtrl.create({

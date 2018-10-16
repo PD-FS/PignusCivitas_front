@@ -1,11 +1,11 @@
 import { ConfigPage } from './../pages/config/config';
 import { InboxPage } from './../pages/inbox/inbox';
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { Nav, Platform, NavController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { LandingPage } from '../pages/landing/landing';
+
 
 import { VehiclePage } from '../pages/vehicle/vehicle';
 import { VisitorsPage } from '../pages/visitors/visitors';
@@ -20,13 +20,14 @@ import { SecurityAgentCommunitiesPage } from '../pages/security-agent-communitie
 import { IntercomPage } from '../pages/intercom/intercom';
 import { LoginPage } from '../pages/login/login';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFirestore } from 'angularfire2/firestore';
 
 
 
 @Component({
   templateUrl: 'app.html'
 })
-export class MyApp {
+export class MyApp implements OnInit {
   @ViewChild(Nav) nav: NavController;
   rootPage: any = LoginPage;
 
@@ -36,31 +37,72 @@ export class MyApp {
 
   configPage: {title: string, component: any, icon: string};
 
-  userData: {name: string, code: string, email: string, community: string, img: string};
+  userData;
 
   constructor(public platform: Platform,
               public statusBar: StatusBar,
               public splashScreen: SplashScreen,
-              private security:SecurityProvider,
-              private auth: AngularFireAuth) {
+              private security: SecurityProvider,
+              private auth: AngularFireAuth,
+              private db: AngularFirestore) {
     this.validarSesion();
     this.initializeApp();
-
+    this.userData = {
+      name: '',
+      code: '',
+      email: '',
+      community: '',
+      img: ''
+    }
+    console.log('userData', this.userData)
     // used for an example of ngFor and navigation
     this.inboxPage = { title: 'Bandeja de Entrada', component: InboxPage, icon: 'paper-plane'}
     this.configPage = { title: 'Configuración', component: ConfigPage, icon: ''}
 
   }
 
+  ngOnInit(): void {
+    let db = this.db;
+    let self = this
+    this.auth.auth.onAuthStateChanged(function(user) {
+
+      if (user) {
+        let usermail = user.email || '';
+        db.collection("userProfile").doc(usermail).ref.get().then(function(doc){
+          if(doc.exists){
+            self.userData = doc.data();
+            self.userData['email'] = doc.id;
+          }
+        });
+
+      } else {
+        console.log('No hay usuario')
+        self.userData = {
+          name: '',
+          code: '',
+          email: '',
+          community: '',
+          img: ''
+        }
+      }
+    });
+
+  }
+
+  ionViewDidLoad() {
+
+  }
   public logout() {
     this.auth.auth.signOut();
   }
 
   private validarSesion() {
+
+
     this.security.getNotificator().subscribe(
         (data) => {
             if (this.nav && data == null) {
-              this.nav.setRoot(LandingPage);
+              this.nav.setRoot('LoginPage');
             }
 
             this.pages = []
@@ -98,6 +140,7 @@ export class MyApp {
 
             this.pages = this.pages.sort(compare)
 
+            /*
             if(data == 0)
             {
               this.userData = {name: 'Elvira Vigilar',
@@ -119,7 +162,7 @@ export class MyApp {
                                email: '',
                                community: '',
                                img: ''}
-            }
+            }*/
         }
     );
   }
@@ -138,6 +181,8 @@ export class MyApp {
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
   }
+
+
 
 }
 

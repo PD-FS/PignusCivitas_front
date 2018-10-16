@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
 import { VehicleDetailPage } from '../vehicle-detail/vehicle-detail';
-import { VehiclePage } from '../vehicle/vehicle';
 
 /**
  * Generated class for the VisitorsVehiclesPage page.

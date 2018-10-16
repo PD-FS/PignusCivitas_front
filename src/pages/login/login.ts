@@ -40,11 +40,16 @@ export class LoginPage {
         let security = this.security
         this.auth.auth.onAuthStateChanged(function(user) {
           if (user) {
-            db.collection("userProfile", ref => ref.where('email', '==', user.email)).get().toPromise().then(function(querySnapshot) {
-
-                querySnapshot.forEach(function(doc) {
-                    security.setRole(doc.data().role)
-                });
+            let usermail = user.email || '';
+            db.collection("userProfile").doc(usermail).ref.get().then(function(doc) {
+              if(doc.exists){
+                const data = doc.data()
+                if(data){
+                  security.setRole(data.role);
+                }
+              } else {
+                security.setRole(1);
+              }
             });
 
           } else {
