@@ -228,7 +228,7 @@ import { LoginPageModule } from '../pages/login/login.module';
     DepartmentsProvider,
     AlertCommunitiesProvider,
     DatePipe,
-    ImagePicker,
+    ImagePicker
   ]
 })
 export class AppModule {}

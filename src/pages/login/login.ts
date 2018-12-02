@@ -51,29 +51,26 @@ export class LoginPage {
                 security.setRole(1);
               }
             });
-
           } else {
-            console.log('No hay usuario')
             security.setRole(1)
           }
         });
-
         this.navCtrl.setRoot('InboxPage');
       }
     }
     catch(error) {
       console.error(error);
-      if(error.code == 'auth/invalid-email'){
-        this.message = 'Email no válido'
-        console.log('Entre')
-      } else if (error.code == 'auth/invalid-email') {
-        this.message = 'Usuario no encontrado'
-      } else if (error.code == 'auth/argument-error') {
+      if (error.code === 'auth/invalid-email'
+        || error.code === 'auth/user-not-found') {
+        this.message = 'Usuario/Contraseña no válido';
+      } else if (error.code === 'auth/argument-error') {
         this.message = 'Ingrese un usuario y contraseña válido'
-      } else if (error.code == 'auth/wrong-password') {
-        this.message = 'Contraseña inválida'
+      } else if (error.code === 'auth/wrong-password') {
+        this.message = 'Contraseña inválida';
+      } else if (error.code === 'auth/weak-password') {
+        this.message = 'Contraseña inválida';
       } else {
-        this.message = 'No se pudo procesar su autenticación'
+        this.message = 'No se pudo procesar su autenticación';
       }
     }
   }

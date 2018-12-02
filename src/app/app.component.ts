@@ -72,6 +72,9 @@ export class MyApp implements OnInit {
           if(doc.exists){
             self.userData = doc.data();
             self.userData['email'] = doc.id;
+            if (!self.userData.img) {
+              self.userData.img = "../assets/imgs/pignus_icon.png"
+            }
           }
         });
 
@@ -101,9 +104,6 @@ export class MyApp implements OnInit {
 
     this.security.getNotificator().subscribe(
         (data) => {
-            if (this.nav && data == null) {
-              this.nav.setRoot('LoginPage');
-            }
 
             this.pages = []
 

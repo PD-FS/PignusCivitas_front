@@ -18,7 +18,7 @@ import { AngularFirestore } from 'angularfire2/firestore';
   templateUrl: 'register.html',
 })
 export class RegisterPage {
-
+  message: string = "";
   user = {} as User;
   userProfileCollection;
   constructor(public navCtrl: NavController,
@@ -65,10 +65,25 @@ export class RegisterPage {
 
       console.log(result);
       this.navCtrl.setRoot('LoginPage');
-    }
-    catch(e){
+    } catch(e) {
+      this.message = "";
+      if (e.code === 'auth/invalid-email') {
+        this.message = 'No es un correo válido';
+      } else if (e.code === 'auth/argument-error') {
+        this.message = 'Ingrese un usuario y contraseña válido'
+      } else if (e.code === 'auth/wrong-password') {
+        this.message = 'Contraseña inválida';
+      } else if (e.code === 'auth/weak-password') {
+        this.message = 'La contraseña debe tener mínimo 6 caracteres';
+      } else {
+        this.message = 'No se pudo procesar su autenticación';
+      }
       console.error(e);
     }
+  }
+
+  public cancelar(): void {
+    this.navCtrl.setRoot('LoginPage');
   }
 
 }
