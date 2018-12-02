@@ -14,7 +14,8 @@
 
 
 <ion-content padding text-center>
-<ion-item>
+  <div ion-item color="danger" *ngIf="message">{{message}}</div>
+  <ion-item>
     <ion-label floating>Email:</ion-label>
     <ion-input type="text" [(ngModel)]="user.email"></ion-input>
   </ion-item>
@@ -22,5 +23,6 @@
     <ion-label floating>Password:</ion-label>
     <ion-input type="password" [(ngModel)]="user.password"></ion-input>
   </ion-item><br><br>
+  <button ion-button (click)="cancelar()">Cancelar</button>
   <button ion-button (click)="register(user)">Registrar</button>
 </ion-content>

@@ -23,11 +23,15 @@
           </ion-input>
       </ion-item>
       <ion-item>
-          <ion-input type="text" placeholder="Nombre" [(ngModel)]="userData.email" [disabled]="readOnly">
+          <ion-input type="text" placeholder="Email" [(ngModel)]="userData.email" disabled>
           </ion-input>
       </ion-item>
       <ion-item>
-          <ion-input type="text" placeholder="Nombre" [(ngModel)]="userData.code" [disabled]="readOnly">
+          <ion-input type="text" placeholder="Code" [(ngModel)]="userData.code" [disabled]="readOnly">
+          </ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-input type="file" placeholder="Avatar" [(ngModel)]="userData.image" [disabled]="readOnly">
           </ion-input>
       </ion-item>
     </ion-list>
@@ -36,7 +40,7 @@
         Dirección
       </ion-list-header>
       <ion-item>
-          <ion-input type="text" placeholder="Nombre" [(ngModel)]="userData.address" [disabled]="readOnly">
+          <ion-input type="text" placeholder="Dirección" [(ngModel)]="userData.address" [disabled]="readOnly">
           </ion-input>
       </ion-item>
     </ion-list>
